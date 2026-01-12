@@ -1,0 +1,218 @@
+/* --- POLICES LOCALES --- */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/typo/Montserrat/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'PT Sans Narrow';
+    src: url('../assets/typo/PT_Sans_Narrow/PTSansNarrow-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+/* --- VARIABLES --- */
+:root {
+    --primary-blue: #0000EF;  
+    --dark-blue: #0A0E2D;   
+    --platinum: #EAEDEE;       
+    --white: #FFFFFF;
+}
+
+/* --- STYLE GENERAL DU HEADER --- */
+.main-header {
+    background-color: var(--platinum);
+    box-shadow: 0 4px 12px rgba(10, 14, 45, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+/* --- LOGO --- */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.main-logo {
+    height: 100px;
+    width: auto;
+    transition: transform 0.3s ease;
+    padding-right: 16px;
+}
+
+.main-logo:hover {
+    transform: scale(1.05);
+}
+
+.site-title {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark-blue);
+    font-size: 1.4rem;
+    margin-left: 15px;
+    text-transform: uppercase;
+}
+
+/* --- NAVIGATION --- */
+.nav-menu ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--dark-blue);
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-blue);
+}
+
+/* --- BOUTON BOUTIQUE  --- */
+.btn-boutique {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 0 #0000A0, 0 6px 10px rgba(0,0,239,0.3);
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+
+.btn-boutique:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #0000A0, 0 8px 15px rgba(0,0,239,0.4);
+}
+
+.btn-boutique:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #0000A0;
+}
+
+/* --- STYLE DU FOOTER --- */
+.main-footer {
+    background-color: var(--platinum);
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(10, 14, 45, 0.1);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+
+/* --- FOOTER --- */
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+}
+
+.admin-link {
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: var(--dark-blue);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.admin-link:hover {
+    color: var(--primary-blue);
+}
+
+/* --- CENTRE --- */
+.copyright {
+    font-family: 'PT Sans Narrow', sans-serif;
+    color: var(--dark-blue);
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* --- DROITE (Réseaux et Bouton) --- */
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+/* Les carrés bleus RS */
+.social-box {
+    width: 35px;
+    height: 35px;
+    background-color: var(--primary-blue);
+    display: block;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.social-box:hover {
+    transform: scale(1.1);
+    background-color: #0000A0;
+}
+
+/* Bouton boutique du footer */
+.btn-boutique-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 18px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 0 #0000A0;
+    transition: all 0.2s ease;
+}
+
+.btn-boutique-footer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #0000A0;
+}
+
+.btn-boutique-footer:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #0000A0;
+}
