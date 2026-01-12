@@ -1,59 +1,43 @@
 <?php
 
-class Database
-{
-    private static ?Database $instance = null;
-    private PDO $connection;
+// $database = Database::getInstance()->getConnection(); <= pour intéragir avec la base de données !!!!
+// $query = $database->query("SELECT * FROM table");
+// $a = $query->fetchAll(PDO::FETCH_ASSOC);
+// print_r($a);
 
-    // 🔒 Constructeur privé
-    private function __construct()
-    {
+include "../configuration/config.php";
+
+class Database {
+    private static $instance = null;
+    private $connection;
+
+    private function __construct() {
         global $hote, $port, $nom_bd, $identifiant, $mot_de_passe, $encodage, $debug;
+        // option pour la gestion de l'encodage
+        $options=array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES ".$encodage); 
 
-        $options = [
-            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES " . $encodage,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ];
-
-        if ($debug) {
-            $options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-        }
-
-        try {
-            $this->connection = new PDO(
-                "mysql:host=$hote;port=$port;dbname=$nom_bd",
-                $identifiant,
-                $mot_de_passe,
-                $options
-            );
-        } catch (PDOException $e) {
-            echo "Serveur actuellement inaccessible, veuillez nous excuser.";
-            exit();
-        }
+        // Gestion des erreurs avec try catch 
+        try 
+        { 
+            $this->connection = new PDO('mysql:host='.$hote.';port='.$port.';dbname='.$nom_bd,$identifiant, $mot_de_passe,$options); 
+            if($debug) 
+            { 
+                $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+            }    
+        } catch (PDOException $erreur) 
+        {
+            echo "Serveur actuellement innaccessible, veuillez nous excuser.";
+            exit(); 
+        } 
     }
-
-    // 🔁 Empêche le clonage
-    private function __clone() {}
-
-    // 🔁 Empêche la désérialisation
-    public function __wakeup()
-    {
-        throw new Exception("Cannot unserialize singleton");
-    }
-
-    // ✅ Point d’accès unique
-    public static function getInstance(): Database
-    {
+    public static function getInstance() {
         if (self::$instance === null) {
             self::$instance = new Database();
         }
 
         return self::$instance;
     }
-
-    // 🔌 Accès à PDO
-    public function getConnection(): PDO
-    {
+    public function getConnection(){
         return $this->connection;
     }
 }
