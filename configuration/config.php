@@ -1,7 +1,7 @@
 <?php
     $hote='localhost';
     $port='3306';
-    $nom_bd='';
+    $nom_bd='colomiersfootball';
     $identifiant='root';
     $mot_de_passe='';
     $encodage='utf8';
