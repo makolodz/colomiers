@@ -1,10 +1,3 @@
-<?php
-include("configuration/config.php");
-include("php/database.php");
-$database = Database::getInstance()->getConnection();
-$query = $database->query("SELECT * FROM equipe");
-$equipes = $query->fetchAll(PDO::FETCH_ASSOC);
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,71 +6,35 @@ $equipes = $query->fetchAll(PDO::FETCH_ASSOC);
     <title>Autres équipes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <div class="container">
-        <aside>
-            <h1 class="autres-equipes">Autres équipes</h1>
+<?php include './php/components/header.php'; ?>
+<body class="autresequipes-body">
+    <div class="autresequipes-container">
+        <aside class="autresequipes-aside">
+            <h1 class="autresequipes-autres-equipes">Autres équipes</h1>
         </aside>
         <main>
-            <section class="section-feminine">
+            <section class="autresequipes-section-feminine">
                 <h2>Section féminine</h2>
-                <?php
-                $feminines = [];
-                foreach ($equipes as $equipe) {
-                    if (stripos($equipe['nom'], 'Féminine') !== false) {
-                        $feminines[] = $equipe;
-                    }
-                }
-                ?>
-                <div class="block-row">
-                <?php foreach ($feminines as $feminine): ?>
-                    <div class="block block-tall">
-                        <img src="image.jpg" alt="image équipe féminine">
-                        <div class="equipe-info">
-                            <strong><?= $feminine['nom'] ?></strong><br>
-                            <a href="<?= $feminine['lien_calendrier'] ?>" target="_blank">Calendrier</a> |
-                            <a href="<?= $feminine['lien_classement'] ?>" target="_blank">Classement</a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                <div class="image-large"></div>
+                <div class="image-small-row">
+                    <div class="image-small1"></div>
+                    <div class="image-small2"></div>
                 </div>
             </section>
-            <section class="section-jeunes">
+            <section class="autresequipes-section-jeunes">
                 <h2>Sections jeunes</h2>
-                <?php
-                $jeunes = [];
-                foreach ($equipes as $equipe) {
-                    if (stripos($equipe['nom'], 'U') === 0) {
-                        $jeunes[] = $equipe;
-                    }
-                }
-                ?>
                 <div class="block-row">
-                <?php foreach ($jeunes as $jeune): ?>
                     <div class="block block-tall">
-                        <img src="image.jpg" alt="image équipe jeune">
-                        <div class="equipe-info">
-                            <strong><?= $jeune['nom'] ?></strong><br>
-                            <a href="<?= $jeune['lien_calendrier'] ?>" target="_blank">Calendrier</a> |
-                            <a href="<?= $jeune['lien_classement'] ?>" target="_blank">Classement</a>
-                        </div>
+                        <img src="images1.webp" alt="image1">
+                    </div>
+                    <div class="block block-tall">
+                        <img src="images1.webp" alt="image1">
                     </div>
                 <?php endforeach; ?>
                 </div>
             </section>
         </main>
-        <footer>
-            <div class="footer-left">
-                <span>Logo</span>
-                <span>Admin</span>
-                <span>US Colomiers - Tous droits réservés</span>
-            </div>
-            <div class="footer-right">
-                <button class="footer-btn"></button>
-                <button class="footer-btn"></button>
-                <button class="footer-btn"></button>
-            </div>
-        </footer>
     </div>
+    <?php include './php/components/footer.php'; ?>
 </body>
 </html>

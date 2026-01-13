@@ -6,6 +6,11 @@
 // print_r($a);
 
 include __DIR__ . "/../configuration/config.php";
+include __DIR__ . "/objects/article.php";
+include __DIR__ . "/objects/histoire.php";
+include __DIR__ . "/objects/partenaires.php";
+include __DIR__ . "/objects/equipe.php";
+
 class Database {
     private static $instance = null;
     private $connection;
@@ -36,13 +41,87 @@ class Database {
 
         return self::$instance;
     }
+
     public function getConnection(){
         return $this->connection;
     }
+    
+    public function loadArticles() {
+        $articles = [];
 
-    public function loadBackoffice() {
-        //quand on ouvre le backoffice on génère tous les objets correspondants aux datas de la bdd
-        //pour accéder aux données de la bdd dans le front on utilise pas la poo mais seulement la bdd (+ si possible en AJAX) 
+        $sql = "SELECT * FROM article ORDER BY date_publication DESC";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $articles[] = new Article(
+                $row['date_publication'],
+                $row['titre'],
+                $row['contenu'],
+                $row['image'],
+                $row['categorie']
+            );
+        }
+
+        return $articles;
+    }
+
+    public function loadHistory() {
+        $histoires = [];
+
+        $sql = "SELECT * FROM histoires ORDER BY date_tranche DESC";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $histoires[] = new Histoire(
+                $row['tranche_date'],
+                $row['titre'],
+                $row['contenu'],
+                $row['image'],
+            );
+        }
+
+        return $histoires;
+    }
+
+    public function loadPartners() {
+        $partners = [];
+
+        $sql = "SELECT * FROM partenaire ORDER BY id_partenaire DESC";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $partners[] = new Partenaire(
+                $row['photo'],
+                $row['lien'],
+                $row['nom_societe'],
+            );
+        }
+
+        return $partners;
+    }
+
+    public function loadEquipe() {
+        $equipes = [];
+
+        $sql = "SELECT * FROM equipe ORDER BY id_equipe";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $equipes[] = new Equipe(
+                $row['nom'],
+                $row['lien_calendrier'],
+                $row['lien_classement']
+            );
+        }
+        return $equipes;
     }
 }
 
