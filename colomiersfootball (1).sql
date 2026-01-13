@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2026 at 08:57 AM
+-- Generation Time: Jan 13, 2026 at 08:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,7 +83,7 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 (12, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M', 'U16 Régional 1'),
 (13, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201', 'U15 Régional 1'),
 (14, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A%20POULE%20A', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A', 'U15 Niveau A'),
-(15, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201%20POULE%20C', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1');
+(15, 'https://www.colomiersfoot.fr/calendrier.jpg?v=3eed1c5eacvrxwl', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1');
 
 -- --------------------------------------------------------
 
@@ -163,32 +163,6 @@ CREATE TABLE `partenaire` (
   `photo` varchar(255) DEFAULT NULL,
   `nom_societe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `partenaire`
---
-
-INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
-(1, 'https://www.colomiersfoot.fr/crbst_Logo_20Mairie0.jpg?v=2gr6ts7ir0affbt', 'Ville de Colomiers'),
-(2, 'https://www.colomiersfoot.fr/oc-1706-instit-logo_carre-quadri-150x150-72dpi0.png?v=2gq8p47ir0ah1sk', 'Région Occitanie'),
-(3, 'https://www.colomiersfoot.fr/Haute-Garonne__2831_29_logo_2015_svg.png?v=2gs2k87ir0aq2cs', 'Conseil Départemental de la Haute-Garonne'),
-(4, 'https://www.colomiersfoot.fr/la-depeche0.jpg?v=2grvz47ir0ahcfd', 'La Dépêche du Midi'),
-(5, 'https://www.colomiersfoot.fr/logo_20tpf_20alliaserv0.jpg?v=2gq8p42pgxagsl', 'Groupe Alliaserv'),
-(6, 'https://www.colomiersfoot.fr/crbst_LogoMMA22.png?v=2gr980r2p8lr83', 'MMA'),
-(7, 'https://www.colomiersfoot.fr/Logo_20intermarche_20cornebarrieu.png?v=2dt6jc7qbxfjjq4', 'Intermarché Cornebarrieu'),
-(8, 'https://www.colomiersfoot.fr/Logos_Cassin.png?v=3u3ewg8xxnpjwfa', 'Cassin Travaux Publics'),
-(9, 'https://www.colomiersfoot.fr/Afflelou.jpg?v=209xoo37bgoxl3', 'Alain Afflelou'),
-(10, 'https://www.colomiersfoot.fr/Logo_France_Mcdo.png?v=3u37488xxnpk9jn', 'McDonald\'s'),
-(11, 'https://www.colomiersfoot.fr/logo_20trevisport1.jpg?v=2grus07ir0e23kw', 'Trevi Sport'),
-(12, 'https://www.colomiersfoot.fr/11.jpg?v=43nd9c7qbwrza6t', 'Puma'),
-(13, 'https://www.colomiersfoot.fr/sup_20peinture.png?v=23vmvsw6ysjohd', 'Sup Peinture'),
-(14, 'https://www.colomiersfoot.fr/subra_20henri.jpg?v=23wp7cw6ysjohd', 'Subra Henry'),
-(15, 'https://www.colomiersfoot.fr/toshiba-logo-1.jpg?v=23ws74w6ysjohd', 'Toshiba'),
-(16, 'https://www.colomiersfoot.fr/logo_agence_pibrac.png?v=23wtzsw6ysjohd', 'Selectour'),
-(17, 'https://www.colomiersfoot.fr/Cazenave_20Autos.jpg?v=20a8go2gzafocuu1', 'CZN Machinery'),
-(18, 'https://www.colomiersfoot.fr/tgfluides_logo.jpg?v=209mwo2gzafoh2jl', 'TGF'),
-(19, 'https://www.colomiersfoot.fr/Ace_20Hotel.png?v=209o3s2gzafonhvv', 'ACE Hôtel'),
-(20, 'https://www.colomiersfoot.fr/Eat_20Salad.jpg?v=20abgg2gzafonpe1', 'Eat Salad');
 
 -- --------------------------------------------------------
 
@@ -386,7 +360,7 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT for table `partenaire`
 --
 ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `staff`
