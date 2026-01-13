@@ -11,6 +11,7 @@ include __DIR__ . "/objects/histoire.php";
 include __DIR__ . "/objects/partenaires.php";
 include __DIR__ . "/objects/equipe.php";
 include __DIR__ . "/objects/joueur.php";
+include __DIR__ . "/objects/staff.php";
 
 class Database {
     private static $instance = null;
@@ -64,7 +65,6 @@ class Database {
                 $row['categorie']
             );
         }
-
         return $articles;
     }
 
@@ -84,7 +84,6 @@ class Database {
                 $row['image'],
             );
         }
-
         return $histoires;
     }
 
@@ -103,7 +102,6 @@ class Database {
                 $row['nom_societe'],
             );
         }
-
         return $partners;
     }
 
@@ -139,12 +137,27 @@ class Database {
                 $row['prenom'],
                 $row['role'],
                 $row['poste'],
-                $row['photo']
             );
         }
         return $joueurs;
-
+    }
+    public function loadStaff() {
+        $staffs = [];
         
+        $sql = "SELECT * FROM staff";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $staffs[] = new Staff(
+                $row['nom'],
+                $row['prenom'],
+                $row['role'],
+                $row['email']
+            );
+        }
+        return $staffs;
     }
 }
 
