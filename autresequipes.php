@@ -19,45 +19,33 @@
                 <h2>Section féminine</h2>
                 <?php
 
-                $feminines = Database::getInstance()->loadEquipe();
+                $equipes = Database::getInstance()->loadEquipe();
 
-                $femines
+                $feminine = $equipes[1];
 
                 ?>
-                <div class="autresequipes-block-row">
-                <?php foreach ($feminines as $feminine): ?>
-                    <div class="autresequipes-block block-tall">
+                <div class="autresequipes-block-row">    
+                <div class="autresequipes-autres-equipes">
                         <img src="image.jpg" alt="image équipe féminine">
                         <div class="autresequipes-equipe-info">
-                            <strong><?= $feminine['nom'] ?></strong><br>
-                            <a href="<?= $feminine['lien_calendrier'] ?>" target="_blank">Calendrier</a> |
-                            <a href="<?= $feminine['lien_classement'] ?>" target="_blank">Classement</a>
+                            <strong><?= $feminine->nom ?></strong><br>
+                            <a href="<?= $feminine->lien_calendrier ?>" target="_blank">Calendrier</a> |
+                            <a href="<?= $feminine->lien_classement ?>" target="_blank">Classement</a>
                         </div>
                     </div>
-                <?php endforeach; ?>
                 </div>
             </section>
             <section class="autresequipes-section-jeunes">
                 <h2>Sections jeunes</h2>
-                <?php
-                $jeunes = [];
-                foreach ($equipes as $equipe) {
-                    if (stripos($equipe['nom'], 'U') === 0) {
-                        $jeunes[] = $equipe;
-                    }
-                }
-                ?>
-                <div class="autresequipes-block-row">
-                <?php foreach ($jeunes as $jeune): ?>
-                    <div class="autresequipes-block block-tall">
-                        <img src="image.jpg" alt="image équipe jeune">
-                        <div class="autresequipes-equipe-info">
-                            <strong><?= $jeune['nom'] ?></strong><br>
-                            <a href="<?= $jeune['lien_calendrier'] ?>" target="_blank">Calendrier</a> |
-                            <a href="<?= $jeune['lien_classement'] ?>" target="_blank">Classement</a>
-                        </div>
+                <?php foreach ($equipes as $equipe): ?>
+                    <div class="autresequipes-autres-equipes">
+                            <div class="autresequipes-block-block-tall">
+                                    <strong><?= $equipe->nom ?></strong><br>
+                                    <a href="<?= $equipe->lien_calendrier ?>" target="_blank">Calendrier</a> |
+                                    <a href="<?= $equipe->lien_classement ?>" target="_blank">Classement</a>
+                            </div>
                     </div>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
                 </div>
             </section>
         </main>
