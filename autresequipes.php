@@ -1,10 +1,5 @@
-<?php
-include("configuration/config.php");
-include("php/database.php");
-$database = Database::getInstance()->getConnection();
-$query = $database->query("SELECT * FROM equipe");
-$equipes = $query->fetchAll(PDO::FETCH_ASSOC);
-?>
+<?php include __DIR__ . "/php/database.php" ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,12 +18,11 @@ $equipes = $query->fetchAll(PDO::FETCH_ASSOC);
             <section class="autresequipes-section-feminine">
                 <h2>Section féminine</h2>
                 <?php
-                $feminines = [];
-                foreach ($equipes as $equipe) {
-                    if (stripos($equipe['nom'], 'Féminine') !== false) {
-                        $feminines[] = $equipe;
-                    }
-                }
+
+                $feminines = Database::getInstance()->loadEquipe();
+
+                $femines
+
                 ?>
                 <div class="autresequipes-block-row">
                 <?php foreach ($feminines as $feminine): ?>

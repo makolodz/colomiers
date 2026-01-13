@@ -162,7 +162,8 @@ CREATE TABLE `match` (
 CREATE TABLE `partenaire` (
   `id_partenaire` int(11) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `nom_societe` varchar(200) DEFAULT NULL
+  `nom_societe` varchar(200) DEFAULT NULL,
+  'lien' varchar(200) DEFAULT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

@@ -1,10 +1,18 @@
 <?php 
 
-class equipe {
-    private $lien_calendrier;
-    private $lien_classement;
-    private $nom;
-    private $trainers; //array de l'objet Staff
+class Equipe {
+    public $lien_calendrier;
+    public $lien_classement;
+    public $nom;
+    public $trainers; //array de l'objet Staff
+
+    public function __construct($nom, $lien_calendrier, $lien_classement) {
+        $this->nom = $nom;
+        $this->lien_calendrier = $lien_calendrier;
+        $this->lien_classement = $lien_classement;
+        $this->trainers = [];
+
+    }
 }
 
 ?>

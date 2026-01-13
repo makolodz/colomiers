@@ -9,6 +9,7 @@ include __DIR__ . "/../configuration/config.php";
 include __DIR__ . "/objects/article.php";
 include __DIR__ . "/objects/histoire.php";
 include __DIR__ . "/objects/partenaires.php";
+include __DIR__ . "/objects/equipe.php";
 
 class Database {
     private static $instance = null;
@@ -97,7 +98,7 @@ class Database {
         foreach ($rows as $row) {
             $partners[] = new Partenaire(
                 $row['photo'],
-                $row['photo'],
+                $row['lien'],
                 $row['nom_societe'],
             );
         }
@@ -105,6 +106,23 @@ class Database {
         return $partners;
     }
 
+    public function loadEquipe() {
+        $equipes = [];
+
+        $sql = "SELECT * FROM equipe ORDER BY id_equipe";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $equipes[] = new Equipe(
+                $row['nom'],
+                $row['lien_calendrier'],
+                $row['lien_classement']
+            );
+        }
+        return $equipes;
+    }
 }
 
 
