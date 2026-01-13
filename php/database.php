@@ -5,8 +5,7 @@
 // $a = $query->fetchAll(PDO::FETCH_ASSOC);
 // print_r($a);
 
-include __DIR__."/../configuration/config.php";
-
+include __DIR__ . "/../configuration/config.php";
 class Database {
     private static $instance = null;
     private $connection;
