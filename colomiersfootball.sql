@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 13, 2026 at 08:57 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Hôte : 127.0.0.1
+-- Généré le : mar. 13 jan. 2026 à 17:09
+-- Version du serveur : 10.4.32-MariaDB
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `colomiersfootball`
+-- Base de données : `colomiersfootball`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Structure de la table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Structure de la table `article`
 --
 
 CREATE TABLE `article` (
@@ -51,10 +51,18 @@ CREATE TABLE `article` (
   `categorie` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`id_article`, `titre`, `contenu`, `image`, `date_publication`, `categorie`) VALUES
+(1, 'Nouveau site pour l\'US Colomiers', 'On a fait un nouveau site ! C\'est vachement plus joli dites-donc.', NULL, '0000-00-00 00:00:00', 1),
+(2, 'Nouveau site pour l\'US Colomiers', 'On a fait un nouveau site ! C\'est vachement plus joli dites-donc.', NULL, NULL, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipe`
+-- Structure de la table `equipe`
 --
 
 CREATE TABLE `equipe` (
@@ -65,7 +73,7 @@ CREATE TABLE `equipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `equipe`
+-- Déchargement des données de la table `equipe`
 --
 
 INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) VALUES
@@ -88,13 +96,12 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `histoires`
+-- Structure de la table `histoires`
 --
 
 CREATE TABLE `histoires` (
   `id_histoire` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
-  `contenu` text DEFAULT NULL,
   `tranche_date` varchar(50) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -102,7 +109,7 @@ CREATE TABLE `histoires` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `joueur`
+-- Structure de la table `joueur`
 --
 
 CREATE TABLE `joueur` (
@@ -114,7 +121,7 @@ CREATE TABLE `joueur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `joueur`
+-- Déchargement des données de la table `joueur`
 --
 
 INSERT INTO `joueur` (`id_joueur`, `nom`, `prenom`, `role`, `photo`) VALUES
@@ -142,7 +149,7 @@ INSERT INTO `joueur` (`id_joueur`, `nom`, `prenom`, `role`, `photo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `match`
+-- Structure de la table `match`
 --
 
 CREATE TABLE `match` (
@@ -156,18 +163,17 @@ CREATE TABLE `match` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `partenaire`
+-- Structure de la table `partenaire`
 --
 
 CREATE TABLE `partenaire` (
   `id_partenaire` int(11) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `nom_societe` varchar(200) DEFAULT NULL,
-  'lien' varchar(200) DEFAULT NULL,
+  `nom_societe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `partenaire`
+-- Déchargement des données de la table `partenaire`
 --
 
 INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
@@ -195,7 +201,7 @@ INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff`
+-- Structure de la table `staff`
 --
 
 CREATE TABLE `staff` (
@@ -207,7 +213,7 @@ CREATE TABLE `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staff`
+-- Déchargement des données de la table `staff`
 --
 
 INSERT INTO `staff` (`id_staff`, `nom`, `prenom`, `role`, `photo`) VALUES
@@ -252,7 +258,7 @@ INSERT INTO `staff` (`id_staff`, `nom`, `prenom`, `role`, `photo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `staff_equipe`
+-- Structure de la table `staff_equipe`
 --
 
 CREATE TABLE `staff_equipe` (
@@ -261,7 +267,7 @@ CREATE TABLE `staff_equipe` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `staff_equipe`
+-- Déchargement des données de la table `staff_equipe`
 --
 
 INSERT INTO `staff_equipe` (`id_staff`, `id_equipe`) VALUES
@@ -286,122 +292,122 @@ INSERT INTO `staff_equipe` (`id_staff`, `id_equipe`) VALUES
 (21, 13);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `admin`
+-- Index pour la table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `article`
+-- Index pour la table `article`
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`id_article`);
 
 --
--- Indexes for table `equipe`
+-- Index pour la table `equipe`
 --
 ALTER TABLE `equipe`
   ADD PRIMARY KEY (`id_equipe`);
 
 --
--- Indexes for table `histoires`
+-- Index pour la table `histoires`
 --
 ALTER TABLE `histoires`
   ADD PRIMARY KEY (`id_histoire`);
 
 --
--- Indexes for table `joueur`
+-- Index pour la table `joueur`
 --
 ALTER TABLE `joueur`
   ADD PRIMARY KEY (`id_joueur`);
 
 --
--- Indexes for table `match`
+-- Index pour la table `match`
 --
 ALTER TABLE `match`
   ADD PRIMARY KEY (`id_match`);
 
 --
--- Indexes for table `partenaire`
+-- Index pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
   ADD PRIMARY KEY (`id_partenaire`);
 
 --
--- Indexes for table `staff`
+-- Index pour la table `staff`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`id_staff`);
 
 --
--- Indexes for table `staff_equipe`
+-- Index pour la table `staff_equipe`
 --
 ALTER TABLE `staff_equipe`
   ADD PRIMARY KEY (`id_staff`,`id_equipe`),
   ADD KEY `id_equipe` (`id_equipe`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `article`
+-- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `equipe`
+-- AUTO_INCREMENT pour la table `equipe`
 --
 ALTER TABLE `equipe`
   MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `histoires`
+-- AUTO_INCREMENT pour la table `histoires`
 --
 ALTER TABLE `histoires`
   MODIFY `id_histoire` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `joueur`
+-- AUTO_INCREMENT pour la table `joueur`
 --
 ALTER TABLE `joueur`
   MODIFY `id_joueur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `match`
+-- AUTO_INCREMENT pour la table `match`
 --
 ALTER TABLE `match`
   MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `partenaire`
+-- AUTO_INCREMENT pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
   MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `staff`
+-- AUTO_INCREMENT pour la table `staff`
 --
 ALTER TABLE `staff`
   MODIFY `id_staff` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `staff_equipe`
+-- Contraintes pour la table `staff_equipe`
 --
 ALTER TABLE `staff_equipe`
   ADD CONSTRAINT `staff_equipe_ibfk_1` FOREIGN KEY (`id_staff`) REFERENCES `staff` (`id_staff`),
