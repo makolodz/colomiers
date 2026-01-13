@@ -40,6 +40,11 @@ class Database {
     public function getConnection(){
         return $this->connection;
     }
+
+    public function loadBackoffice() {
+        //quand on ouvre le backoffice on génère tous les objets correspondants aux datas de la bdd
+        //pour accéder aux données de la bdd dans le front on utilise pas la poo mais seulement la bdd (+ si possible en AJAX) 
+    }
 }
 
 
