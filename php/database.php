@@ -58,6 +58,7 @@ class Database {
 
         foreach ($rows as $row) {
             $articles[] = new Article(
+                $row['id_article'],
                 $row['date_publication'],
                 $row['titre'],
                 $row['contenu'],

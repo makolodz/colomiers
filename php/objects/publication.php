@@ -1,7 +1,7 @@
 <?php
 
 class Publication {
-    protected $id;
+    public $id;
     public $titre;
     public $texte;
     public $image;
