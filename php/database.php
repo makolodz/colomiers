@@ -136,7 +136,7 @@ class Database {
                 $row['nom'],
                 $row['prenom'],
                 $row['role'],
-                $row['poste'],
+                $row['photo'],
             );
         }
         return $joueurs;

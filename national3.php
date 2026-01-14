@@ -1,5 +1,4 @@
 <?php include __DIR__ . "/php/database.php" ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
