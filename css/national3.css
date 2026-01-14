@@ -1,0 +1,131 @@
+.hero-nat3 {
+    /*La barre en dessous du header*/
+    background-color: #A0A0A0;
+    padding: 1% 0 1% 0;/*On espace le titre*/
+    width: 60%;
+    margin: auto;
+    text-align: center;
+}
+
+.hero-nat3 h1 {
+    font-size: 75px;
+    text-transform: uppercase; /*titre en majuscule en utilisant une variable prédéfinie*/
+    color: var(--dark-blue);
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+.image-nat3 {
+    display: flex;
+    justify-content: center; /*image centrée et décolée du hero*/
+    padding: 20px 0;
+}
+
+.image-nat3 img {
+    width: 35%;
+    height: auto;
+    max-width: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 50px;
+    text-transform: uppercase;
+    color: var(--dark-blue); /*on utilise la variable CSS pour la couleur */
+}
+
+/*bandeau bleu pour les catégories */
+h3 {
+    background-color: var(--dark-blue);
+    color: var(--platinum);
+    padding: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/*conteneur Flexbox des joueurs */
+.joueurs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+/* carte regroupant l'image */
+.joueur-card {
+    width: 280px;
+    /* Taille fixe pour garder un bel alignement */
+    text-align: center;
+    font-family: 'PT Sans Narrow', sans-serif;
+}
+
+/* Image des joueurs */
+.joueur-card img {
+    width: 100%;
+}
+
+/* Texte Nom Prénom */
+.joueur-card p {
+    font-weight: bold;
+    color: var(--dark-blue);
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+/* Container principal pour toute la partie stats */
+.section-stats {
+    width: 60%; 
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Style des zones d'affichage (Classement & Calendrier) */
+.affichage-classement, 
+.affichage-calendrier {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    width: 100%;
+    min-height: 400px;
+    margin-top: 15px;
+}
+
+/* Alignement des 3 buteurs côte à côte */
+.liste-buteurs {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.fiche-buteur {
+    flex: 1;
+    text-align: center;
+}
+
+.photo-buteur {
+    background-color: #ececec;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px;
+    border-radius: 5px; /* Optionnel : coins légèrement arrondis */
+}
+
+.infos-buteur {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #003366;
+    font-size: 1.1rem;
+}
+
+/* Pour que les titres H2 des stats soient comme celui de l'Effectif */
+.stat-container h2 {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
