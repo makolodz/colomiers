@@ -5,7 +5,7 @@ class Publication {
     public $titre;
     public $texte;
     public $image;
-
+    //pas de crud ici
 }
 
 ?>
