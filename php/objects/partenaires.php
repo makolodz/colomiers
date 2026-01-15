@@ -18,9 +18,9 @@ class Partenaire {
     }
 
     public function delete() {
-     if ($this->id === null) {
+        if ($this->id === null) {
         return;
-     }
+    }
 
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare("DELETE FROM partenaire WHERE id_partenaire = :id"); 

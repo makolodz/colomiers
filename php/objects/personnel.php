@@ -1,6 +1,7 @@
 <?php 
 
 class Personnel {
+    public $id;
     public $nom;
     public $prenom;
     public $role;

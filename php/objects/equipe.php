@@ -1,6 +1,7 @@
 <?php 
 
 class Equipe {
+    public $id;
     public $lien_calendrier;
     public $lien_classement;
     public $nom;

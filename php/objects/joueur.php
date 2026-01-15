@@ -7,7 +7,8 @@ class Joueur extends Personnel {
     public $poste;
     public $photo;
 
-    public function __construct($nom, $prenom, $poste, $photo) {
+    public function __construct($id, $nom, $prenom, $poste, $photo) {
+        $this->id = $id;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->role = "joueur";

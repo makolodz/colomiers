@@ -3,6 +3,7 @@
 
 class Editor {
 
+    public $id;
     private $nom;
     private $prenom;
     private $pwd;
@@ -20,14 +21,16 @@ class Editor {
     }
 
     public function delete() {
-         // pas de table dans la base de donnée donc suppression logique
-        $this->id = null;
-        $this->nom = null;
-        $this->prenom = null;
-        $this->email = null;
-        $this->pwd = null;
-    }
+        if ($this->id === null) {
+            return;
+        }
 
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("DELETE FROM admin WHERE id_admin = :id"); // attention : id_admin
+        $stmt->execute(['id' => $this->id]);
+
+        $this->id = null;
+    }
 }
 
 ?>

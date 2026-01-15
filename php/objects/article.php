@@ -25,7 +25,7 @@ class Article extends Publication {
         }
 
         $db = Database::getInstance()->getConnection();
-        $stmt = $db->prepare("DELETE FROM article WHERE id_article = :id"); // attention 
+        $stmt = $db->prepare("DELETE FROM article WHERE id_article = :id");
         $stmt->execute(['id' => $this->id]);
 
         $this->id = null;
