@@ -27,6 +27,38 @@ class Equipe {
 
         $this->id = null;
     }
+
+
+    public function save() {
+        $db = Database::getInstance()->getConnection();
+
+        if ($this->id === null) {
+            // CREATE
+            $sql = "INSERT INTO equipe (nom, lien_calendrier, lien_classement)
+                VALUES (:nom, :lien_calendrier, :lien_classement)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+            'nom' => $this->nom,
+            'lien_calendrier' => $this->lien_calendrier,
+            'lien_classement' => $this->lien_classement
+        ]);
+        $this->id = (int)$db->lastInsertId();
+        } else {
+         // UPDATE
+            $sql = "UPDATE equipe 
+                SET nom = :nom, 
+                    lien_calendrier = :lien_calendrier, 
+                    lien_classement = :lien_classement 
+                WHERE id_equipe = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+            'id' => $this->id,
+            'nom' => $this->nom,
+            'lien_calendrier' => $this->lien_calendrier,
+            'lien_classement' => $this->lien_classement
+            ]);
+        }
+    }
 }
 
 

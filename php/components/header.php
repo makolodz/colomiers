@@ -9,10 +9,10 @@
 
         <nav class="nav-menu">
             <ul>
-                <li><a href="club.php">Le Club</a></li>
-                <li><a href="national3.php">National 3</a></li>
-                <li><a href="autresequipes.php">Autres équipes</a></li>
-                <li><a href="actualites.php">Actualités</a></li>
+                <li><a href="./club.php">Le Club</a></li>
+                <li><a href="./national3.php">National 3</a></li>
+                <li><a href="./autresequipes.php">Autres équipes</a></li>
+                <li><a href="./actualites.php">Actualités</a></li>
             </ul>
         </nav>
 

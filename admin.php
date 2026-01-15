@@ -1,19 +1,5 @@
 <?php include __DIR__ . "/php/database.php" ?>
 
-<?php 
-
-// ici tous les formulaires (modèle pour article)
-
-if (isset($_POST["action"])) {
-    if ($_POST["action"] == "create-article") {
-        $articleGen = new Article(null, null, null, $_POST['article-name'], null, null);
-        $articleGen->save();
-        header('Location: admin.php?success=article-created'); // ligne pour éviter de faire 2 fois la même action
-    }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,13 +7,13 @@ if (isset($_POST["action"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin US Colomiers</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/admin.css">
+    <script src="./js/backoffice.js" defer></script> <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
 
     <?php include_once __DIR__ . '/php/components/header.php'; ?>
 
-    <main class="admin-container">
+    <main class="container admin-container">
         
         <div class="admin-header">
             <h1 class="section-title">Administration du Site</h1>
@@ -40,7 +26,6 @@ if (isset($_POST["action"])) {
             <details class="admin-details">
                 <summary>Gérer les Sponsors (Ajout / Modif)</summary>
                 <div style="padding: 20px;">
-                    
                     <h3>+ Ajouter un nouveau sponsor</h3>
                     <form action="#" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-bottom:30px;">
                         <div class="form-group"><label>Nom du sponsor</label><input type="text" name="nom"></div>
@@ -93,7 +78,6 @@ if (isset($_POST["action"])) {
                             <button type="submit" class="btn-admin">Enregistrer les modifications</button>
                         </form>
                     </div>
-
                 </div>
             </details>
         </section>
@@ -278,7 +262,7 @@ if (isset($_POST["action"])) {
                 <div style="padding: 20px;">
                     
                     <h3>+ Ajouter un article</h3>
-                    <form action="#" method="POST" class="admin-form">
+                    <form action="./php/backoffice.php" method="POST" class="admin-form">
                         <input type="hidden" name="action" value="create-article">
                         <div class="form-group"><label>Titre</label><input name="article-name" type="text"></div>
                         <button type="submit" class="btn-admin">Publier</button>
@@ -292,6 +276,7 @@ if (isset($_POST["action"])) {
                                 <th>Taxonomie</th>
                                 <th>Titre</th>
                                 <th>Contenu</th>
+                                <th>image</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -301,17 +286,30 @@ if (isset($_POST["action"])) {
                                     <td><?php echo $article->categorie ?></td>
                                     <td><?php echo $article->titre ?></td>
                                     <td><?php echo $article->texte ?></td>
-                                    <td><button class="action-btn btn-edit">Modifier</button> <form action=""><button class="action-btn btn-delete">Supprimer</button></form></td>
+                                    <td><?php echo $article->image?></td>
+                                    <td> <button 
+                                                type="button" 
+                                                class="action-btn btn-edit btn-article-edit"
+                                                data-id="<?php echo htmlspecialchars($article->id, ENT_QUOTES) ?>"
+                                                data-titre="<?php echo htmlspecialchars($article->titre, ENT_QUOTES) ?>"
+                                                data-taxonomie="<?php echo htmlspecialchars($article->categorie, ENT_QUOTES) ?>"
+                                                data-texte="<?php echo htmlspecialchars($article->texte, ENT_QUOTES) ?>"
+                                            >Modifier</button>  <form method="POST" action="./php/backoffice.php">                        
+                                            <input type="hidden" name="action" value="delete-article">
+                                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($article->id, ENT_QUOTES) ?>">
+                                            <button class="action-btn btn-delete">Supprimer</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
 
-                    <div class="edit-simulation-area">
-                        <p class="simulation-title">Modification Histoire : FONDATION DU CLUB</p>
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="1">
-                            
+                    <div class="edit-simulation-area hidden">
+                        <p class="simulation-title">Modification Article : <span id="titre-article-edit"></span></p>
+                        <form method="POST" action="./php/backoffice.php" id="edit-article">
+                            <input type="hidden" name="action" value="edit-article">
+                            <input type="hidden" name="id" value="">
                             <div class="form-group">
                                 <label>Titre de l'événement :</label>
                                 <input type="text" name="titre" placeholder="Fête du sport">
@@ -338,6 +336,5 @@ if (isset($_POST["action"])) {
     </main>
 
     <?php include_once __DIR__ . '/php/components/footer.php'; ?>
-
 </body>
 </html>

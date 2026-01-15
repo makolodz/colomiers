@@ -69,7 +69,25 @@ class Database {
         return $articles;
     }
 
-    public function loadHistory() {
+    public function loadArticle($id) {
+
+        $sql = "SELECT * FROM article WHERE id_article = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Article(
+            $result['id_article'],
+            $result['date_publication'],
+            $result['titre'],
+            $result['contenu'],
+            $result['image'],
+            $result['categorie']
+        );
+    }
+
+    public function loadHistories() {
         $histoires = [];
 
         $sql = "SELECT * FROM histoires ORDER BY date_tranche DESC";
@@ -106,7 +124,7 @@ class Database {
         return $partners;
     }
 
-    public function loadEquipe() {
+    public function loadEquipes() {
         $equipes = [];
 
         $sql = "SELECT * FROM equipe ORDER BY id_equipe";
@@ -143,7 +161,7 @@ class Database {
         }
         return $joueurs;
     }
-    public function loadStaff() {
+    public function loadStaffs() {
         $staffs = [];
         
         $sql = "SELECT * FROM staff";

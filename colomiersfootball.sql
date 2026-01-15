@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 13 jan. 2026 à 17:09
+-- Généré le : jeu. 15 jan. 2026 à 15:57
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Version de PHP : 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -112,9 +112,25 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 CREATE TABLE `histoires` (
   `id_histoire` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
   `tranche_date` varchar(50) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL
+  `image` varchar(255) DEFAULT NULL,
+  `contenu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `histoires`
+--
+
+INSERT INTO `histoires` (`id_histoire`, `titre`, `description`, `tranche_date`, `image`, `contenu`) VALUES
+(1, 'Aux origines de l’US Colomiers Football', 'La naissance du football à Colomiers et la création officielle du club.', '1925 – 1932', NULL, 'Pourquoi ne pas se remémorer l’histoire de notre club, de ses Présidents successifs et de toutes les personnes passionnées qui ont œuvré depuis sa création pour le rendre tel qu’il est aujourd’hui.\r\n\r\nCette belle histoire commence dans les années 1925 par la création d’une équipe de football jouant sans être officiellement déclarée. Il s’agit alors du premier sport pratiqué à Colomiers.\r\n\r\nLe 27 octobre 1932, le bureau du club composé de Bertrand Andrieeux, Albert Lazerge, Jean Castex et Émile Bertin se rend à la préfecture afin de créer officiellement l’association Union Sportive de Colomiers.'),
+(2, 'Les premières décennies du club', 'Une période marquée par des changements de présidence et une stabilité fragile.', '1932 – 1962', NULL, 'À partir de 1934, Monsieur Éloi Julia prend la présidence du club, suivi par plusieurs retours de Bertrand Andrieeux à la tête de l’association.\r\n\r\nDurant la Seconde Guerre mondiale, la présidence est assurée par le Commandant Thibaudau puis de nouveau par Éloi Julia jusqu’en 1950.\r\n\r\nSur le plan sportif, le club évolue dans un contexte amateur instable, en première série, alors que la ville de Colomiers compte un peu plus de 5 000 habitants.'),
+(3, 'Structuration et premières ambitions sportives', 'L’arrivée d’entraîneurs confirmés et les premiers grands parcours sportifs.', '1962 – 1976', NULL, 'En 1962, Pierre Redonnet devient président et inaugure le stade municipal de la rue des Sports. Il confie l’équipe à Jean Thomas, entraîneur confirmé.\r\n\r\nLes résultats sont immédiats. Le club devient plus compétitif et réalise notamment un superbe parcours en Coupe de France en 1966, qui se termine à Sète face à une équipe professionnelle.'),
+(4, 'La métamorphose du club', 'Une nouvelle dynamique sportive et administrative portée par des projets ambitieux.', '1976 – 1986', NULL, 'En novembre 1976, Jean-Michel Touzelet prend la présidence et lance une profonde transformation du club autour de quatre axes majeurs : la remontée des équipes seniors, la structuration administrative, la formation des jeunes et la création du tournoi de Pâques.\r\n\r\nCe tournoi accueille rapidement des clubs prestigieux comme le Real Madrid, Benfica ou l’AS Monaco, donnant une notoriété nationale au club.'),
+(5, 'Reconnaissance nationale et formation', 'Le club s’impose comme une référence nationale de la formation amateur.', '1986 – 2004', NULL, 'Le 30 avril 1986, les poussins de l’US Colomiers remportent la finale nationale de la Coupe des Poussins au Parc des Princes face à l’Olympique de Marseille.\r\n\r\nEn 1994, le club est classé premier club formateur amateur de France, distinction remise par le président de la FFF Claude Simonet.'),
+(6, 'L’accession au niveau national', 'Une période historique marquée par les montées et les exploits en Coupe.', '2004 – 2014', NULL, 'En 2007, l’US Colomiers Football accède pour la première fois au CFA 2 à l’issue de barrages mémorables remportés aux tirs au but.\r\n\r\nLe club enchaîne avec une accession au CFA et atteint à plusieurs reprises les 64èmes de finale de la Coupe de France, notamment face au SC Bastia.'),
+(7, 'Défis, formation et diversification', 'Le club se diversifie avec le développement du féminin, du futsal et de la formation.', '2015 – 2021', NULL, 'Malgré des périodes sportives plus difficiles, le club continue de briller grâce à sa formation.\r\n\r\nLa section féminine est créée, une section futsal voit le jour et de nombreux titres sont remportés chez les jeunes, renforçant l’identité formatrice de l’US Colomiers Football.'),
+(8, 'Un club tourné vers l’avenir', 'Modernisation du club et continuité du projet sportif.', '2021 – Aujourd’hui', NULL, 'Après la crise sanitaire, le club poursuit son développement. Les féminines accèdent à la D3, les équipes jeunes évoluent au plus haut niveau national et de nombreux joueurs rejoignent des clubs professionnels.\r\n\r\nSous la présidence de Florian Aït-Ali, l’US Colomiers Football continue d’écrire son histoire avec ambition et passion.');
 
 -- --------------------------------------------------------
 
@@ -374,7 +390,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT pour la table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `equipe`
@@ -386,7 +402,7 @@ ALTER TABLE `equipe`
 -- AUTO_INCREMENT pour la table `histoires`
 --
 ALTER TABLE `histoires`
-  MODIFY `id_histoire` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_histoire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `joueur`
@@ -404,7 +420,7 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `staff`
