@@ -711,3 +711,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     transform: translateY(1px);
     box-shadow: 0 1px 0 #0000A0;
 }
+
+.hidden {
+    display: none;
+}

@@ -17,7 +17,7 @@
 
         <?php
         // Chargement des données
-        $equipes = Database::getInstance()->loadEquipe();
+        $equipes = Database::getInstance()->loadEquipes();
         
         // On isole l'équipe féminine (index 1 selon ton code précédent)
         // Vérifie bien dans ta BDD si l'ID 1 est bien les féminines
