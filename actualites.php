@@ -21,13 +21,10 @@
             <button class="filter-btn">Équipe 1</button>
             <button class="filter-btn">Jeunes</button>
             <button class="filter-btn">Club</button>
-    <title>Actualité<script type="module" src=""></script></title>
-
-        <div class="news-grid">
+        </section> <div class="news-grid">
             <?php
             $lastactus = Database::getInstance()->loadArticles();
             
-            // Boucle pour afficher toutes les actus
             foreach($lastactus as $actu) :
             ?>
             <article class="news-card">
