@@ -301,7 +301,7 @@ if (isset($_POST["action"])) {
                                     <td><?php echo $article->categorie ?></td>
                                     <td><?php echo $article->titre ?></td>
                                     <td><?php echo $article->texte ?></td>
-                                    <td><button class="action-btn btn-edit">Modifier</button></td>
+                                    <td><button class="action-btn btn-edit">Modifier</button> <form action=""><button class="action-btn btn-delete">Supprimer</button></form></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

@@ -134,6 +134,7 @@ class Database {
 
         foreach ($rows as $row) {
             $joueurs[] = new Joueur(
+                $row['id_joueur'],
                 $row['nom'],
                 $row['prenom'],
                 $row['role'],
