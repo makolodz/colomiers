@@ -36,6 +36,16 @@ CREATE TABLE `admin` (
   `permission` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `nom`, `prenom`, `email`, `password`, `permission`) VALUES
+(1, 'SUBRA', 'Denis', 'DenisSUBRA@gmail.com', 'Colomiersfoot', NULL),
+(2, 'SICARD', 'Bernard', 'BernardSICARD@gmail.com', 'Colomiersfoot', NULL),
+(3, 'TRAVAL MICHELET', 'Karine', 'KarineTRAVALMICHELET@gmail.com', 'Colomiersfoot', NULL),
+(5, 'AIT ALI', 'Florian', 'FlorianAITALI@gmail.com', 'Colomiersfoot', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -91,7 +101,7 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 (12, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M', 'U16 Régional 1'),
 (13, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201', 'U15 Régional 1'),
 (14, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A%20POULE%20A', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A', 'U15 Niveau A'),
-(15, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201%20POULE%20C', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1');
+(15, 'https://www.colomiersfoot.fr/calendrier.jpg?v=3eed1c5eacvrxwl', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1');
 
 -- --------------------------------------------------------
 
@@ -358,7 +368,7 @@ ALTER TABLE `staff_equipe`
 -- AUTO_INCREMENT pour la table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT pour la table `article`
@@ -394,7 +404,7 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `staff`
