@@ -12,12 +12,19 @@ class Histoire extends Publication {
         $this->texte = $texte;
         $this->image = $image;
     }
-    
+
     public function delete() {
-        //requête sql pour delete
+        if ($this->id === null) {
+            return;
+        }
+
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("DELETE FROM histoires WHERE id_histoire = :id");
+        $stmt->execute(['id' => $this->id]);
+
+        $this->id = null;
     }
 
-    
 }
 
 ?>

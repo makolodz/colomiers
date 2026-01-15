@@ -1,11 +1,11 @@
 <?php
 
 class Publication {
-    protected $id;
+    public $id;
     public $titre;
     public $texte;
     public $image;
-
+    //pas de crud ici
 }
 
 ?>

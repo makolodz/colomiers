@@ -17,24 +17,18 @@ class Partenaire {
         $this->nom = $nom;
     }
 
-    public function load () {
-        //fonction qui génère
+    public function delete() {
+        if ($this->id === null) {
+        return;
     }
 
-    // la méthode en dessous est censée être utilisée lors de la modification d'un partenaire dans le backoffice
-    public function editPartner(Admin $admin, $logo, $lien, $nom) {
-        $this->logo = $logo;
-        $this->lien = $lien;
-        $this->nom = $nom;
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("DELETE FROM partenaire WHERE id_partenaire = :id"); 
+        $stmt->execute(['id' => $this->id]);
 
-        $database = Database::getInstance()->getConnection();
-        // $query = $database->query("UPDATE * FROM Partners WHERE") requête à modifier
+        $this->id = null;
     }
-    public function deletePartner(Admin $admin) {
-        $database = Database::getInstance()->getConnection();
-        // $query = $database->query("DELETE FROM partners WHERE id="")
-        // pas besoin de détruire l'instance ?
-    }
+
 }
 
 ?>

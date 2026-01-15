@@ -10,6 +10,8 @@ include __DIR__ . "/objects/article.php";
 include __DIR__ . "/objects/histoire.php";
 include __DIR__ . "/objects/partenaires.php";
 include __DIR__ . "/objects/equipe.php";
+include __DIR__ . "/objects/joueur.php";
+include __DIR__ . "/objects/staff.php";
 
 class Database {
     private static $instance = null;
@@ -56,6 +58,7 @@ class Database {
 
         foreach ($rows as $row) {
             $articles[] = new Article(
+                $row['id_article'],
                 $row['date_publication'],
                 $row['titre'],
                 $row['contenu'],
@@ -63,7 +66,6 @@ class Database {
                 $row['categorie']
             );
         }
-
         return $articles;
     }
 
@@ -83,7 +85,6 @@ class Database {
                 $row['image'],
             );
         }
-
         return $histoires;
     }
 
@@ -98,11 +99,10 @@ class Database {
         foreach ($rows as $row) {
             $partners[] = new Partenaire(
                 $row['photo'],
-                $row['lien'],
+                $row['photo'],
                 $row['nom_societe'],
             );
         }
-
         return $partners;
     }
 
@@ -122,6 +122,43 @@ class Database {
             );
         }
         return $equipes;
+    }
+
+    public function loadJoueurs() {
+        $joueurs = [];
+        
+        $sql = "SELECT * FROM joueur";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $joueurs[] = new Joueur(
+                $row['nom'],
+                $row['prenom'],
+                $row['role'],
+                $row['photo'],
+            );
+        }
+        return $joueurs;
+    }
+    public function loadStaff() {
+        $staffs = [];
+        
+        $sql = "SELECT * FROM staff";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $staffs[] = new Staff(
+                $row['nom'],
+                $row['prenom'],
+                $row['role'],
+                $row['email']
+            );
+        }
+        return $staffs;
     }
 }
 

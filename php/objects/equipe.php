@@ -1,6 +1,7 @@
 <?php 
 
 class Equipe {
+    public $id;
     public $lien_calendrier;
     public $lien_classement;
     public $nom;
@@ -13,6 +14,20 @@ class Equipe {
         $this->trainers = [];
 
     }
+
+
+    public function delete() {
+        if ($this->id === null) {
+            return;
+        }
+
+        $db = Database::getInstance()->getConnection();
+        $stmt = $db->prepare("DELETE FROM equipe WHERE id_equipe = :id"); 
+        $stmt->execute(['id' => $this->id]);
+
+        $this->id = null;
+    }
 }
+
 
 ?>

@@ -1,85 +1,78 @@
+/* =========================================
+   PAGE ACCUEIL (INDEX)
+   ========================================= */
+
 /* --- HERO SECTION --- */
 .hero-section {
-    background-color: #A0A0A0;
+    background-color: #A0A0A0; /* Couleur temporaire, à remplacer par url('image.jpg') */
     background-size: cover;
     background-position: center;
-    padding: 100px 0px 140px 0px;
+    padding: 140px 0 160px 0; /* Plus d'espace en bas pour le chevauchement */
     text-align: center;
     color: var(--dark-blue);
-    display: flex;
-    justify-content: center;
+    position: relative;
 }
 
 .hero-title {
-    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+    color: var(--white); /* Souvent plus lisible sur une image sombre */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero-subtitle {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.2rem;
+    font-family: var(--font-titles);
+    font-size: 1.3rem;
     max-width: 600px;
     margin: 0 auto;
+    color: var(--platinum);
 }
 
-/* --- BLOC MATCH & MÉTÉO --- */
+/* --- BLOC MATCH & MÉTÉO (Le chevauchement) --- */
 .match-weather-container {
-    max-width: 900px;
-    margin: -80px auto 60px auto;
-    padding: 0 20px;
+    margin-top: -80px; /* C'est ça qui fait l'effet de superposition */
     position: relative;
     z-index: 10;
+    margin-bottom: var(--space-lg);
 }
 
 .match-box {
-    background-color: var(--platinum);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    border-radius: 8px;
+    background-color: var(--white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Ombre plus moderne */
+    border-radius: var(--radius-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
+    padding: var(--space-lg);
     flex-wrap: wrap;
 }
 
-.match-info {
-    flex: 2;
-    text-align: center;
-}
+.match-info { flex: 2; text-align: center; }
 
 .match-label {
     display: block;
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: var(--font-titles);
     font-weight: bold;
     color: #666;
-    margin-bottom: 10px;
+    margin-bottom: var(--space-sm);
+    letter-spacing: 1px;
 }
 
 .versus {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: var(--dark-blue);
     margin-bottom: 5px;
 }
 
-.vs {
-    color: var(--primary-blue);
-    margin: 0 10px;
-}
-
-.date-time {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 1.1rem;
-}
+.vs { color: var(--primary-blue); margin: 0 10px; }
 
 .separator {
     width: 1px;
     height: 60px;
-    background-color: #ccc;
-    margin: 0 30px;
+    background-color: var(--platinum);
+    margin: 0 var(--space-lg);
 }
 
 .weather-info {
@@ -90,134 +83,144 @@
     align-items: center;
 }
 
-.weather-label {
-    font-family: 'PT Sans Narrow', sans-serif;
-    font-weight: bold;
-    font-size: 0.9rem;
-    color: #666;
-}
-
 .weather-data {
-    font-size: 2rem;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-family: var(--font-body);
+    font-weight: 700;
     color: var(--dark-blue);
-    margin: 5px 0;
 }
 
-/* --- ACTUS --- */
+/* --- SECTION TITRES --- */
 .section-title {
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
     font-size: 2.2rem;
     color: var(--dark-blue);
-    margin-bottom: 40px;
+    margin-bottom: var(--space-lg);
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
-.news-section .container,
-.partners-section .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Petit trait bleu sous les titres (Bonus Design System) */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-blue);
+    margin: 10px auto 0;
 }
+
+/* --- ACTUALITÉS (GRID) --- */
+.news-section { margin-bottom: 80px; }
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Responsive automatique sans media query ! */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     gap: 30px;
-    margin-bottom: 60px;
 }
 
 .news-card {
-    background: white;
-    border-radius: 8px;
+    background: var(--white);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.2s;
+    box-shadow: var(--shadow-main);
+    transition: transform 0.3s ease;
+    border: 1px solid var(--platinum);
 }
 
-.news-card:hover {
-    transform: translateY(-5px);
-}
+.news-card:hover { transform: translateY(-5px); }
 
-/* Style spécifique pour l'image Actu (grise par défaut) */
-.news-img {
-    display: block;
+/* Placeholder gris propre */
+.img-placeholder {
+    background-color: #D3D3D3;
     width: 100%;
-    height: 250px;
-    object-fit: cover;
-    background-color: #D3D3D3; /* La couleur grise s'affiche même si src est vide */
+    display: block;
 }
 
-.news-content {
-    padding: 20px;
-    text-align: center;
-}
+.news-img { height: 200px; object-fit: cover; }
+
+.news-content { padding: var(--space-md); text-align: left; }
 
 .news-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     font-size: 1.2rem;
-    margin: 0 0 10px 0;
-    color: var(--dark-blue);
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
 }
 
 .news-meta {
-    font-family: 'PT Sans Narrow', sans-serif;
-    color: #666;
+    font-family: var(--font-titles);
+    color: #888;
     font-size: 0.9rem;
-    margin-bottom: 15px;
+    margin-bottom: var(--space-md);
 }
 
 .read-more {
     color: var(--primary-blue);
     text-decoration: none;
     font-weight: bold;
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: border 0.3s;
 }
 
+.read-more:hover { border-bottom-color: var(--primary-blue); }
+
 /* --- PARTENAIRES --- */
-.partners-section {
-    margin-bottom: 80px;
-}
+.partners-section { margin-bottom: 80px; }
 
 .partners-grid {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     flex-wrap: wrap;
+    align-items: center;
 }
 
-.partner-box {
-    text-align: center;
-    width: 150px;
-}
+.partner-box { text-align: center; width: 140px; }
 
-/* Style spécifique pour le logo partenaire (gris par défaut) */
 .partner-logo {
-    display: block;
-    width: 100%;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 10px;
-    border-radius: 4px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    /* Grayscale pour un effet pro, couleur au survol */
+    filter: grayscale(100%); 
+    transition: filter 0.3s;
+    opacity: 0.7;
+}
+
+.partner-box:hover .partner-logo {
+    filter: grayscale(0%);
+    opacity: 1;
 }
 
 .partner-name {
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-family: var(--font-titles);
     font-size: 0.9rem;
     color: var(--dark-blue);
+    font-weight: bold;
 }
 
+/* --- RESPONSIVE SPÉCIFIQUE INDEX --- */
 @media (max-width: 768px) {
     .hero-title { font-size: 2rem; }
     
     .match-box {
         flex-direction: column;
         text-align: center;
+        gap: var(--space-md);
     }
     
     .separator {
-        width: 100%;
-        height: 1px;
-        margin: 20px 0;
+        width: 50%;
+        height: 1px; /* Devient horizontal sur mobile */
+        margin: 10px auto;
+    }
+
+    .match-weather-container {
+        margin-top: -40px; /* On remonte moins sur mobile */
     }
 }

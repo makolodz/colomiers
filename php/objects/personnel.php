@@ -1,10 +1,11 @@
 <?php 
 
 class Personnel {
-    protected $nom;
-    protected $prenom;
-    protected $role;
-
+    public $id;
+    public $nom;
+    public $prenom;
+    public $role;
+    //pas de crud ici
 }
 
 ?>
