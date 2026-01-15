@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/club.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <title>Le Club</title>
 </head>
-<?php include "./php/components/header.php"; ?>
 <body>
+        <?php include "./php/components/header.php"; ?>
+
  <main>
     <h1>Le Club</h1>
 
@@ -59,8 +61,9 @@
     </section>
 
  </main>
-</body>
-<?php
+ <?php
  include "./php/components/footer.php";
 ?>
+</body>
+
 </html>

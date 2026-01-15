@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/admin.css">
     <script src="./js/backoffice.js"></script>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
 
