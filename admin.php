@@ -7,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin US Colomiers</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/admin.css">
-    <script src="./js/backoffice.js"></script>
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <script src="./js/backoffice.js" defer></script> <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
 
     <?php include_once __DIR__ . '/php/components/header.php'; ?>
 
-    <main class="admin-container">
+    <main class="container admin-container">
         
         <div class="admin-header">
             <h1 class="section-title">Administration du Site</h1>
@@ -28,7 +26,6 @@
             <details class="admin-details">
                 <summary>Gérer les Sponsors (Ajout / Modif)</summary>
                 <div style="padding: 20px;">
-                    
                     <h3>+ Ajouter un nouveau sponsor</h3>
                     <form action="#" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-bottom:30px;">
                         <div class="form-group"><label>Nom du sponsor</label><input type="text" name="nom"></div>
@@ -290,17 +287,14 @@
                                     <td><?php echo $article->titre ?></td>
                                     <td><?php echo $article->texte ?></td>
                                     <td><?php echo $article->image?></td>
-                                    <td> <!-- <= insérer un display flex ici-->
-                                        <!-- Bouton "Modifier" -->
-                                            <button 
+                                    <td> <button 
                                                 type="button" 
                                                 class="action-btn btn-edit btn-article-edit"
                                                 data-id="<?php echo htmlspecialchars($article->id, ENT_QUOTES) ?>"
                                                 data-titre="<?php echo htmlspecialchars($article->titre, ENT_QUOTES) ?>"
                                                 data-taxonomie="<?php echo htmlspecialchars($article->categorie, ENT_QUOTES) ?>"
                                                 data-texte="<?php echo htmlspecialchars($article->texte, ENT_QUOTES) ?>"
-                                            >Modifier</button>  <!-- les data-id.... servent pour que le js puisse écrire dans la section modifier les bonnes valeurs-->
-                                        <form method="POST" action="./php/backoffice.php">                        
+                                            >Modifier</button>  <form method="POST" action="./php/backoffice.php">                        
                                             <input type="hidden" name="action" value="delete-article">
                                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($article->id, ENT_QUOTES) ?>">
                                             <button class="action-btn btn-delete">Supprimer</button>
