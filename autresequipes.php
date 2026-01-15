@@ -12,6 +12,8 @@
     
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
 </head>
 <?php include './php/components/header.php'; ?>
 <body class="autresequipes-body">

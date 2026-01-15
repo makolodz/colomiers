@@ -22,6 +22,7 @@ if (isset($_POST["action"])) {
     <title>Admin US Colomiers</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 </head>
 <body>
 

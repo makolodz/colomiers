@@ -209,34 +209,6 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     gap: 20px; 
 }
 
-<<<<<<< Updated upstream
-.social-links { display: flex; flex-direction: row; gap: 10px; }
-
-.social-box {
-    width: 35px;
-    height: 35px;
-    background-color: var(--primary-blue);
-    display: block;
-    border-radius: var(--radius-sm);
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-    .header-container, .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
-    }
-    .nav-menu ul { flex-direction: column; gap: 10px; }
-    
-    .footer-right { flex-direction: column; }
-    
-    .hero-title { font-size: 2rem; }
-    
-    .match-box { flex-direction: column; text-align: center; }
-    .separator { width: 100%; height: 1px; margin: 20px 0; }
-}
-=======
 .social-links {
     display: flex;
     gap: 25px;
@@ -280,4 +252,3 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     transform: translateY(1px);
     box-shadow: 0 1px 0 #0000A0;
 }
->>>>>>> Stashed changes
