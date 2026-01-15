@@ -29,6 +29,36 @@ class Partenaire {
         $this->id = null;
     }
 
+    public function save() {
+        $db = Database::getInstance()->getConnection();
+
+        if ($this->id === null) {
+            // CREATE
+            $sql = "INSERT INTO partenaire (photo, nom_societe)
+                    VALUES (:photo, :nom_societe)";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'photo' => $this->logo,
+                'nom_societe' => $this->nom
+            ]);
+            $this->id = (int)$db->lastInsertId();
+        } else {
+            // UPDATE
+            $sql = "UPDATE partenaire 
+                    SET photo = :photo, 
+                        nom_societe = :nom_societe
+                    WHERE id_partenaire = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'id' => $this->id,
+                'photo' => $this->logo,
+                'nom_societe' => $this->nom
+            ]);
+        }
+    }
+
+
+   
 }
 
 ?>
