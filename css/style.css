@@ -209,6 +209,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     gap: 20px; 
 }
 
+<<<<<<< Updated upstream
 .social-links { display: flex; flex-direction: row; gap: 10px; }
 
 .social-box {
@@ -235,3 +236,48 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     .match-box { flex-direction: column; text-align: center; }
     .separator { width: 100%; height: 1px; margin: 20px 0; }
 }
+=======
+.social-links {
+    display: flex;
+    gap: 25px;
+}
+
+/* les carrés des réseaux sociaux*/
+.social-box {
+    width: 35px;
+    display: flex;           /* pour centrer l'image */
+    justify-content: center; 
+}
+
+.social-box img {
+    width: 35px;            
+}
+
+.social-box:hover {
+    transform: scale(1.1);
+}
+
+
+/* Bouton boutique du footer */
+.btn-boutique-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 18px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 0 #0000A0;
+    transition: all 0.2s ease;
+}
+
+.btn-boutique-footer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #0000A0;
+}
+
+.btn-boutique-footer:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #0000A0;
+}
+>>>>>>> Stashed changes
