@@ -69,16 +69,35 @@ class Database {
         return $articles;
     }
 
-    public function loadHistory() {
+    public function loadArticle($id) {
+
+        $sql = "SELECT * FROM article WHERE id_article = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Article(
+            $result['id_article'],
+            $result['date_publication'],
+            $result['titre'],
+            $result['contenu'],
+            $result['image'],
+            $result['categorie']
+        );
+    }
+
+    public function loadHistories() {
         $histoires = [];
 
-        $sql = "SELECT * FROM histoires ORDER BY date_tranche DESC";
+        $sql = "SELECT * FROM histoires ORDER BY tranche_date DESC";
         $query = $this->connection->query($sql);
 
         $rows = $query->fetchAll(PDO::FETCH_ASSOC);
 
         foreach ($rows as $row) {
             $histoires[] = new Histoire(
+                $row['id_histoire'],
                 $row['tranche_date'],
                 $row['titre'],
                 $row['contenu'],
@@ -86,6 +105,23 @@ class Database {
             );
         }
         return $histoires;
+    }
+
+    public function loadHistoire($id) {
+
+        $sql = "SELECT * FROM histoires WHERE id_histoire = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Histoire(
+            $result['id_histoire'],
+            $result['tranche_date'],
+            $result['titre'],
+            $result['contenu'],
+            $result['image'],
+        );
     }
 
     public function loadPartners() {
@@ -98,15 +134,30 @@ class Database {
 
         foreach ($rows as $row) {
             $partners[] = new Partenaire(
+                $row['id_partenaire'],
                 $row['photo'],
-                $row['photo'],
-                $row['nom_societe'],
+                $row['nom_societe']
             );
         }
         return $partners;
     }
 
-    public function loadEquipe() {
+    public function loadPartner($id) {
+
+        $sql = "SELECT * FROM partenaires WHERE id_partenaire = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Partenaire(
+            $result['id_partenaire'],
+            $result['photo'],
+            $result['nom_societe']
+        );
+    }
+
+    public function loadEquipes() {
         $equipes = [];
 
         $sql = "SELECT * FROM equipe ORDER BY id_equipe";
@@ -124,6 +175,22 @@ class Database {
         return $equipes;
     }
 
+    public function loadEquipe($id) {
+
+        
+        $sql = "SELECT * FROM equipe WHERE id_equipe = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Equipe(
+            $result['nom'],
+            $result['lien_calendrier'],
+            $result['lien_classement']
+        );
+    }
+
     public function loadJoueurs() {
         $joueurs = [];
         
@@ -134,6 +201,7 @@ class Database {
 
         foreach ($rows as $row) {
             $joueurs[] = new Joueur(
+                $row['id_joueur'],
                 $row['nom'],
                 $row['prenom'],
                 $row['role'],
@@ -143,7 +211,25 @@ class Database {
         }
         return $joueurs;
     }
-    public function loadStaff() {
+
+    public function loadJoueur($id) {
+
+        
+        $sql = "SELECT * FROM joueur WHERE id_joueur = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Joueur(
+            $result['id_joueur'],
+            $result['nom'],
+            $result['prenom'],
+            $result['role'],
+            $result['photo'],
+        );
+    }
+    public function loadStaffs() {
         $staffs = [];
         
         $sql = "SELECT * FROM staff";
@@ -153,13 +239,30 @@ class Database {
 
         foreach ($rows as $row) {
             $staffs[] = new Staff(
+            $row['id_staff'],
                 $row['nom'],
                 $row['prenom'],
                 $row['role'],
-                $row['email']
+                $row['email'] 
             );
         }
         return $staffs;
+    }
+    public function loadStaff($id) {
+        
+        $sql = "SELECT * FROM staff WHERE id_staff = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new Staff(
+            $result['id_staff'],
+            $result['nom'],
+            $result['prenom'],
+            $result['role'],
+            $result['email']
+        );
     }
 }
 

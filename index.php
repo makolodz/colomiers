@@ -4,13 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Colomiers - SAE 301</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
-    
+    <title>US Colomiers Football</title>
+        
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
 </head>
 
 <body>
@@ -34,6 +32,7 @@
                     <span class="team">STADE BORDELAIS</span>
                 </div>
                 <div class="date-time">Samedi 24 Janvier - 18h00</div>
+                <?php include_once __DIR__ . "/php/api/meteo_widget.php"?>
             </div>
             
             <div class="separator"></div>

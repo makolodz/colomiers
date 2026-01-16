@@ -4,91 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Colomiers - SAE 301</title>
+    <title>Actualités - US Colomiers</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
-    
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/actualites.css">
 </head>
     <script src="ajax/filtre.js" defer></script>
 <body>
 <?php include 'php/components/header.php'; ?>
-    <div class="actualites-container">
-        <header class="actualites-header">
-            <h1>Actualités</h1>
-        </header>
-        <section class="actualites-filtres">
-            <button class="filtre" data-categorie="">Toutes</button>
-            <button class="filtre" data-categorie="club">Club</button>
-            <button class="filtre" data-categorie="match">Match</button>
-            <button class="filtre" data-categorie="formation">Formation</button>
+    
+    <main class="container">
+        <h1 class="page-title">Actualités</h1>
+        
+        <section class="filters-container">
+            <button class="filter-btn active">Tout</button>
+            <button class="filter-btn">Équipe 1</button>
+            <button class="filter-btn">Jeunes</button>
+            <button class="filter-btn">Club</button>
+        </section> <div class="news-grid">
+            <?php
+            $lastactus = Database::getInstance()->loadArticles();
+            
+            foreach($lastactus as $actu) :
+            ?>
+            <article class="news-card">
+                <img src="" alt="Image Actualité" class="news-img">
+                
+                <div class="news-content">
+                    <h3 class="news-title"><?php echo $actu->titre; ?></h3>
+                    <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>
+                    <a href="#" class="read-more">Lire l'article</a>
+                </div>
+            </article>
+            <?php 
+                endforeach; 
+            ?>
+        </div>
+    </main>
 
-        </section>
-        <main class="actualites-main" id=articles>
-            <div class="actualites-row">
-                <div class="actualites-item" data-categorie='club'>
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-            </div>
-            <div class="actualites-row">
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article"></div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-            </div>
-            <div class="actualites-row">
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-                <div class="actualites-item">
-                    <div class="actualites-image">
-                        <img src="actualites1.webp" alt="Image de l'article">
-                    </div>
-                    <p>Titre article - auteur</p>
-                </div>
-            </div>
-        </main>
-    </div>
     <?php include 'php/components/footer.php'; ?>
 </body>
 </html>

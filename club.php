@@ -4,28 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/club.css">
+    <title>Le Club - US Colomiers</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    <title>Le Club</title>
+
 </head>
-<?php include "./php/components/header.php"; ?>
 <body>
- <main>
-    <h1>Le Club</h1>
+
+<?php include "./php/components/header.php"; ?>
+
+<main class="container">
+    <h1 class="page-title">Le Club</h1>
 
     <section id="dirigeants">
         <h2>Dirigeants</h2>
         <div class="dirigeants-grid">
             <article class="dirigeant">
-                <img src="" alt="">
+                <img src="" alt="Photo dirigeant">
                 <h3>Nom Prénom</h3>
-                <p>poste</p>
+                <p>Poste</p>
             </article>
 
             <article class="dirigeant">
-                <img src="" alt="">
+                <img src="" alt="Photo dirigeant">
                 <h3>Nom Prénom</h3>
-                <p>poste</p>
+                <p>Poste</p>
             </article>
         </div>
     </section>
@@ -34,33 +38,32 @@
         <h2>Administration</h2>
         <div class="administration-grid">
             <article class="admin">
-                <img src="" alt="">
+                <img src="" alt="Photo admin">
                 <h3>Nom Prénom</h3>
                 <p>Poste</p>
             </article>
 
             <article class="admin">
-                <img src="" alt="">
+                <img src="" alt="Photo admin">
                 <h3>Nom Prénom</h3>
                 <p>Poste</p>
             </article>
         </div>
     </section>
 
-    <section id="Histoire">
+    <section id="histoire">
         <h2>Histoire</h2>
         <p>
-            bla bla bla
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <div class="histoire-images">
-        <img src="" alt="">
-        <img src="" alt="">
+            <img src="" alt="Histoire du club 1">
+            <img src="" alt="Histoire du club 2">
         </div>
     </section>
 
- </main>
+</main>
+
+<?php include "./php/components/footer.php"; ?>
 </body>
-<?php
- include "./php/components/footer.php";
-?>
 </html>

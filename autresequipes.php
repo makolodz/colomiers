@@ -4,57 +4,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US Colomiers - SAE 301</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+    <title>Autres Équipes - US Colomiers</title>
     
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/index.css">
 </head>
-<?php include './php/components/header.php'; ?>
-<body class="autresequipes-body">
-    <div class="autresequipes-container">
-        <aside class="autresequipes-aside">
-            <h1 class="autresequipes-autres-equipes">Autres équipes</h1>
-        </aside>
-        <main>
-            <section class="autresequipes-section-feminine">
-                <h2>Section féminine</h2>
-                <?php
 
-                $equipes = Database::getInstance()->loadEquipe();
+<body>
+    <?php include './php/components/header.php'; ?>
+    
+    <main class="container">
+        <h1 class="page-title">Autres équipes</h1>
 
-                $feminine = $equipes[1];
+        <?php
+        // Chargement des données
+        $equipes = Database::getInstance()->loadEquipes();
+        
+        // On isole l'équipe féminine (index 1 selon ton code précédent)
+        // Vérifie bien dans ta BDD si l'ID 1 est bien les féminines
+        $feminine = isset($equipes[1]) ? $equipes[1] : null;
+        ?>
 
-                ?>
-                <div class="autresequipes-block-row">    
-                <div class="autresequipes-autres-equipes">
-                        <img src="image.jpg" alt="image équipe féminine">
-                        <div class="autresequipes-equipe-info">
-                            <strong><?= $feminine->nom ?></strong><br>
-                            <a href="<?= $feminine->lien_calendrier ?>" target="_blank">Calendrier</a> |
-                            <a href="<?= $feminine->lien_classement ?>" target="_blank">Classement</a>
+        <?php if($feminine): ?>
+        <section class="team-category">
+            <h2 class="category-banner">Section Féminine</h2>
+            
+            <div class="feminine-highlight">
+                <article class="team-card featured-card">
+                    <div class="team-icon">⚽</div> 
+                    <div class="team-info">
+                        <h3><?= $feminine->nom ?></h3>
+                        <div class="team-links">
+                            <a href="<?= $feminine->lien_calendrier ?>" target="_blank" class="btn-link">Calendrier</a>
+                            <a href="<?= $feminine->lien_classement ?>" target="_blank" class="btn-link">Classement</a>
                         </div>
                     </div>
-                </div>
-            </section>
-            <section class="autresequipes-section-jeunes">
-                <h2>Sections jeunes</h2>
-                <?php foreach ($equipes as $equipe): ?>
-                    <div class="autresequipes-autres-equipes">
-                            <div class="autresequipes-block-block-tall">
-                                    <strong><?= $equipe->nom ?></strong><br>
-                                    <a href="<?= $equipe->lien_calendrier ?>" target="_blank">Calendrier</a> |
-                                    <a href="<?= $equipe->lien_classement ?>" target="_blank">Classement</a>
-                            </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
-            </section>
-        </main>
-    </div>
+                </article>
+            </div>
+        </section>
+        <?php endif; ?>
+
+        <section class="team-category">
+            <h2 class="category-banner">Toutes les équipes</h2>
+            
+            <div class="teams-grid">
+                <?php foreach ($equipes as $id => $equipe): ?>
+                    <?php if($id != 1): ?> 
+                    <article class="team-card">
+                        <h3><?= $equipe->nom ?></h3>
+                        <div class="team-links">
+                            <a href="<?= $equipe->lien_calendrier ?>" target="_blank" class="btn-link">Calendrier</a>
+                            <a href="<?= $equipe->lien_classement ?>" target="_blank" class="btn-link">Classement</a>
+                        </div>
+                    </article>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    </main>
+
     <?php include './php/components/footer.php'; ?>
 </body>
 </html>
