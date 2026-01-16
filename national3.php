@@ -1,4 +1,15 @@
+
 <?php include __DIR__ . "/php/database.php" ?>
+<!-- verification du cache 1 fois par semaine -->
+<?php
+$cacheFile = __DIR__ . "/php/api/classement_colomiers.json";
+$maxAge = 7 * 24 * 60 * 60;
+
+if (!file_exists($cacheFile) || time() - filemtime($cacheFile) > $maxAge) {
+    include __DIR__ . "/php/api/update_classement_colomiers.php";
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -86,8 +97,27 @@ $joueurs = Database::getInstance()->LoadJoueurs();
     <section class="section-stats">
     <div class="stat-container">
         <h2>Classement</h2>
+
         <div class="affichage-classement">
-            </div>
+<?php
+if (file_exists($cacheFile)) {
+    $classement = json_decode(file_get_contents($cacheFile), true);
+?>
+    <p class="nom-equipe"><strong><?= $classement['team'] ?></strong></p>
+    <p>Classement : <?= $classement['rank'] ?>ᵉ</p>
+    <p>Points : <?= $classement['points'] ?></p>
+    <p>Matchs joués : <?= $classement['played'] ?></p>
+    <p>Victoires : <?= $classement['wins'] ?></p>
+    <p>Nuls : <?= $classement['draws'] ?></p>
+    <p>Défaites : <?= $classement['losses'] ?></p>
+    <p>Différence de buts : <?= $classement['goal_diff'] ?></p>
+    <small>Mise à jour : <?= $classement['last_update'] ?></small>
+<?php } else { ?>
+    <p>Classement indisponible.</p>
+<?php } ?>
+
+</div>
+
     </div>
 
     <div class="stat-container">

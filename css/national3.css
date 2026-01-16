@@ -116,3 +116,8 @@ h3 {
     color: var(--dark-blue);
     font-size: 16px;
 }
+.affichage-classement {
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}

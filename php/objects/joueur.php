@@ -12,7 +12,6 @@ class Joueur extends Personnel {
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->role = "joueur";
-        $this->poste = $poste;
         $this->photo = $photo;
     }
 
