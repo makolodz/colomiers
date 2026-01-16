@@ -90,20 +90,32 @@
 
         <section class="section-stats">
             <div class="stat-row">
-                <div class="stat-container">
-                    <h2 class="section-title">Classement</h2>
-                    <div class="placeholder-box affichage-classement">
-                        <p style="color:white; padding:20px;">Module Classement</p>
-                    </div>
-                </div>
-
-                <div class="stat-container">
-                    <h2 class="section-title">Calendrier</h2>
-                    <div class="placeholder-box affichage-calendrier">
-                        <p style="color:white; padding:20px;">Module Calendrier</p>
-                    </div>
+            <div class="stat-container">
+                <h2 class="section-title">Classement</h2>
+                <div class="placeholder-box">
+                <table class="classement">
+                    <tr><th>#</th><th>Équipe</th><th>Pts</th></tr>
+                    <tr><td>1</td><td></td><td></td></tr>
+                    <tr><td>2</td><td></td><td></td></tr>
+                    <tr><td>3</td><td></td><td></td></tr>
+                    <tr><td>4</td><td></td><td></td></tr>
+                </table>
                 </div>
             </div>
+
+            <div class="stat-container">
+                <h2 class="section-title">Calendrier</h2>
+                <div class="placeholder-box">
+                <table class="calendar">
+                    <tr><th>Date</th><th>Domicile</th><th></th><th>Ext.</th><th>Score</th></tr>
+                    <tr><td></td><td></td><td>vs</td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td>vs</td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td>vs</td><td></td><td></td></tr>
+                </table>
+                </div>
+            </div>
+            </div>
+
 
             <div class="buteurs-section">
                 <h2 class="section-title">Meilleurs Buteurs</h2>
