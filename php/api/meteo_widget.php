@@ -8,7 +8,7 @@
                 <div><?= date('d/m', strtotime($jour['date'])) ?></div>
                 <img src="https://openweathermap.org/img/wn/<?= $jour['icon'] ?>.png" alt="">
                 <div><?= $jour['temp'] ?>°C</div>
-                <small><?php($jour['desc']) ?></small>
+                <small><?= ($jour['desc']) ?></small>
             </div>
         <?php endforeach; ?>
     </div>

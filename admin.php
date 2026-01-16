@@ -21,174 +21,243 @@
         </div>
 
         <section class="admin-section">
-            <h2 class="admin-subtitle">Nos Sponsors</h2>
-            
-            <details class="admin-details">
-                <summary>Gérer les Sponsors (Ajout / Modif)</summary>
-                <div style="padding: 20px;">
-                    <h3>+ Ajouter un nouveau sponsor</h3>
-                    <form action="#" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-bottom:30px;">
-                        <div class="form-group"><label>Nom du sponsor</label><input type="text" name="nom"></div>
-                        <div class="form-group"><label>Logo</label><input type="file" name="logo"></div>
-                        <button class="btn-admin">Ajouter</button>
-                    </form>
+    <h2 class="admin-subtitle">Nos Sponsors</h2>
+    <details class="admin-details">
+        <summary>Gérer les Sponsors (Ajout / Modif)</summary>
+        <div style="padding: 20px;">
+            <h3>+ Ajouter un nouveau sponsor</h3>
+            <form action="./php/backoffice.php" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-bottom:30px;">
+                <input type="hidden" name="action" value="create-sponsor">
+                <div class="form-group"><label>Nom du sponsor</label><input type="text" name="nom"></div>
+                <div class="form-group"><label>Lien</label><input type="url" name="lien"></div>
+                <button class="btn-admin">Ajouter</button>
+            </form>
 
-                    <hr style="margin: 30px 0; border:0; border-top:1px solid #ddd;">
+            <hr style="margin: 30px 0; border:0; border-top:1px solid #ddd;">
 
-                    <h3>Liste des sponsors actuels</h3>
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Logo</th>
-                                <th>Nom</th>
-                                <th>Lien Site</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>(img)</td>
-                                <td>sponsor</td>
-                                <td>SiteSponsor</td>
-                                <td>
-                                    <button class="action-btn btn-edit">Modifier</button>
+            <h3>Liste des sponsors actuels</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Nom</th>
+                        <th>Lien Site</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(Database::getInstance()->loadPartners() as $sponsor): ?>
+                    <tr>
+                        <td><?= $sponsor->image ?? '(img)' ?></td>
+                        <td><?= htmlspecialchars($sponsor->nom) ?></td>
+                        <td><?= htmlspecialchars($sponsor->logo) ?></td>
+                        <td>
+                            <button 
+                                type="button" 
+                                class="action-btn btn-edit btn-partenaire-edit"
+                                data-id="<?= $sponsor->id ?>"
+                                data-nom="<?= htmlspecialchars($sponsor->nom, ENT_QUOTES) ?>"
+                                data-lien="<?= htmlspecialchars($sponsor->logo, ENT_QUOTES) ?>"
+                            >Modifier</button>
+                            <form method="POST" action="./php/backoffice.php" style="display:inline;">
+                                <input type="hidden" name="action" value="delete-partenaire">
+                                <input type="hidden" name="id" value="<?= $sponsor->id ?>">
+                                <button class="action-btn btn-delete">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="edit-simulation-area hidden">
+                <p class="simulation-title">Modification Partenaire : <span id="titre-partenaire-edit"></span></p>
+                <form method="POST" action="./php/backoffice.php" id="edit-partenaire">
+
+                    <input type="hidden" name="action" value="edit-partenaire">
+                    <input type="hidden" name="id">
+
+                    <div class="form-group">
+                        <label>Nom :</label>
+                        <input type="text" name="nom" placeholder="Nom du sponsor">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lien :</label>
+                        <input type="url" name="lien" placeholder="https://example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Logo :</label>
+                        <input type="file" name="image">
+                    </div>
+                    
+                    <button type="submit" class="btn-admin">Sauvegarder le partenaire</button>
+                
+                </form>
+            </div>
+        </div>
+    </details>
+        </section>
+
+        <section class="admin-section">
+        <h2 class="admin-subtitle">Les Joueurs</h2>
+        <details class="admin-details">
+            <summary>Gérer l'effectif Joueurs</summary>
+            <div style="padding: 20px;">
+                <h3>+ Ajouter un joueur</h3>
+                <form action="./php/backoffice.php" method="POST" enctype="multipart/form-data" class="admin-form">
+                    <input type="hidden" name="action" value="create-joueur">
+                    <div class="form-group"><label>Nom</label><input type="text" name="nom"></div>
+                    <div class="form-group"><label>Prénom</label><input type="text" name="prenom"></div>
+                    <div class="form-group">
+                        <label>Poste</label>
+                        <select name="poste">
+                            <option value="Gardien">Gardien</option>
+                            <option value="Défenseur">Défenseur</option>
+                            <option value="Milieu">Milieu</option>
+                            <option value="Attaquant">Attaquant</option>
+                        </select>
+                    </div>
+                    <button class="btn-admin">Ajouter</button>
+                </form>
+
+                <br>
+
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Identité</th>
+                            <th>Poste</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach(Database::getInstance()->loadJoueurs() as $joueur): ?>
+                        <tr>
+                            <td><?= $joueur->photo ?? '(img)' ?></td>
+                            <td><?= htmlspecialchars($joueur->nom . ' ' . $joueur->prenom) ?></td>
+                            <td><?= htmlspecialchars($joueur->poste) ?></td>
+                            <td>
+                                <button 
+                                    type="button" 
+                                    class="action-btn btn-edit btn-joueur-edit"
+                                    data-id="<?= $joueur->id ?>"
+                                    data-nom="<?= htmlspecialchars($joueur->nom, ENT_QUOTES) ?>"
+                                    data-prenom="<?= htmlspecialchars($joueur->prenom, ENT_QUOTES) ?>"
+                                    data-poste="<?= htmlspecialchars($joueur->poste, ENT_QUOTES) ?>"
+                                >Modifier</button>
+                                <form method="POST" action="./php/backoffice.php" style="display:inline;">
+                                    <input type="hidden" name="action" value="delete-joueur">
+                                    <input type="hidden" name="id" value="<?= $joueur->id ?>">
                                     <button class="action-btn btn-delete">Supprimer</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                </form>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="edit-simulation-area hidden">
+        <p class="simulation-title">Modification Joueur : <span id="titre-joueur-edit"></span></p>
+        <form method="POST" action="./php/backoffice.php" id="edit-joueur">
+            <input type="hidden" name="action" value="edit-joueur">
+            <input type="hidden" name="id">
 
-                    <div class="edit-simulation-area">
-                        <p class="simulation-title">Modification du sponsor : NIKE</p>
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="12">
-                            
-                            <div class="form-group">
-                                <label>Nom du sponsor :</label>
-                                <input type="text" name="nom" value="Nike">
-                            </div>
-                            <div class="form-group">
-                                <label>Lien vers le site :</label>
-                                <input type="url" name="lien" value="https://www.sponsorSite.com">
-                            </div>
-                            <div class="form-group">
-                                <label>Changer le Logo :</label>
-                                <input type="file" name="logo">
-                            </div>
-                            <button type="submit" class="btn-admin">Enregistrer les modifications</button>
-                        </form>
-                    </div>
-                </div>
-            </details>
+            <div class="form-group">
+                <label>Nom :</label>
+                <input type="text" name="nom" placeholder="Nom du joueur">
+            </div>
+
+            <div class="form-group">
+                <label>Prénom :</label>
+                <input type="text" name="prenom" placeholder="Prénom du joueur">
+            </div>
+
+            <div class="form-group">
+                <label>Poste :</label>
+                <input type="text" name="poste" placeholder="Gardien, Défenseur, Milieu, Attaquant">
+            </div>
+
+            <div class="form-group">
+                <label>Photo :</label>
+                <input type="file" name="image">
+            </div>
+
+            <button type="submit" class="btn-admin">Sauvegarder le joueur</button>
+        </form>
+    </div>
+            </div>
+        </details>
         </section>
 
         <section class="admin-section">
-            <h2 class="admin-subtitle">Les Joueurs</h2>
+    <h2 class="admin-subtitle">Le Staff Technique</h2>
+    <details class="admin-details">
+        <summary>Gérer le Staff</summary>
+        <div style="padding: 20px;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nom Prénom</th>
+                        <th>Rôle</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(Database::getInstance()->loadStaffs() as $staff): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($staff->nom . ' ' . $staff->prenom) ?></td>
+                        <td><?= htmlspecialchars($staff->role) ?></td>
+                        <td><?= htmlspecialchars($staff->email) ?></td>
+                        <td>
+                            <button 
+                                type="button" 
+                                class="action-btn btn-edit btn-staff-edit"
+                                data-id="<?= $staff->id ?>"
+                                data-nom="<?= htmlspecialchars($staff->nom, ENT_QUOTES) ?>"
+                                data-prenom="<?= htmlspecialchars($staff->prenom, ENT_QUOTES) ?>"
+                                data-role="<?= htmlspecialchars($staff->role, ENT_QUOTES) ?>"
+                                data-email="<?= htmlspecialchars($staff->email, ENT_QUOTES) ?>"
+                            >Modifier</button>
+                            <form method="POST" action="./php/backoffice.php" style="display:inline;">
+                                <input type="hidden" name="action" value="delete-staff">
+                                <input type="hidden" name="id" value="<?= $staff->id ?>">
+                                <button class="action-btn btn-delete">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <div class="edit-simulation-area hidden">
+                <p class="simulation-title">Modification Staff : <span id="titre-staff-edit"></span></p>
+                    <form method="POST" action="./php/backoffice.php" id="edit-staff">
+                        <input type="hidden" name="action" value="edit-staff">
+                        <input type="hidden" name="id">
 
-            <details class="admin-details">
-                <summary>Gérer l'effectif Joueurs</summary>
-                <div style="padding: 20px;">
-                    
-                    <h3>+ Ajouter un joueur</h3>
-                    <form action="#" method="POST" enctype="multipart/form-data" class="admin-form">
-                        <div class="form-group"><label>Nom complet</label><input type="text"></div>
-                        <button class="btn-admin">Ajouter</button>
+                        <div class="form-group">
+                            <label>Nom :</label>
+                            <input type="text" name="nom" placeholder="Nom du membre du staff">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Prénom :</label>
+                            <input type="text" name="prenom" placeholder="Prénom du membre du staff">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Rôle :</label>
+                            <input type="text" name="role" placeholder="Entraîneur, Préparateur, etc.">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email :</label>
+                            <input type="email" name="email" placeholder="email@example.com">
+                        </div>
+
+                        <button type="submit" class="btn-admin">Sauvegarder le staff</button>
                     </form>
-
-                    <br>
-
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Photo</th>
-                                <th>Identité</th>
-                                <th>Poste</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>(img)</td>
-                                <td>Mbappe Kylian</td>
-                                <td>Attaquant</td>
-                                <td><button class="action-btn btn-edit">Modifier</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="edit-simulation-area">
-                        <p class="simulation-title">Modification Joueur : MBAPPE KYLIAN</p>
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="id" value="7">
-                            <div class="form-group">
-                                <label>Nom :</label> <input type="text" value="Mbappe">
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom :</label> <input type="text" value="Kylian">
-                            </div>
-                            <div class="form-group">
-                                <label>Poste :</label> 
-                                <select name="poste">
-                                    <option value="Gardien">Gardien</option>
-                                    <option value="Défenseur">Défenseur</option>
-                                    <option value="Milieu">Milieu</option>
-                                    <option value="Attaquant" selected>Attaquant</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label>Photo :</label> <input type="file" name="photo">
-                            </div>
-                            <button type="submit" class="btn-admin">Mettre à jour</button>
-                        </form>
-                    </div>
-                </div>
-            </details>
-        </section>
-
-        <section class="admin-section">
-            <h2 class="admin-subtitle">Le Staff Technique</h2>
-
-            <details class="admin-details">
-                <summary>Gérer le Staff</summary>
-                <div style="padding: 20px;">
-                    
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Nom Prénom</th>
-                                <th>Rôle</th>
-                                <th>Email</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Zidane Zinedine</td>
-                                <td>Entraineur Principal</td>
-                                <td>zizou@foot.fr</td>
-                                <td><button class="action-btn btn-edit">Modifier</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="edit-simulation-area">
-                        <p class="simulation-title">Modification Staff : ZIDANE ZINEDINE</p>
-                        <form action="#" method="POST">
-                            <input type="hidden" name="id" value="99">
-                            <div class="form-group">
-                                <label>Nom :</label> <input type="text" value="Zidane">
-                            </div>
-                            <div class="form-group">
-                                <label>Prénom :</label> <input type="text" value="Zinedine">
-                            </div>
-                            <div class="form-group">
-                                <label>Rôle :</label> <input type="text" value="Entraîneur Principal">
-                            </div>
-                            <div class="form-group">
-                                <label>Email :</label> <input type="email" value="zizou@us-colomiers.fr">
-                            </div>
-                            <button type="submit" class="btn-admin">Mettre à jour</button>
-                        </form>
                     </div>
                 </div>
             </details>
@@ -203,9 +272,9 @@
                     
                     <h3>+ Ajouter une histoire</h3>
                     <form action="./php/backoffice.php" method="POST" class="admin-form">
-                        <input type="hidden" name="action" value="create-history">
-                        <div class="form-group"><label>Titre</label><input name="history-name" type="text"></div>
-                        <button type="submit" class="btn-admin">Publier</button>
+                    <input type="hidden" name="action" value="create-histoire">
+                    <div class="form-group"><label>Titre</label><input name="history-name" type="text"></div>
+                    <button type="submit" class="btn-admin">Publier</button>
                     </form>
 
                     <br>
@@ -247,17 +316,17 @@
                     </table>
 
                     <div class="edit-simulation-area hidden">
-                        <p class="simulation-title">Modification Article : <span id="titre-history-edit"></span></p>
+                        <p class="simulation-title">Modification Histoire : <span id="titre-histoire-edit"></span></p>
                         <form method="POST" action="./php/backoffice.php" id="edit-history">
-                            <input type="hidden" name="action" value="edit-article">
-                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="action" value="edit-histoire">
+                            <input type="hidden" name="id">
                             <div class="form-group">
                                 <label>Titre de l'événement :</label>
                                 <input type="text" name="titre" placeholder="Fête du sport">
                             </div>
                             <div class="form-group">
-                                <label>Taxonomie :</label>
-                                <input type="text" name="taxonomie" placeholder="Vie du club" value="">
+                                <label>Tranche de dates :</label>
+                                <input type="text" name="tranche_de_date" placeholder="1920-19">
                             </div>  
                             <div class="form-group">
                                 <label>Récit complet :</label>
@@ -310,7 +379,7 @@
                                     <td> <button 
                                                 type="button" 
                                                 class="action-btn btn-edit btn-article-edit"
-                                                data-id="<?php echo htmlspecialchars($article->id, ENT_QUOTES) ?>"
+                                                data-id="<?php echo htmlspecialchars( $article->id, ENT_QUOTES) ?>"
                                                 data-titre="<?php echo htmlspecialchars($article->titre, ENT_QUOTES) ?>"
                                                 data-taxonomie="<?php echo htmlspecialchars($article->categorie, ENT_QUOTES) ?>"
                                                 data-texte="<?php echo htmlspecialchars($article->texte, ENT_QUOTES) ?>"
@@ -330,14 +399,14 @@
                         <p class="simulation-title">Modification Article : <span id="titre-article-edit"></span></p>
                         <form method="POST" action="./php/backoffice.php" id="edit-article">
                             <input type="hidden" name="action" value="edit-article">
-                            <input type="hidden" name="id" value="">
+                            <input type="hidden" name="id">
                             <div class="form-group">
                                 <label>Titre de l'événement :</label>
                                 <input type="text" name="titre" placeholder="Fête du sport">
                             </div>
                             <div class="form-group">
                                 <label>Taxonomie :</label>
-                                <input type="text" name="taxonomie" placeholder="Vie du club" value="">
+                                <input type="text" name="taxonomie" placeholder="Vie du club">
                             </div>  
                             <div class="form-group">
                                 <label>Récit complet :</label>

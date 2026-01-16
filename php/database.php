@@ -238,10 +238,11 @@ class Database {
 
         foreach ($rows as $row) {
             $staffs[] = new Staff(
+            $row['id_staff'],
                 $row['nom'],
                 $row['prenom'],
                 $row['role'],
-                $row['email']
+                $row['email'] 
             );
         }
         return $staffs;
@@ -255,6 +256,7 @@ class Database {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return new Staff(
+            $result['id_staff'],
             $result['nom'],
             $result['prenom'],
             $result['role'],

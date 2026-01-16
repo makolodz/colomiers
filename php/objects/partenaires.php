@@ -55,9 +55,6 @@ class Partenaire {
             ]);
         }
     }
-
-
-   
 }
 
 ?>
