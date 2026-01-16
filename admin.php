@@ -1,3 +1,14 @@
+<?php 
+session_start();
+
+// est ce que l'administrateur est connecté
+if (!isset($_SESSION['admin_id'])) {
+    // si non on le dirige vers login
+    header("Location: login.php");
+    exit(); // et on ne charge pas la page si pas connecté
+}
+?>
+
 <?php include __DIR__ . "/php/database.php" ?>
 
 <!DOCTYPE html>
