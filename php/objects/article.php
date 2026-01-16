@@ -51,7 +51,7 @@ class Article extends Publication {
             $this->id = (int)$db->lastInsertId();
         } else {
             // UPDATE
-            $sql = "UPDATE article SET titre = :titre, contenu = :contenu, image = :image, date_publication = :date_publication, categorie = :categorie WHERE id = :id";
+            $sql = "UPDATE article SET titre = :titre, contenu = :contenu, image = :image, date_publication = :date_publication, categorie = :categorie WHERE id_article = :id";
             $stmt = $db->prepare($sql);
             $stmt->execute([
                 'id' => $this->id,

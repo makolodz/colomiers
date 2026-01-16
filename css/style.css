@@ -1,3 +1,35 @@
+/* IMPORT DES POLICES LOCALES */
+
+/* Texte courant */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/typo/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../assets/typo/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Titres */
+@font-face {
+    font-family: 'PT Sans Narrow';
+    src: url('../assets/typo/PT_Sans_Narrow/PTSansNarrow-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'PT Sans Narrow';
+    src: url('../assets/typo/PT_Sans_Narrow/PTSansNarrow-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* VARIABLES & CONFIGURATION */
 :root {
     /* Couleurs de la charte */
@@ -209,14 +241,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     gap: 20px; 
 }
 
-.social-links { display: flex; flex-direction: row; gap: 10px; }
-
-.social-box {
-    width: 35px;
-    height: 35px;
-    background-color: var(--primary-blue);
-    display: block;
-    border-radius: var(--radius-sm);
+.social-links {
+    display: flex;
+    gap: 25px;
 }
 
 /* RESPONSIVE */
@@ -234,4 +261,651 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     
     .match-box { flex-direction: column; text-align: center; }
     .separator { width: 100%; height: 1px; margin: 20px 0; }
+}
+
+/* Titres spécifiques à la page club */
+.page-title {
+    text-align: center;
+    margin: var(--space-lg) 0;
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+}
+
+#dirigeants h2, #administration h2, #histoire h2 {
+    text-align: center;
+    margin-bottom: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* Grilles */
+.dirigeants-grid,
+.administration-grid {
+    display: grid;
+    /* Grid responsive */
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+}
+
+/* Cartes Personnes */
+.dirigeant,
+.admin {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dirigeant:hover,
+.admin:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.dirigeant img,
+.admin img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    background-color: var(--grey-placeholder);
+}
+
+.dirigeant h3, .admin h3 {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    color: var(--dark-blue);
+    font-family: var(--font-titles);
+}
+
+.dirigeant p, .admin p {
+    font-size: 0.95rem;
+    color: var(--grey-text);
+    font-family: var(--font-body);
+}
+
+/* Section Histoire */
+#histoire p {
+    max-width: 800px;
+    margin: 0 auto var(--space-md);
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.histoire-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+}
+
+.histoire-images img {
+    width: 45%;
+    max-width: 500px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+    object-fit: cover;
+    background-color: var(--grey-placeholder);
+}
+
+/* Responsive spécifique Club */
+@media (max-width: 768px) {
+    .histoire-images img {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   PAGE: NATIONAL 3  */
+
+/* Hero N3 */
+.hero-nat3 {
+    padding: var(--space-lg) 0;
+    margin: var(--space-md) auto;
+    text-align: center;
+    border-radius: var(--radius-md);
+    color: var(--white);
+}
+
+.hero-nat3 h1 {
+    font-size: 3rem;
+    color: var(--dark-blue);
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Image d'équipe */
+.image-nat3 {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md) 0;
+    margin-bottom: var(--space-lg);
+}
+
+.image-nat3 img {
+    width: 80%;
+    max-width: 900px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+}
+
+/* Titres */
+.page-subtitle {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: var(--space-lg);
+    color: var(--dark-blue);
+    font-family: var(--font-titles);
+}
+
+/* Bandeau */
+.category-banner {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: var(--font-titles);
+    border-radius: var(--radius-md);
+    margin: var(--space-lg) 0 var(--space-md) 0;
+    box-shadow: var(--shadow-main);
+}
+
+/* Grille des Joueurs */
+.joueurs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* Carte Joueur */
+.joueur-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 300px; 
+    margin: 0 auto; 
+    width: 100%; 
+}
+
+.joueur-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* IMAGES JOUEURS */
+.joueur-card img {
+    width: 100%;
+    /* Ratio 3:4 pour uniformiser */
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    background-color: var(--grey-placeholder);
+    border-bottom: 3px solid var(--primary-blue);
+}
+
+.joueur-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.joueur-name {
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    font-family: var(--font-titles);
+    margin: 0;
+}
+
+
+/* --- SECTION STATS & CALENDRIER --- */
+/* Style  */
+.section-stats {
+    margin-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+}
+
+.stat-row {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.stat-container {
+    flex: 1;
+}
+
+/* Les boîtes placeholder (Classement/Calendrier) */
+.placeholder-box {
+    background-color: var(--dark-blue);
+    width: 100%;
+    height: 400px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- BUTEURS --- */
+.buteurs-section {
+    margin-top: var(--space-lg);
+}
+
+.liste-buteurs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+}
+
+.fiche-buteur {
+    text-align: center;
+    width: 200px;
+}
+
+.photo-buteur {
+    background-color: var(--dark-blue);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    box-shadow: var(--shadow-main);
+}
+
+.infos-buteur {
+    font-family: var(--font-titles);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--dark-blue);
+    font-size: 1rem;
+}
+
+/* Responsive N3 */
+@media (max-width: 768px) {
+    .image-nat3 img { width: 100%; }
+    .stat-row {
+        flex-direction: column;
+    }
+    .hero-nat3 h1 { font-size: 2rem; }
+}   
+
+/*  PAGE: AUTRES ÉQUIPES  */
+
+/* Espacement global des sections */
+.team-category {
+    margin-bottom: var(--space-xl);
+}
+
+/* --- SECTION FÉMININE --- */
+.feminine-highlight {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--space-lg);
+}
+
+/* Carte Featured */
+.featured-card {
+    width: 100%;
+    max-width: 600px;
+    padding: 30px !important; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.team-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+}
+
+/* --- GRILLE DES ÉQUIPES --- */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+}
+
+/* --- STYLE DES CARTES ÉQUIPES --- */
+.team-card {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--primary-blue); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.team-card h3 {
+    color: var(--dark-blue);
+    font-family: var(--font-titles);
+    font-size: 1.3rem;
+    margin-bottom: var(--space-md);
+    font-weight: 700;
+}
+
+/* --- LIENS / BOUTONS --- */
+.team-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: auto;
+}
+
+.btn-link {
+    color: var(--primary-blue);
+    font-family: var(--font-titles);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border: 1px solid var(--primary-blue);
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+}
+
+.btn-link:hover {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+/* Responsive spécifique */
+@media (max-width: 768px) {
+    .team-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* PAGE: ACTUALITÉS */
+
+.filters-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: var(--space-lg);
+}
+
+/* Filtres */
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--dark-blue);
+    color: var(--dark-blue);
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-family: var(--font-titles);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+/* hover et active */
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-main);
+}
+/* les carrés des réseaux sociaux*/
+.social-box {
+    width: 35px;
+    display: flex;           /* pour centrer l'image */
+    justify-content: center; 
+}
+
+.social-box img {
+    width: 35px;            
+}
+
+.social-box:hover {
+    transform: scale(1.1);
+}
+
+
+/* Bouton boutique du footer */
+.btn-boutique-footer {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 8px 18px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 3px 0 #0000A0;
+    transition: all 0.2s ease;
+}
+
+.btn-boutique-footer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 0 #0000A0;
+}
+
+.btn-boutique-footer:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 0 #0000A0;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;     
+    min-height: 63vh;        
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+}
+
+.form input, .form button {
+    padding: 20px;
+}
+
+.form button {
+    background: #003366;
+    color: white;
+    cursor: pointer;
+}
+/* 
+PAGE ADMINISTRATION */
+
+}
+/* PAGE ADMINISTRATION */
+
+.admin-container {
+    padding-bottom: var(--space-xl);
+}
+
+.admin-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    background: var(--platinum);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.admin-subtitle {
+    border-left: 5px solid var(--primary-blue);
+    padding-left: 15px;
+    margin-bottom: var(--space-md);
+    color: var(--dark-blue);
+    font-size: 1.5rem;
+}
+
+/* --- BLOCS DÉPLIABLES (DETAILS) --- */
+.admin-details {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-main);
+    margin-bottom: var(--space-lg);
+    overflow: hidden;
+}
+
+.admin-details summary {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 15px 20px;
+    font-family: var(--font-titles);
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-details summary::after {
+    content: '+';
+    font-size: 1.5rem;
+}
+
+.admin-details[open] summary::after {
+    content: '-';
+}
+
+/* --- FORMULAIRES ADMIN --- */
+.admin-form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid #ddd;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    font-family: var(--font-titles);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+}
+
+.form-group input:focus {
+    border-color: var(--primary-blue);
+    outline: none;
+}
+
+/* Bouton Admin */
+.btn-admin {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s;
+}
+
+.btn-admin:hover {
+    background-color: var(--dark-blue);
+}
+
+/* --- TABLEAUX ADMIN --- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.admin-table th {
+    background-color: var(--platinum);
+    color: var(--dark-blue);
+    padding: 12px;
+    text-align: left;
+    font-family: var(--font-titles);
+    border-bottom: 2px solid var(--dark-blue);
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Boutons Actions (Petit) */
+.action-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+.btn-edit { background-color: #ffc107; color: #000; }
+.btn-delete { background-color: #dc3545; color: #fff; }
+
+/* --- ZONE DE MODIFICATION (Simulation) --- */
+.edit-simulation-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #eef2f5;
+    border-left: 5px solid #ffc107;
+    border-radius: var(--radius-sm);
+}
+
+.simulation-title {
+    font-weight: bold;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+    }
 }
