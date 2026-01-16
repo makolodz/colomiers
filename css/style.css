@@ -742,10 +742,11 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 .formulaire {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 50px;
+    align-items: center;     
+    min-height: 63vh;        
 }
-
 .form {
     display: flex;
     flex-direction: column;
@@ -761,6 +762,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     background: #003366;
     color: white;
     cursor: pointer;
+
 }
 /* 
 PAGE ADMINISTRATION */
