@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/actualites.css">
 </head>
-
+    <script src="ajax/filtre.js" defer></script>
 <body>
 <?php include 'php/components/header.php'; ?>
     <div class="actualites-container">
@@ -21,14 +21,15 @@
             <h1>Actualités</h1>
         </header>
         <section class="actualites-filtres">
-            <button class="filtre">Filtre</button>
-            <button class="filtre">Filtre</button>
-            <button class="filtre">Filtre</button>
-            <button class="filtre">Filtre</button>
+            <button class="filtre" data-categorie="">Toutes</button>
+            <button class="filtre" data-categorie="club">Club</button>
+            <button class="filtre" data-categorie="match">Match</button>
+            <button class="filtre" data-categorie="formation">Formation</button>
+
         </section>
-        <main class="actualites-main">
+        <main class="actualites-main" id=articles>
             <div class="actualites-row">
-                <div class="actualites-item">
+                <div class="actualites-item" data-categorie='club'>
                     <div class="actualites-image">
                         <img src="actualites1.webp" alt="Image de l'article">
                     </div>
