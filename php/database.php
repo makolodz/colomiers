@@ -208,6 +208,7 @@ class Database {
                 $row['prenom'],
                 $row['role'],
                 $row['photo'],
+                null
             );
         }
         return $joueurs;

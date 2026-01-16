@@ -1,0 +1,202 @@
+{
+  "league": {
+    "id": 471,
+    "name": "National 3 - Groupe L",
+    "country": "France",
+    "season": 2022,
+    "standings": [
+      [
+        {
+          "rank": 1,
+          "team": {
+            "id": 3148,
+            "name": "Aubervilliers"
+          },
+          "points": 44,
+          "goalsDiff": 5,
+          "all": {
+            "played": 26,
+            "win": 12,
+            "draw": 8,
+            "lose": 6,
+            "goals": {
+              "for": 45,
+              "against": 40
+            }
+          }
+        },
+        {
+          "rank": 2,
+          "team": {
+            "id": 9288,
+            "name": "Linas-Montlhery"
+          },
+          "points": 42,
+          "goalsDiff": 1,
+          "all": {
+            "played": 26,
+            "win": 12,
+            "draw": 6,
+            "lose": 8,
+            "goals": {
+              "for": 34,
+              "against": 33
+            }
+          }
+        },
+        {
+          "rank": 3,
+          "team": {
+            "id": 1293,
+            "name": "Drancy"
+          },
+          "points": 41,
+          "goalsDiff": 12,
+          "all": {
+            "played": 26,
+            "win": 12,
+            "draw": 5,
+            "lose": 9,
+            "goals": {
+              "for": 46,
+              "against": 34
+            }
+          }
+        },
+        {
+          "rank": 4,
+          "team": {
+            "id": 13753,
+            "name": "Vitry"
+          },
+          "points": 37,
+          "goalsDiff": 3,
+          "all": {
+            "played": 26,
+            "win": 8,
+            "draw": 13,
+            "lose": 5,
+            "goals": {
+              "for": 39,
+              "against": 36
+            }
+          }
+        },
+        {
+          "rank": 5,
+          "team": {
+            "id": 9964,
+            "name": "Les Mureaux"
+          },
+          "points": 35,
+          "goalsDiff": 0,
+          "all": {
+            "played": 26,
+            "win": 9,
+            "draw": 8,
+            "lose": 9,
+            "goals": {
+              "for": 45,
+              "against": 45
+            }
+          }
+        },
+        {
+          "rank": 6,
+          "team": {
+            "id": 19921,
+            "name": "Montrouge"
+          },
+          "points": 35,
+          "goalsDiff": -3,
+          "all": {
+            "played": 26,
+            "win": 9,
+            "draw": 8,
+            "lose": 9,
+            "goals": {
+              "for": 38,
+              "against": 41
+            }
+          }
+        },
+        {
+          "rank": 7,
+          "team": {
+            "id": 13592,
+            "name": "Brétigny Foot"
+          },
+          "points": 35,
+          "goalsDiff": -4,
+          "all": {
+            "played": 26,
+            "win": 11,
+            "draw": 2,
+            "lose": 13,
+            "goals": {
+              "for": 37,
+              "against": 41
+            }
+          }
+        },
+        {
+          "rank": 8,
+          "team": {
+            "id": 9999,
+            "name": "US Colomiers"
+          },
+          "points": 34,
+          "goalsDiff": -2,
+          "all": {
+            "played": 26,
+            "win": 9,
+            "draw": 7,
+            "lose": 10,
+            "goals": {
+              "for": 36,
+              "against": 38
+            }
+          }
+        },
+        {
+          "rank": 9,
+          "team": {
+            "id": 8888,
+            "name": "Racing Club de France"
+          },
+          "points": 33,
+          "goalsDiff": -5,
+          "all": {
+            "played": 26,
+            "win": 9,
+            "draw": 6,
+            "lose": 11,
+            "goals": {
+              "for": 35,
+              "against": 40
+            }
+          }
+        },
+        {
+          "rank": 10,
+          "team": {
+            "id": 7777,
+            "name": "Entente SSG"
+          },
+          "points": 31,
+          "goalsDiff": -8,
+          "all": {
+            "played": 26,
+            "win": 8,
+            "draw": 7,
+            "lose": 11,
+            "goals": {
+              "for": 32,
+              "against": 40
+            }
+          }
+        }
+      ]
+    ]
+  }
+}

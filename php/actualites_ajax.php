@@ -3,18 +3,15 @@ require_once __DIR__ . '/database.php';
 
 $database = Database::getInstance()->getConnection();
 
-// récupération catégorie envoyée par AJAX
 $categorie = $_GET['categorie'] ?? '';
 
 $sql = "SELECT * FROM article";
 $params = [];
 
-/* ===== ICI LE WHERE ===== */
 if ($categorie !== '') {
     $sql .= " WHERE categorie = :categorie";
     $params[':categorie'] = $categorie;
 }
-/* ======================= */
 
 $sql .= " ORDER BY date_publication DESC";
 

@@ -1,4 +1,15 @@
+
 <?php include __DIR__ . "/php/database.php" ?>
+<!-- verification du cache 1 fois par semaine -->
+<?php
+$cacheFile = __DIR__ . "/php/api/classement_colomiers.json";
+$maxAge = 7 * 24 * 60 * 60;
+
+if (!file_exists($cacheFile) || time() - filemtime($cacheFile) > $maxAge) {
+    include __DIR__ . "/php/api/update_classement_colomiers.php";
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,7 +41,6 @@
         ?>
 
         <h2 class="page-subtitle">Effectif 2025/26</h2>
-
         <h3 class="category-banner">Gardiens de but</h3>
         <div class="joueurs-grid"> 
             <?php foreach ($joueurs as $g): ?> 
@@ -97,13 +107,81 @@
                     </div>
                 </div>
 
-                <div class="stat-container">
-                    <h2 class="section-title">Calendrier</h2>
-                    <div class="placeholder-box affichage-calendrier">
-                        <p style="color:white; padding:20px;">Module Calendrier</p>
-                    </div>
-                </div>
-            </div>
+
+
+?>
+
+<h2>Effectif 2025/26</h2>
+
+<h3>Gardiens de but</h3>
+<div class="joueurs-grid"> <?php foreach ($joueurs as $g): ?> 
+  <?php if($g->poste == 'Gardien de but'): ?>
+    <div class="joueur-card">
+      <img src="<?= $g->photo ?>" alt="Photo <?= $g->photo ?>">
+      <p><?= $g->prenom . " " . $g->nom ?></p>
+    </div>
+    <?php endif;?>
+  <?php endforeach; ?> 
+</div> 
+<h3>Défenseurs</h3>
+<div class="joueurs-grid"> <?php foreach ($joueurs as $d): ?> 
+  <?php if($d->poste == 'Défenseur'): ?>
+    <div class="joueur-card">
+      <img src="<?= $d->photo ?>" alt="Photo <?= $d->photo ?>">
+      <p><?= $d->prenom . " " . $d->nom ?></p>
+    </div>
+    <?php endif;?>
+  <?php endforeach; ?> 
+</div> 
+
+<h3>Milieux de terrain</h3>
+<div class="joueurs-grid"> <?php foreach ($joueurs as $m): ?> 
+  <?php if($m->poste == 'Milieu de terrain'): ?>
+    <div class="joueur-card">
+      <img src="<?= $m->photo ?>" alt="Photo <?= $m->photo ?>">
+      <p><?= $m->prenom . " " . $m->nom ?></p>
+    </div>
+    <?php endif;?>
+  <?php endforeach; ?> 
+</div> 
+
+<h3>Attaquants</h3>
+<div class="joueurs-grid"> <?php foreach ($joueurs as $a): ?> 
+  <?php if($a->poste == 'Attaquant'): ?>
+    <div class="joueur-card">
+      <img src="<?= $a->photo ?>" alt="Photo <?= $a->photo ?>">
+      <p><?= $a->prenom . " " . $a->nom ?></p>
+    </div>
+    <?php endif;?>
+  <?php endforeach; ?> 
+</div> 
+
+
+    <section class="section-stats">
+    <div class="stat-container">
+        <h2>Classement</h2>
+
+        <div class="affichage-classement">
+<?php
+if (file_exists($cacheFile)) {
+    $classement = json_decode(file_get_contents($cacheFile), true);
+?>
+    <p class="nom-equipe"><strong><?= $classement['team'] ?></strong></p>
+    <p>Classement : <?= $classement['rank'] ?>ᵉ</p>
+    <p>Points : <?= $classement['points'] ?></p>
+    <p>Matchs joués : <?= $classement['played'] ?></p>
+    <p>Victoires : <?= $classement['wins'] ?></p>
+    <p>Nuls : <?= $classement['draws'] ?></p>
+    <p>Défaites : <?= $classement['losses'] ?></p>
+    <p>Différence de buts : <?= $classement['goal_diff'] ?></p>
+    <small>Mise à jour : <?= $classement['last_update'] ?></small>
+<?php } else { ?>
+    <p>Classement indisponible.</p>
+<?php } ?>
+
+</div>
+
+    </div>
 
             <div class="buteurs-section">
                 <h2 class="section-title">Meilleurs Buteurs</h2>
