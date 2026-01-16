@@ -721,6 +721,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     display: flex;
     justify-content: center;
     padding: 50px;
+    min-height: 65vh;
 }
 
 .form {
@@ -735,9 +736,8 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 }
 
 .form button {
-    background: #003366;
-    color: white;
     cursor: pointer;
+}
 /* 
 PAGE ADMINISTRATION */
 

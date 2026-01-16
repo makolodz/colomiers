@@ -9,7 +9,7 @@ try {
     die("Erreur bdd"); 
 } 
 
-$erreur = ""; //On crée la variable pour annoncer les erreurs
+$erreur = ""; //on crée la variable pour les erreurs
 
 // on traite la requete du formulaire
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="mdp" placeholder="Mot de passe" required>
-            <button type="submit">OK</button>
+            <button type="submit" class="btn-main">OK</button>
         </form>
     </main>
 

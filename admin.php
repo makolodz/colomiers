@@ -1,3 +1,10 @@
+<?php 
+session_start();
+
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: login.php");
+    exit();
+} ?>
 <?php include __DIR__ . "/php/database.php" ?>
 
 <!DOCTYPE html>
@@ -17,6 +24,7 @@
         
         <div class="admin-header">
             <h1 class="section-title">Administration du Site</h1>
+            <a href="logout.php" class="btn-main">Déconnexion</a></br>
             <p>Gérez les sponsors, équipes et l'histoire du club.</p>
         </div>
 
