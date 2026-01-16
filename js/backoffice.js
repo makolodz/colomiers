@@ -21,6 +21,8 @@ function setupListeners() {
 
 
 
+
+
     editPartenaireButtons.forEach(button => {
         button.addEventListener('click', () => {
     
@@ -155,4 +157,39 @@ function setupListeners() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", setupListeners);
+function optionClick(event) {
+
+    // requete AJAX
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "API/listerRessources.php?idsae=" + idSAE, true); //la y'a ce qu'on veut
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			// Response
+			var response = JSON.parse(this.responseText); 
+		
+			const template = document.getElementById('templateressources').innerHTML;
+			const rendered = Mustache.render(template, response.ressources);
+			document.getElementById('divressources').innerHTML = rendered;
+		}
+	};
+	xhttp.send();
+
+    console.log(event.target.value);
+    //ici envoyer le code^^
+}
+
+function setupAjaxListeners() {
+    document.querySelectorAll(".option-staff").forEach(option => {
+        option.addEventListener("click", (event) => {
+            optionClick(event);
+        });
+    });
+}
+
+function init() {
+    setupListeners();
+    setupAjaxListeners();
+}
+
+document.addEventListener("DOMContentLoaded", init);

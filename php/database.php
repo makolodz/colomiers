@@ -167,6 +167,7 @@ class Database {
 
         foreach ($rows as $row) {
             $equipes[] = new Equipe(
+                $row['id_equipe'],
                 $row['nom'],
                 $row['lien_calendrier'],
                 $row['lien_classement']
@@ -185,6 +186,7 @@ class Database {
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return new Equipe(
+            $result['id_equipe'],
             $result['nom'],
             $result['lien_calendrier'],
             $result['lien_classement']
@@ -263,6 +265,33 @@ class Database {
             $result['email']
         );
     }
+
+    public function loadStaffsByEquipe($id_equipe) {
+        $staffs = [];
+    
+        $sql = "SELECT s.*
+                FROM staff s
+                INNER JOIN staff_equipe es ON s.id_staff = es.id_staff
+                WHERE es.id_equipe = :idEquipe";
+    
+        $stmt = $this->connection->prepare($sql); // Préparer la requête
+        $stmt->execute(['idEquipe' => $id_equipe]); // Lier le paramètre
+    
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        foreach ($rows as $row) {
+            $staffs[] = new Staff(
+                $row['id_staff'],
+                $row['nom'],
+                $row['prenom'],
+                $row['role'],
+                $row['email'] 
+            );
+        }
+    
+        return $staffs;
+    }
+    
 }
 
 

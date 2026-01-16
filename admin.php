@@ -31,6 +31,107 @@ if (!isset($_SESSION['admin_id'])) {
             <p>Gérez les sponsors, équipes et l'histoire du club.</p>
         </div>
 
+    <section class="admin-section">
+    <h2 class="admin-subtitle">Nos équipes</h2>
+    <details class="admin-details">
+        <summary>Gérer les équipes (Ajout / Modif)</summary>
+        <div style="padding: 20px;">
+            <h3>+ Ajouter une nouvelle équipe</h3>
+            <form action="./php/backoffice.php" method="POST" enctype="multipart/form-data" class="admin-form" style="margin-bottom:30px;">
+                <input type="hidden" name="action" value="create-team">
+                <div class="form-group">
+                    <label>Nom de l'équipe</label>
+                    <input type="text" name="nom">
+                </div>
+                <div class="form-group">
+                    <label>Logo</label>
+                    <input type="file" name="logo">
+                </div>
+                <button class="btn-admin">Ajouter</button>
+            </form>
+
+            <hr style="margin: 30px 0; border:0; border-top:1px solid #ddd;">
+
+            <h3>Liste des équipes actuelles</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th>Nom</th>
+                        <th>Staff</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach(Database::getInstance()->loadEquipes() as $team): ?>
+                    <tr>
+                        <td><?= $team->logo ?? '(img)' ?></td>
+                        <td><?= htmlspecialchars($team->nom) ?></td>
+                        <td>
+                            <?php $listeAcceptedStaff = [];?>
+                            <?php foreach(Database::getInstance()->loadStaffsByEquipe($team->id) as $staff): ?>
+                                <?php $listeAcceptedStaff[] = $staff->id;?>
+                                <div value="<?= $staff->id ?>">
+                                    <?= htmlspecialchars($staff->nom . " " . $staff->prenom) ?>
+                                    <button>
+                                        croix
+                                    </button>
+                                </div>
+                            <?php endforeach; ?>
+                            <select name="staff[]" multiple>
+                                <?php foreach(Database::getInstance()->loadStaffs() as $staff): ?>
+                                    <?php if (!in_array($staff->id, $listeAcceptedStaff)):?>
+                                        <option class="option-staff" value="<?= $staff->id ?>">
+                                            <?= htmlspecialchars($staff->nom . " " . $staff->prenom) ?>
+                                        </option>
+                                    <?php endif;?>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                                <td>
+                                    <button 
+                                        type="button" 
+                                        class="action-btn btn-edit btn-team-edit"
+                                        data-id="<?= $team->id ?>"
+                                        data-nom="<?= htmlspecialchars($team->nom, ENT_QUOTES) ?>"
+                                        data-logo="<?= htmlspecialchars($team->logo, ENT_QUOTES) ?>"
+                                        >Modifier
+                                    </button>
+                                    <form method="POST" action="./php/backoffice.php" style="display:inline;">
+                                        <input type="hidden" name="action" value="delete-team">
+                                        <input type="hidden" name="id" value="<?= $team->id ?>">
+                                        <button class="action-btn btn-delete">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div class="edit-simulation-area hidden">
+                    <p class="simulation-title">Modification Équipe : <span id="titre-team-edit"></span></p>
+                    <form method="POST" action="./php/backoffice.php" id="edit-team" enctype="multipart/form-data">
+                        <input type="hidden" name="action" value="edit-team">
+                        <input type="hidden" name="id">
+
+                        <div class="form-group">
+                            <label>Nom :</label>
+                            <input type="text" name="nom" placeholder="Nom de l'équipe">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Logo :</label>
+                            <input type="file" name="logo">
+                        </div>
+                    
+                        <button type="submit" class="btn-admin">Sauvegarder l'équipe</button>
+                    </form>
+                </div>
+            </div>
+        </details>
+    </section>
+
+
         <section class="admin-section">
     <h2 class="admin-subtitle">Nos Sponsors</h2>
     <details class="admin-details">
@@ -430,9 +531,9 @@ if (!isset($_SESSION['admin_id'])) {
                             <button type="submit" class="btn-admin">Sauvegarder l'histoire</button>
                         </form>
                     </div>
-                </div>
-            </details>
-        </section>
+        </div>
+    </details>
+    </section>
 
     </main>
 
