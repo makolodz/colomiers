@@ -6,7 +6,7 @@ class Histoire extends Publication {
     public $tranche_de_date;
 
     public function __construct($id, $tranche_de_date, $titre, $texte, $image) {
-        $this->id = 1;//requête sql pour id;
+        $this->id = $id;
         $this->tranche_de_date = $tranche_de_date;
         $this->titre = $titre;
         $this->texte = $texte;
@@ -30,35 +30,34 @@ class Histoire extends Publication {
 
         if ($this->id === null) {
             // CREATE
-            $sql = "INSERT INTO histoire (titre, tranche_date, image)
-                VALUES (:titre, :tranche_date, :image)";
+            $sql = "INSERT INTO histoires (titre, contenu, tranche_date, image)
+                VALUES (:titre, :contenu, :tranche_date, :image)";
             $stmt = $db->prepare($sql);
             $stmt->execute([
             'titre' => $this->titre,
             'tranche_date' => $this->tranche_de_date,
-            'image' => $this->image
+            'image' => $this->image,
+            'contenu' => $this->texte
         ]);
             $this->id = (int)$db->lastInsertId();
         } else {
             // UPDATE
-            $sql = "UPDATE histoire 
+            $sql = "UPDATE histoires 
                 SET titre = :titre, 
                     tranche_date = :tranche_date, 
-                    image = :image
+                    image = :image,
+                    contenu = :contenu
                 WHERE id_histoire = :id";
             $stmt = $db->prepare($sql);
             $stmt->execute([
-            'id' => $this->id,
-            'titre' => $this->titre,
-            'tranche_date' => $this->tranche_de_date,
-            'image' => $this->image
-        ]);
+                'id' => $this->id,
+                'titre' => $this->titre,
+                'tranche_date' => $this->tranche_de_date,
+                'image' => $this->image,
+                'contenu' => $this->texte
+            ]);
+        }
     }
-}
-
-
-
-
 }
 
 ?>

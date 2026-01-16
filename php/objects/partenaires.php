@@ -8,12 +8,11 @@ class Partenaire {
 
     public $id;
     public $logo;
-    public $lien;
     public $nom;
 
-    public function __construct($logo, $lien, $nom) {
+    public function __construct($id, $logo, $nom) {
+        $this->id = $id;
         $this->logo = $logo;
-        $this->lien = $lien;
         $this->nom = $nom;
     }
 
@@ -56,9 +55,6 @@ class Partenaire {
             ]);
         }
     }
-
-
-   
 }
 
 ?>

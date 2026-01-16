@@ -32,6 +32,7 @@
                     <span class="team">STADE BORDELAIS</span>
                 </div>
                 <div class="date-time">Samedi 24 Janvier - 18h00</div>
+                <?php include_once __DIR__ . "/php/api/meteo_widget.php"?>
             </div>
             
             <div class="separator"></div>

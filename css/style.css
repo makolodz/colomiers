@@ -743,7 +743,10 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 /* 
 PAGE ADMINISTRATION */
 
-   .admin-container {
+}
+/* PAGE ADMINISTRATION */
+
+.admin-container {
     padding-bottom: var(--space-xl);
 }
 

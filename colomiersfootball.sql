@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 15 jan. 2026 à 15:57
+-- Généré le : ven. 16 jan. 2026 à 08:57
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -56,7 +56,7 @@ CREATE TABLE `article` (
   `id_article` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
   `contenu` text DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `image` longblob DEFAULT NULL,
   `date_publication` datetime DEFAULT NULL,
   `categorie` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -112,9 +112,8 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 CREATE TABLE `histoires` (
   `id_histoire` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
   `tranche_date` varchar(50) DEFAULT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `image` longblob DEFAULT NULL,
   `contenu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -122,15 +121,15 @@ CREATE TABLE `histoires` (
 -- Déchargement des données de la table `histoires`
 --
 
-INSERT INTO `histoires` (`id_histoire`, `titre`, `description`, `tranche_date`, `image`, `contenu`) VALUES
-(1, 'Aux origines de l’US Colomiers Football', 'La naissance du football à Colomiers et la création officielle du club.', '1925 – 1932', NULL, 'Pourquoi ne pas se remémorer l’histoire de notre club, de ses Présidents successifs et de toutes les personnes passionnées qui ont œuvré depuis sa création pour le rendre tel qu’il est aujourd’hui.\r\n\r\nCette belle histoire commence dans les années 1925 par la création d’une équipe de football jouant sans être officiellement déclarée. Il s’agit alors du premier sport pratiqué à Colomiers.\r\n\r\nLe 27 octobre 1932, le bureau du club composé de Bertrand Andrieeux, Albert Lazerge, Jean Castex et Émile Bertin se rend à la préfecture afin de créer officiellement l’association Union Sportive de Colomiers.'),
-(2, 'Les premières décennies du club', 'Une période marquée par des changements de présidence et une stabilité fragile.', '1932 – 1962', NULL, 'À partir de 1934, Monsieur Éloi Julia prend la présidence du club, suivi par plusieurs retours de Bertrand Andrieeux à la tête de l’association.\r\n\r\nDurant la Seconde Guerre mondiale, la présidence est assurée par le Commandant Thibaudau puis de nouveau par Éloi Julia jusqu’en 1950.\r\n\r\nSur le plan sportif, le club évolue dans un contexte amateur instable, en première série, alors que la ville de Colomiers compte un peu plus de 5 000 habitants.'),
-(3, 'Structuration et premières ambitions sportives', 'L’arrivée d’entraîneurs confirmés et les premiers grands parcours sportifs.', '1962 – 1976', NULL, 'En 1962, Pierre Redonnet devient président et inaugure le stade municipal de la rue des Sports. Il confie l’équipe à Jean Thomas, entraîneur confirmé.\r\n\r\nLes résultats sont immédiats. Le club devient plus compétitif et réalise notamment un superbe parcours en Coupe de France en 1966, qui se termine à Sète face à une équipe professionnelle.'),
-(4, 'La métamorphose du club', 'Une nouvelle dynamique sportive et administrative portée par des projets ambitieux.', '1976 – 1986', NULL, 'En novembre 1976, Jean-Michel Touzelet prend la présidence et lance une profonde transformation du club autour de quatre axes majeurs : la remontée des équipes seniors, la structuration administrative, la formation des jeunes et la création du tournoi de Pâques.\r\n\r\nCe tournoi accueille rapidement des clubs prestigieux comme le Real Madrid, Benfica ou l’AS Monaco, donnant une notoriété nationale au club.'),
-(5, 'Reconnaissance nationale et formation', 'Le club s’impose comme une référence nationale de la formation amateur.', '1986 – 2004', NULL, 'Le 30 avril 1986, les poussins de l’US Colomiers remportent la finale nationale de la Coupe des Poussins au Parc des Princes face à l’Olympique de Marseille.\r\n\r\nEn 1994, le club est classé premier club formateur amateur de France, distinction remise par le président de la FFF Claude Simonet.'),
-(6, 'L’accession au niveau national', 'Une période historique marquée par les montées et les exploits en Coupe.', '2004 – 2014', NULL, 'En 2007, l’US Colomiers Football accède pour la première fois au CFA 2 à l’issue de barrages mémorables remportés aux tirs au but.\r\n\r\nLe club enchaîne avec une accession au CFA et atteint à plusieurs reprises les 64èmes de finale de la Coupe de France, notamment face au SC Bastia.'),
-(7, 'Défis, formation et diversification', 'Le club se diversifie avec le développement du féminin, du futsal et de la formation.', '2015 – 2021', NULL, 'Malgré des périodes sportives plus difficiles, le club continue de briller grâce à sa formation.\r\n\r\nLa section féminine est créée, une section futsal voit le jour et de nombreux titres sont remportés chez les jeunes, renforçant l’identité formatrice de l’US Colomiers Football.'),
-(8, 'Un club tourné vers l’avenir', 'Modernisation du club et continuité du projet sportif.', '2021 – Aujourd’hui', NULL, 'Après la crise sanitaire, le club poursuit son développement. Les féminines accèdent à la D3, les équipes jeunes évoluent au plus haut niveau national et de nombreux joueurs rejoignent des clubs professionnels.\r\n\r\nSous la présidence de Florian Aït-Ali, l’US Colomiers Football continue d’écrire son histoire avec ambition et passion.');
+INSERT INTO `histoires` (`id_histoire`, `titre`, `tranche_date`, `image`, `contenu`) VALUES
+(1, 'Aux origines de l’US Colomiers Football', '1925 – 1932', NULL, 'Pourquoi ne pas se remémorer l’histoire de notre club, de ses Présidents successifs et de toutes les personnes passionnées qui ont œuvré depuis sa création pour le rendre tel qu’il est aujourd’hui.\r\n\r\nCette belle histoire commence dans les années 1925 par la création d’une équipe de football jouant sans être officiellement déclarée. Il s’agit alors du premier sport pratiqué à Colomiers.\r\n\r\nLe 27 octobre 1932, le bureau du club composé de Bertrand Andrieeux, Albert Lazerge, Jean Castex et Émile Bertin se rend à la préfecture afin de créer officiellement l’association Union Sportive de Colomiers.'),
+(2, 'Les premières décennies du club', '1932 – 1962', NULL, 'À partir de 1934, Monsieur Éloi Julia prend la présidence du club, suivi par plusieurs retours de Bertrand Andrieeux à la tête de l’association.\r\n\r\nDurant la Seconde Guerre mondiale, la présidence est assurée par le Commandant Thibaudau puis de nouveau par Éloi Julia jusqu’en 1950.\r\n\r\nSur le plan sportif, le club évolue dans un contexte amateur instable, en première série, alors que la ville de Colomiers compte un peu plus de 5 000 habitants.'),
+(3, 'Structuration et premières ambitions sportives', '1962 – 1976', NULL, 'En 1962, Pierre Redonnet devient président et inaugure le stade municipal de la rue des Sports. Il confie l’équipe à Jean Thomas, entraîneur confirmé.\r\n\r\nLes résultats sont immédiats. Le club devient plus compétitif et réalise notamment un superbe parcours en Coupe de France en 1966, qui se termine à Sète face à une équipe professionnelle.'),
+(4, 'La métamorphose du club', '1976 – 1986', NULL, 'En novembre 1976, Jean-Michel Touzelet prend la présidence et lance une profonde transformation du club autour de quatre axes majeurs : la remontée des équipes seniors, la structuration administrative, la formation des jeunes et la création du tournoi de Pâques.\r\n\r\nCe tournoi accueille rapidement des clubs prestigieux comme le Real Madrid, Benfica ou l’AS Monaco, donnant une notoriété nationale au club.'),
+(5, 'Reconnaissance nationale et formation', '1986 – 2004', NULL, 'Le 30 avril 1986, les poussins de l’US Colomiers remportent la finale nationale de la Coupe des Poussins au Parc des Princes face à l’Olympique de Marseille.\r\n\r\nEn 1994, le club est classé premier club formateur amateur de France, distinction remise par le président de la FFF Claude Simonet.'),
+(6, 'L’accession au niveau national', '2004 – 2014', NULL, 'En 2007, l’US Colomiers Football accède pour la première fois au CFA 2 à l’issue de barrages mémorables remportés aux tirs au but.\r\n\r\nLe club enchaîne avec une accession au CFA et atteint à plusieurs reprises les 64èmes de finale de la Coupe de France, notamment face au SC Bastia.'),
+(7, 'Défis, formation et diversification', '2015 – 2021', NULL, 'Malgré des périodes sportives plus difficiles, le club continue de briller grâce à sa formation.\r\n\r\nLa section féminine est créée, une section futsal voit le jour et de nombreux titres sont remportés chez les jeunes, renforçant l’identité formatrice de l’US Colomiers Football.'),
+(8, 'Un club tourné vers l’avenir', '2021 – Aujourd’hui', NULL, 'Après la crise sanitaire, le club poursuit son développement. Les féminines accèdent à la D3, les équipes jeunes évoluent au plus haut niveau national et de nombreux joueurs rejoignent des clubs professionnels.\r\n\r\nSous la présidence de Florian Aït-Ali, l’US Colomiers Football continue d’écrire son histoire avec ambition et passion.');
 
 -- --------------------------------------------------------
 
@@ -189,12 +188,25 @@ CREATE TABLE `match` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `meteo`
+--
+
+CREATE TABLE `meteo` (
+  `id` int(11) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `ville` varchar(100) NOT NULL,
+  `temperature` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `partenaire`
 --
 
 CREATE TABLE `partenaire` (
   `id_partenaire` int(11) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
+  `photo` longblob DEFAULT NULL,
   `nom_societe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -203,26 +215,26 @@ CREATE TABLE `partenaire` (
 --
 
 INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
-(1, 'https://www.colomiersfoot.fr/crbst_Logo_20Mairie0.jpg?v=2gr6ts7ir0affbt', 'Ville de Colomiers'),
-(2, 'https://www.colomiersfoot.fr/oc-1706-instit-logo_carre-quadri-150x150-72dpi0.png?v=2gq8p47ir0ah1sk', 'Région Occitanie'),
-(3, 'https://www.colomiersfoot.fr/Haute-Garonne__2831_29_logo_2015_svg.png?v=2gs2k87ir0aq2cs', 'Conseil Départemental de la Haute-Garonne'),
-(4, 'https://www.colomiersfoot.fr/la-depeche0.jpg?v=2grvz47ir0ahcfd', 'La Dépêche du Midi'),
-(5, 'https://www.colomiersfoot.fr/logo_20tpf_20alliaserv0.jpg?v=2gq8p42pgxagsl', 'Groupe Alliaserv'),
-(6, 'https://www.colomiersfoot.fr/crbst_LogoMMA22.png?v=2gr980r2p8lr83', 'MMA'),
-(7, 'https://www.colomiersfoot.fr/Logo_20intermarche_20cornebarrieu.png?v=2dt6jc7qbxfjjq4', 'Intermarché Cornebarrieu'),
-(8, 'https://www.colomiersfoot.fr/Logos_Cassin.png?v=3u3ewg8xxnpjwfa', 'Cassin Travaux Publics'),
-(9, 'https://www.colomiersfoot.fr/Afflelou.jpg?v=209xoo37bgoxl3', 'Alain Afflelou'),
-(10, 'https://www.colomiersfoot.fr/Logo_France_Mcdo.png?v=3u37488xxnpk9jn', 'McDonald\'s'),
-(11, 'https://www.colomiersfoot.fr/logo_20trevisport1.jpg?v=2grus07ir0e23kw', 'Trevi Sport'),
-(12, 'https://www.colomiersfoot.fr/11.jpg?v=43nd9c7qbwrza6t', 'Puma'),
-(13, 'https://www.colomiersfoot.fr/sup_20peinture.png?v=23vmvsw6ysjohd', 'Sup Peinture'),
-(14, 'https://www.colomiersfoot.fr/subra_20henri.jpg?v=23wp7cw6ysjohd', 'Subra Henry'),
-(15, 'https://www.colomiersfoot.fr/toshiba-logo-1.jpg?v=23ws74w6ysjohd', 'Toshiba'),
-(16, 'https://www.colomiersfoot.fr/logo_agence_pibrac.png?v=23wtzsw6ysjohd', 'Selectour'),
-(17, 'https://www.colomiersfoot.fr/Cazenave_20Autos.jpg?v=20a8go2gzafocuu1', 'CZN Machinery'),
-(18, 'https://www.colomiersfoot.fr/tgfluides_logo.jpg?v=209mwo2gzafoh2jl', 'TGF'),
-(19, 'https://www.colomiersfoot.fr/Ace_20Hotel.png?v=209o3s2gzafonhvv', 'ACE Hôtel'),
-(20, 'https://www.colomiersfoot.fr/Eat_20Salad.jpg?v=20abgg2gzafonpe1', 'Eat Salad');
+(1, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f63726273745f4c6f676f5f32304d6169726965302e6a70673f763d326772367473376972306166666274, 'Ville de Colomiers'),
+(2, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6f632d313730362d696e737469742d6c6f676f5f63617272652d7175616472692d313530783135302d3732647069302e706e673f763d32677138703437697230616831736b, 'Région Occitanie'),
+(3, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f48617574652d4761726f6e6e655f5f323833315f32395f6c6f676f5f323031355f7376672e706e673f763d326773326b38376972306171326373, 'Conseil Départemental de la Haute-Garonne'),
+(4, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c612d64657065636865302e6a70673f763d326772767a34376972306168636664, 'La Dépêche du Midi'),
+(5, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f32307470665f3230616c6c696173657276302e6a70673f763d326771387034327067786167736c, 'Groupe Alliaserv'),
+(6, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f63726273745f4c6f676f4d4d4132322e706e673f763d326772393830723270386c723833, 'MMA'),
+(7, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f5f3230696e7465726d61726368655f3230636f726e65626172726965752e706e673f763d326474366a6337716278666a6a7134, 'Intermarché Cornebarrieu'),
+(8, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f735f43617373696e2e706e673f763d3375336577673878786e706a776661, 'Cassin Travaux Publics'),
+(9, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4166666c656c6f752e6a70673f763d323039786f6f333762676f786c33, 'Alain Afflelou'),
+(10, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f5f4672616e63655f4d63646f2e706e673f763d3375333734383878786e706b396a6e, 'McDonald\'s'),
+(11, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f3230747265766973706f7274312e6a70673f763d326772757330376972306532336b77, 'Trevi Sport'),
+(12, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f31312e6a70673f763d34336e64396337716277727a613674, 'Puma'),
+(13, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f7375705f32307065696e747572652e706e673f763d3233766d7673773679736a6f6864, 'Sup Peinture'),
+(14, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f73756272615f323068656e72692e6a70673f763d323377703763773679736a6f6864, 'Subra Henry'),
+(15, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f746f73686962612d6c6f676f2d312e6a70673f763d323377733734773679736a6f6864, 'Toshiba'),
+(16, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f6167656e63655f7069627261632e706e673f763d323377747a73773679736a6f6864, 'Selectour'),
+(17, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f43617a656e6176655f32304175746f732e6a70673f763d32306138676f32677a61666f63757531, 'CZN Machinery'),
+(18, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f7467666c75696465735f6c6f676f2e6a70673f763d3230396d776f32677a61666f68326a6c, 'TGF'),
+(19, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4163655f3230486f74656c2e706e673f763d3230396f337332677a61666f6e687676, 'ACE Hôtel'),
+(20, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4561745f323053616c61642e6a70673f763d32306162676732677a61666f6e706531, 'Eat Salad');
 
 -- --------------------------------------------------------
 
@@ -233,53 +245,54 @@ INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
 CREATE TABLE `staff` (
   `id_staff` int(11) NOT NULL,
   `nom` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `prenom` varchar(50) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` longblob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `staff`
 --
 
-INSERT INTO `staff` (`id_staff`, `nom`, `prenom`, `role`, `photo`) VALUES
-(1, 'BLANCHARD', 'Yannick', 'Entraîneur N3', 'https://www.colomiersfoot.fr/BLANCHARD_20Yannick00.png?v=2fz5tcvk4rvu61'),
-(2, 'PATRY', 'Florian', 'Adjoint & Prépa N3', 'https://www.colomiersfoot.fr/PATRY_20Florian0.png?v=2fy8a88rlbquo3v'),
-(3, 'BARTHIE', 'Thomas', 'Adjoint N3', 'https://www.colomiersfoot.fr/BARTHIE_20Thomas0.png?v=1wp9fs8stfx3gep'),
-(4, 'MACCARINI', 'Romuald', 'Ent. Gardiens N3', 'https://www.colomiersfoot.fr/Romuald_20MACCARINI0.png?v=2ue1yww6ys8dd9'),
-(5, 'SALLES', 'Didier', 'Directeur Sportif N3', 'https://www.colomiersfoot.fr/SALLES_20Didier0.png?v=21b0lk8rlbqw5x4'),
-(6, 'SLAMNIA', 'Ahmed', 'Entraîneur R2', 'https://www.colomiersfoot.fr/SLAMNIA_20Ahmed.jpg?v=5l4zyg32y5wahs'),
-(7, 'BURTIN', 'Hugo', 'Préparateur Physique R2', 'https://www.colomiersfoot.fr/BURTIN_20Hugo.jpg?v=2gamu88xxnkfv9w'),
-(8, 'BALAGUE', 'Guillaume', 'Entraîneur R1 Féminine', 'https://www.colomiersfoot.fr/BALAGUE_20Guillaume.jpg?v=5jwpu895fax04s7'),
-(9, 'DAKOS', 'Axel', 'Préparateur Physique R1 Féminine', 'https://www.colomiersfoot.fr/DAKOS_20Axel.jpg?v=2gaqfk8xxnkmfcl'),
-(10, 'SONZOGNI', 'Olivier', 'Responsable Futsal', 'https://www.colomiersfoot.fr/FUTSAL-SONZOGNI_20Olivier.jpg?v=4zb76o22vgvsckq9'),
-(11, 'ALLAL', 'Mohamed', 'Entraîneur Futsal', 'https://www.colomiersfoot.fr/ALLAL_20Mohamed.jpg?v=356unc32y7i5vd'),
-(12, 'ESFARELL', 'Eric', 'Responsables Vétérans', 'https://www.colomiersfoot.fr/VETERANS-ESPARRELL_20Eric.jpg?v=603wq0u9d7vn0b'),
-(13, 'PATRY', 'Florian', 'Coordinateur Préparation Physique', 'https://www.colomiersfoot.fr/PATRY_20Florian0.jpg?v=224kh437w9zw1x'),
-(14, 'MEDDAH', 'Enice', 'Entraineurs des Gardiens Jeunes', 'https://www.colomiersfoot.fr/MEDDAH_20Enice.jpg?v=1xocs0w6yrvlt1'),
-(15, 'MOUSSI', 'Nabil', 'Entraîneur U19', 'https://www.colomiersfoot.fr/MOUSSI_20Nabil.jpg?v=24fmuw37wa0c69'),
-(16, 'MARTELLI', 'Antonin', 'Préparateur Physique U19', 'https://www.colomiersfoot.fr/MARTELLI_20Antonin.jpg?v=224rnsw6ys2km2'),
-(17, 'IMBERT', 'Martin', 'Entraîneur des Gardiens U19', 'https://www.colomiersfoot.fr/IMBERT_20Martin.jpg?v=1peplkw6yrtjxl'),
-(18, 'KABA', 'Kalifa', 'Educateur U17', 'https://www.colomiersfoot.fr/KABA_20Kalifa.jpg?v=24frncw6yrkv6b'),
-(19, 'AHMAT', 'Mahamat', 'Educateur Adjoint U17', 'https://www.colomiersfoot.fr/AHMAT_20Mahamat.jpg?v=24fngg37w9yh27'),
-(20, 'MATHIEU', 'Eric', 'Educateur U17', 'https://www.colomiersfoot.fr/MATHIEU_20Eric.jpg?v=357jso32y7qy5y'),
-(21, 'BLANCHARD', 'Cédric', 'Educateur U15', 'https://www.colomiersfoot.fr/BLANCHARD_20C_C3_A9dric.jpg?v=2g9vao8xxnnvnno'),
-(22, 'AÏT-ALI', 'Florian', 'Président', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-A_C3_8FT-ALI_20Florian.jpg?v=b11rl422vgvrcs9v'),
-(23, 'TRAVAL MICHELET', 'Karine', 'Présidente d\'honneur', 'https://www.colomiersfoot.fr/crbst_Michelet.jpg?v=26tarkjm4vt3zx'),
-(24, 'SICARD', 'Bernard', 'Président d\'honneur', 'https://www.colomiersfoot.fr/bernard_sicard.jpg?v=26t8dcjm4vt3zv'),
-(25, 'SUBRA', 'Denis', 'Vice-Président', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-SUBRA_20Denis.jpg?v=b129js22vgvrcaea'),
-(26, 'MAURY', 'Sébastien', 'Vice-Président', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-MAURY_20S_C3_A9bastien.jpg?v=b12by022vgvrcioq'),
-(27, 'LABAUME', 'Daniel', 'Secrétaire Général', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-LABAUME_20Daniel.jpg?v=b11nzs7hjory5m4'),
-(28, 'BARTHIE', 'Max', 'Trésorier', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-BARTHIE_20Max.jpg?v=b10m9s7hjorxuf6'),
-(29, 'TSERE', 'Gilles', 'Trésorier Adjoint', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-SERE_20Gilles.jpg?v=b11ukw22vgvre1q4'),
-(30, 'AÏT-ALI', 'Ahmed', 'Membre', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-A_C3_8FT-ALI_20Ahmed.jpg?v=2eex6wthxyziss'),
-(31, 'AÏT-ALI', 'Mohamed', 'Membre', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-A_C3_8FT-ALI_20Mohamed.jpg?v=b12dqo7hjorxuq1'),
-(32, 'LEMPERIER', 'Stéphane', 'Membre', 'https://www.colomiersfoot.fr/St_C3_A9phane_20LEMPERIER.png?v=2ef06o86zfpzagu'),
-(33, 'MOUTET', 'Florian', 'Membre', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-MOUTET_20Florian.jpg?v=b11olc22vgvrgd28'),
-(34, 'ROQUES', 'Jean-Paul', 'Membre', 'https://www.colomiersfoot.fr/COMITE_20DIRECTEUR-ROQUES_20Jean-Paul.jpg?v=b12a5c22vgvrgk19'),
-(35, 'COSTE', 'Mickaël', 'Coordinateur Général', 'https://www.colomiersfoot.fr/ADMINISTRATIF-COSTE_20Micka_C3_ABl.jpg?v=b11xko22vgvrl0sk'),
-(36, 'HAMOUDI', 'Anne-Sophie', 'Secrétaire', 'https://www.colomiersfoot.fr/276A6521_20-_20Copie_modifi_C3_A9.jpg?v=2gnuhsu56u6ig0'),
-(37, 'FAUTHOUS', 'Chantal', 'Responsable buvette et commandes', 'https://www.colomiersfoot.fr/U6-FAUTHOUS_20Chantal.jpg?v=357m6wuthwt26c');
+INSERT INTO `staff` (`id_staff`, `nom`, `email`, `prenom`, `role`, `photo`) VALUES
+(1, 'BLANCHARD', NULL, 'Yannick', 'Entraîneur N3', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f424c414e43484152445f323059616e6e69636b30302e706e673f763d32667a357463766b347276753631),
+(2, 'PATRY', NULL, 'Florian', 'Adjoint & Prépa N3', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f50415452595f3230466c6f7269616e302e706e673f763d32667938613838726c6271756f3376),
+(3, 'BARTHIE', NULL, 'Thomas', 'Adjoint N3', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f424152544849455f323054686f6d6173302e706e673f763d317770396673387374667833676570),
+(4, 'MACCARINI', NULL, 'Romuald', 'Ent. Gardiens N3', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f526f6d75616c645f32304d4143434152494e49302e706e673f763d3275653179777736797338646439),
+(5, 'SALLES', NULL, 'Didier', 'Directeur Sportif N3', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f53414c4c45535f3230446964696572302e706e673f763d323162306c6b38726c627177357834),
+(6, 'SLAMNIA', NULL, 'Ahmed', 'Entraîneur R2', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f534c414d4e49415f323041686d65642e6a70673f763d356c347a79673332793577616873),
+(7, 'BURTIN', NULL, 'Hugo', 'Préparateur Physique R2', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f42555254494e5f32304875676f2e6a70673f763d3267616d75383878786e6b66763977),
+(8, 'BALAGUE', NULL, 'Guillaume', 'Entraîneur R1 Féminine', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f42414c414755455f32304775696c6c61756d652e6a70673f763d356a77707538393566617830347337),
+(9, 'DAKOS', NULL, 'Axel', 'Préparateur Physique R1 Féminine', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f44414b4f535f32304178656c2e6a70673f763d32676171666b3878786e6b6d66636c),
+(10, 'SONZOGNI', NULL, 'Olivier', 'Responsable Futsal', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f46555453414c2d534f4e5a4f474e495f32304f6c69766965722e6a70673f763d347a6237366f323276677673636b7139),
+(11, 'ALLAL', NULL, 'Mohamed', 'Entraîneur Futsal', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f414c4c414c5f32304d6f68616d65642e6a70673f763d333536756e633332793769357664),
+(12, 'ESFARELL', NULL, 'Eric', 'Responsables Vétérans', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f5645544552414e532d455350415252454c4c5f3230457269632e6a70673f763d36303377713075396437766e3062),
+(13, 'PATRY', NULL, 'Florian', 'Coordinateur Préparation Physique', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f50415452595f3230466c6f7269616e302e6a70673f763d3232346b6834333777397a773178),
+(14, 'MEDDAH', NULL, 'Enice', 'Entraineurs des Gardiens Jeunes', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4d45444441485f3230456e6963652e6a70673f763d31786f63733077367972766c7431),
+(15, 'MOUSSI', NULL, 'Nabil', 'Entraîneur U19', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4d4f555353495f32304e6162696c2e6a70673f763d3234666d75773337776130633639),
+(16, 'MARTELLI', NULL, 'Antonin', 'Préparateur Physique U19', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4d415254454c4c495f3230416e746f6e696e2e6a70673f763d323234726e7377367973326b6d32),
+(17, 'IMBERT', NULL, 'Martin', 'Entraîneur des Gardiens U19', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f494d424552545f32304d617274696e2e6a70673f763d317065706c6b77367972746a786c),
+(18, 'KABA', NULL, 'Kalifa', 'Educateur U17', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4b4142415f32304b616c6966612e6a70673f763d323466726e63773679726b763662),
+(19, 'AHMAT', NULL, 'Mahamat', 'Educateur Adjoint U17', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f41484d41545f32304d6168616d61742e6a70673f763d3234666e67673337773979683237),
+(20, 'MATHIEU', NULL, 'Eric', 'Educateur U17', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4d4154484945555f3230457269632e6a70673f763d3335376a736f3332793771793579),
+(21, 'BLANCHARD', NULL, 'Cédric', 'Educateur U15', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f424c414e43484152445f3230435f43335f4139647269632e6a70673f763d32673976616f3878786e6e766e6e6f),
+(22, 'AÏT-ALI', NULL, 'Florian', 'Président', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d415f43335f3846542d414c495f3230466c6f7269616e2e6a70673f763d623131726c3432327667767263733976),
+(23, 'TRAVAL MICHELET', NULL, 'Karine', 'Présidente d\'honneur', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f63726273745f4d696368656c65742e6a70673f763d32367461726b6a6d347674337a78),
+(24, 'SICARD', NULL, 'Bernard', 'Président d\'honneur', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6265726e6172645f7369636172642e6a70673f763d3236743864636a6d347674337a76),
+(25, 'SUBRA', NULL, 'Denis', 'Vice-Président', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d53554252415f323044656e69732e6a70673f763d623132396a7332327667767263616561),
+(26, 'MAURY', NULL, 'Sébastien', 'Vice-Président', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d4d415552595f3230535f43335f41396261737469656e2e6a70673f763d62313262793032327667767263696f71),
+(27, 'LABAUME', NULL, 'Daniel', 'Secrétaire Général', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d4c414241554d455f323044616e69656c2e6a70673f763d6231316e7a7337686a6f7279356d34),
+(28, 'BARTHIE', NULL, 'Max', 'Trésorier', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d424152544849455f32304d61782e6a70673f763d6231306d397337686a6f7278756636),
+(29, 'TSERE', NULL, 'Gilles', 'Trésorier Adjoint', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d534552455f323047696c6c65732e6a70673f763d623131756b7732327667767265317134),
+(30, 'AÏT-ALI', NULL, 'Ahmed', 'Membre', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d415f43335f3846542d414c495f323041686d65642e6a70673f763d326565783677746878797a697373),
+(31, 'AÏT-ALI', NULL, 'Mohamed', 'Membre', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d415f43335f3846542d414c495f32304d6f68616d65642e6a70673f763d62313264716f37686a6f7278757131),
+(32, 'LEMPERIER', NULL, 'Stéphane', 'Membre', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f53745f43335f41397068616e655f32304c454d5045524945522e706e673f763d32656630366f38367a66707a616775),
+(33, 'MOUTET', NULL, 'Florian', 'Membre', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d4d4f555445545f3230466c6f7269616e2e6a70673f763d6231316f6c6332327667767267643238),
+(34, 'ROQUES', NULL, 'Jean-Paul', 'Membre', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f434f4d4954455f32304449524543544555522d524f515545535f32304a65616e2d5061756c2e6a70673f763d623132613563323276677672676b3139),
+(35, 'COSTE', NULL, 'Mickaël', 'Coordinateur Général', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f41444d494e49535452415449462d434f5354455f32304d69636b615f43335f41426c2e6a70673f763d623131786b6f3232766776726c30736b),
+(36, 'HAMOUDI', NULL, 'Anne-Sophie', 'Secrétaire', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f32373641363532315f32302d5f3230436f7069655f6d6f646966695f43335f41392e6a70673f763d32676e7568737535367536696730),
+(37, 'FAUTHOUS', NULL, 'Chantal', 'Responsable buvette et commandes', 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f55362d46415554484f55535f32304368616e74616c2e6a70673f763d3335376d36777574687774323663);
 
 -- --------------------------------------------------------
 
@@ -358,6 +371,12 @@ ALTER TABLE `match`
   ADD PRIMARY KEY (`id_match`);
 
 --
+-- Index pour la table `meteo`
+--
+ALTER TABLE `meteo`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
@@ -415,6 +434,12 @@ ALTER TABLE `joueur`
 --
 ALTER TABLE `match`
   MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `meteo`
+--
+ALTER TABLE `meteo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `partenaire`

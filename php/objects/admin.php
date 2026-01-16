@@ -50,13 +50,8 @@ class Admin extends Editor {
                 'password' => password_hash($this->pwd, PASSWORD_DEFAULT),
                 'permission' => $this->permission
             ]);
+        }
     }
-}
-
-
-   
-
-
 }
 
 ?>
