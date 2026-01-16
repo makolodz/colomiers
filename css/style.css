@@ -36,7 +36,7 @@
     --primary-blue: #0000EF;
     --dark-blue: #0A0E2D;
     --platinum: #EAEDEE;
-    --white: #FFFFFF;
+    --white: #ffffff;
     --grey-text: #666666;
     --grey-placeholder: #D3D3D3;
 
@@ -246,16 +246,40 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     gap: 25px;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE DES BLOCS STANDARDS */
 @media (max-width: 768px) {
-    .header-container, .footer-container {
-        flex-direction: column;
-        gap: 20px;
-        text-align: center;
+    /* HEADER : Horizontal */
+    .header-container {
+        flex-direction: row; 
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
     }
-    .nav-menu ul { flex-direction: column; gap: 10px; }
-    
-    .footer-right { flex-direction: column; }
+
+    .footer-container {
+        flex-direction: row;    
+        flex-wrap: wrap;   
+        justify-content: space-between;
+        gap: 15px;        
+    }
+
+    /* Ordre d'affichage et tailles */
+    .footer-left {
+        order: 1;                 /* Logo en premier */
+    }
+
+    .footer-right {
+        order: 2;   
+        flex-direction: row;    
+        gap: 10px;
+    }
+
+    .footer-center {
+        order: 3;        
+        width: 100%;             
+        text-align: center;
+        margin-top: 10px;
+    }
     
     .hero-title { font-size: 2rem; }
     
@@ -357,8 +381,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     }
 }
 
-/* =========================================
-   PAGE: NATIONAL 3  */
+/* PAGE: NATIONAL 3  */
 
 /* Hero N3 */
 .hero-nat3 {
@@ -541,7 +564,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     .hero-nat3 h1 { font-size: 2rem; }
 }   
 
-/*  PAGE: AUTRES ÉQUIPES  */
+/* PAGE: AUTRES ÉQUIPES  */
 
 /* Espacement global des sections */
 .team-category {
@@ -676,7 +699,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 /* les carrés des réseaux sociaux*/
 .social-box {
     width: 35px;
-    display: flex;           /* pour centrer l'image */
+    display: flex;
     justify-content: center; 
 }
 
@@ -739,6 +762,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     background: #003366;
     color: white;
     cursor: pointer;
+
 }
 
 /* PAGE ADMINISTRATION */
@@ -883,7 +907,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 .btn-edit { background-color: #ffc107; color: #000; }
 .btn-delete { background-color: #dc3545; color: #fff; }
 
-/* --- ZONE DE MODIFICATION (Simulation) --- */
+/* ZONE DE MODIFICATION */
 .edit-simulation-area {
     margin-top: 30px;
     padding: 20px;
@@ -904,5 +928,59 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     .admin-table {
         display: block;
         overflow-x: auto;
+    }
+}
+
+/* STYLE DU MENU BURGER & RESPONSIVE */
+
+.burger-icon {
+    display: none; /* Caché par défaut sur desktop */
+}
+
+/* GESTION MOBILE */
+@media (max-width: 768px) {
+
+    /* LE BOUTON BURGER */
+    .burger-icon {
+        display: block; 
+        cursor: pointer;
+        width: 30px; 
+    }
+
+    /* Les 3 petites barres */
+    .burger-icon span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--dark-blue);
+        margin: 6px 0;
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* Animation quand le menu est ouvert */
+    .burger-icon.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .burger-icon.open span:nth-child(2) { opacity: 0; }
+    .burger-icon.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    /* MENU NAV */
+    .nav-menu ul {
+        display: none;
+        flex-direction: column; /* Le menu déroulant reste en colonne (vertical) */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        padding: 20px 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        text-align: center;
+        gap: 20px;
+        z-index: 999;
+    }
+
+    /* Quand on clique la classe .active s'affiche */
+    .nav-menu ul.active {
+        display: flex;
     }
 }

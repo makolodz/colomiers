@@ -21,4 +21,5 @@
             <a href="#" class="btn-main btn-small">Boutique</a>
         </div>
     </div>
+    <script src="./js/menuburger.js"></script> </body>
 </footer>
