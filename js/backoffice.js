@@ -239,7 +239,7 @@ function updateStaffEquipe(idEquipe) {
             containerAssigned.innerHTML = renderedAssigned;
             containerNotAssigned.innerHTML = renderedNotAssigned;
 
-            containerAssigned.querySelectorAll('.delete-staff').forEach(btn => btn.addEventListener('click', e => {
+            containerAssigned.querySelectorAll('.staff-delete-btn').forEach(btn => btn.addEventListener('click', e => {
                 removeStaffEquipe(e);
             }))
 

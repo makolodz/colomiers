@@ -85,34 +85,32 @@ if (!isset($_SESSION['admin_id'])) {
                             </div>
 
                             <script id="templateStaff" type="text/html">
-                                <ul>
+                                <div class="staff-chips-container">
                                     {{#.}}
-                                    <li>
-                                        <div class="delete-staff">
-                                            <button  type="button"
-                                                data-staffid="{{id}}"
-                                                data-teamid="{{idteam}}">
-                                                delete
-                                            </button>
-                                            {{nom}} {{prenom}}
-                                        </div>
-                                    </li>
+                                    <div class="staff-chip">
+                                        <span class="staff-name">{{nom}} {{prenom}}</span>
+                                        
+                                        <button type="button" class="staff-delete-btn"
+                                            data-staffid="{{id}}"
+                                            data-teamid="{{idteam}}"
+                                            title="Retirer ce membre">
+                                            &times; </button>
+                                    </div>
                                     {{/.}}
-                                </ul>
+                                </div>
                             </script>
 
                             <script id="templateStaffOption" type="text/html">
-                                <ul>
+                                <p class="staff-pick-title">Ajouter un membre :</p>
+                                <div class="available-staff-container">
                                     {{#.}}
-                                    <li>
-                                        <button type="button" class="option-staff"
-                                            data-staffid="{{id}}"
-                                            data-teamid="{{idteam}}">
-                                            {{nom}} {{prenom}}
-                                        </button>
-                                    </li>
+                                    <button type="button" class="option-staff"
+                                        data-staffid="{{id}}"
+                                        data-teamid="{{idteam}}">
+                                        <span class="plus-icon">+</span> {{nom}} {{prenom}}
+                                    </button>
                                     {{/.}}
-                                </ul>
+                                </div>
                             </script>
 
                         </td>
