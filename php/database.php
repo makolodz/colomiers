@@ -13,6 +13,7 @@ include __DIR__ . "/objects/equipe.php";
 include __DIR__ . "/objects/joueur.php";
 include __DIR__ . "/objects/staff.php";
 include __DIR__ . "/objects/staffequipe.php";
+include __DIR__ . "/objects/classement.php";
 
 class Database {
     private static $instance = null;
@@ -308,6 +309,26 @@ class Database {
             $result['id_staff'],
         );
     return $staffs;
+    }
+
+    public function loadClassements() {
+        $array = [];
+        
+        $sql = "SELECT * FROM classement";
+        $query = $this->connection->query($sql);
+
+        $rows = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($rows as $row) {
+            $var = new Classement(
+                $row['nom_team'],
+                $row['position'],
+                $row['points']
+            );
+            $var->id = $row['id_classement'];
+            $array[] = $var;
+        }
+        return $array;
     }
 }
 

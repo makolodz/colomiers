@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
 
+    <script src="./js/mustache.min.js" defer></script> 
+    <script src="./js/classement.js"></script>
 </head>
 
 <body>
@@ -92,36 +94,12 @@
             <div class="stat-row">
                 <div class="stat-container">
                     <h2 class="section-title">Classement</h2>
-                    <div class="placeholder-box affichage-classement">
-                        <p style="color:white; padding:20px;">Module Classement</p>
-                    </div>
-                </div>
+                    <div id="classement">
 
-                <div class="stat-container">
-                    <h2 class="section-title">Calendrier</h2>
-                    <div class="placeholder-box affichage-calendrier">
-                        <p style="color:white; padding:20px;">Module Calendrier</p>
                     </div>
                 </div>
             </div>
-
-            <div class="buteurs-section">
-                <h2 class="section-title">Meilleurs Buteurs</h2>
-                <div class="liste-buteurs">
-                    <div class="fiche-buteur">
-                        <div class="photo-buteur"></div>
-                        <p class="infos-buteur">Nom Prénom - 0 Buts</p>
-                    </div>
-                    <div class="fiche-buteur">
-                        <div class="photo-buteur"></div>
-                        <p class="infos-buteur">Nom Prénom - 0 Buts</p>
-                    </div>
-                    <div class="fiche-buteur">
-                        <div class="photo-buteur"></div>
-                        <p class="infos-buteur">Nom Prénom - 0 Buts</p>
-                    </div>
-                </div>
-            </div>
+            <!-- on avait les buteurs mais aucune api n'a les données (trop basse division) -->
         </section>
 
     </main>
@@ -129,3 +107,12 @@
     <?php include "./php/components/footer.php"; ?>
 </body>
 </html> 
+
+<!-- template Mustache -->
+<script id="templateClassement" type="text/html">
+    <ul>
+        {{ #. }}
+            <li> {{position}} {{nom}} {{points}} </li>
+        {{ /. }}
+    </ul>
+</script>

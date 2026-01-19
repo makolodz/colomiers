@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <title>Le Club</title>
-
 </head>
 <body>
 
