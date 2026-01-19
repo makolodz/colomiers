@@ -18,7 +18,7 @@
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title">US Colomiers Football</h1>
-            <p class="hero-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="hero-subtitle">Le site officiel de l'U.S Colomiers Football</p>
         </div>
     </section>
 

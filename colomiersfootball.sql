@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 16 jan. 2026 à 08:57
+-- Généré le : lun. 19 jan. 2026 à 08:29
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.0.30
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,7 +56,7 @@ CREATE TABLE `article` (
   `id_article` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
   `contenu` text DEFAULT NULL,
-  `image` longblob DEFAULT NULL,
+  `image` varchar(20) DEFAULT NULL,
   `date_publication` datetime DEFAULT NULL,
   `categorie` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -68,6 +68,39 @@ CREATE TABLE `article` (
 INSERT INTO `article` (`id_article`, `titre`, `contenu`, `image`, `date_publication`, `categorie`) VALUES
 (1, 'Nouveau site pour l\'US Colomiers', 'On a fait un nouveau site ! C\'est vachement plus joli dites-donc.', NULL, '0000-00-00 00:00:00', 1),
 (2, 'Nouveau site pour l\'US Colomiers', 'On a fait un nouveau site ! C\'est vachement plus joli dites-donc.', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `classement`
+--
+
+CREATE TABLE `classement` (
+  `id_classement` int(11) NOT NULL,
+  `nom_team` varchar(50) NOT NULL,
+  `position` int(11) NOT NULL,
+  `points` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `classement`
+--
+
+INSERT INTO `classement` (`id_classement`, `nom_team`, `position`, `points`) VALUES
+(0, 'Anglet Genets', 1, 55),
+(0, 'Blagnac', 2, 51),
+(0, 'Castanet', 3, 48),
+(0, 'Pau II', 4, 42),
+(0, 'Colomiers', 5, 40),
+(0, 'Stade Bordelais', 6, 35),
+(0, 'Canet Roussillon', 7, 34),
+(0, 'Lège-Cap-Ferret', 8, 34),
+(0, 'Alberes Argelès', 9, 32),
+(0, 'Bayonne', 10, 30),
+(0, 'Onet-le-Château', 11, 30),
+(0, 'Bordeaux  II', 12, 29),
+(0, 'Saint-Paul Sport', 13, 19),
+(0, 'Saint-Estève Perpignan', 14, 10);
 
 -- --------------------------------------------------------
 
@@ -101,7 +134,9 @@ INSERT INTO `equipe` (`id_equipe`, `lien_calendrier`, `lien_classement`, `nom`) 
 (12, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434770&stage=1&group=2&label=U16%20R%C3%A9gional%201%20M', 'U16 Régional 1'),
 (13, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201%20POULE%20B', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434772&stage=1&group=2&label=U15%20R%C3%A9gional%201', 'U15 Régional 1'),
 (14, 'https://occitanie.fff.fr/recherche-clubs?subtab=calendar&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A%20POULE%20A', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=436462&stage=1&group=1&label=U15%20Niveau%20A', 'U15 Niveau A'),
-(15, 'https://www.colomiersfoot.fr/calendrier.jpg?v=3eed1c5eacvrxwl', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1');
+(15, 'https://www.colomiersfoot.fr/calendrier.jpg?v=3eed1c5eacvrxwl', 'https://occitanie.fff.fr/recherche-clubs?subtab=ranking&tab=resultats&scl=2689&competition=434773&stage=1&group=3&label=U14%20R%C3%A9gional%201', 'U14 Régional 1'),
+(59, 'qbpeiuhgrli', 'bite eheh', 'phjnbbernvbferb'),
+(61, NULL, NULL, 'test');
 
 -- --------------------------------------------------------
 
@@ -113,7 +148,7 @@ CREATE TABLE `histoires` (
   `id_histoire` int(11) NOT NULL,
   `titre` varchar(150) DEFAULT NULL,
   `tranche_date` varchar(50) DEFAULT NULL,
-  `image` longblob DEFAULT NULL,
+  `image` varchar(20) DEFAULT NULL,
   `contenu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -174,20 +209,6 @@ INSERT INTO `joueur` (`id_joueur`, `nom`, `prenom`, `role`, `photo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `match`
---
-
-CREATE TABLE `match` (
-  `id_match` int(11) NOT NULL,
-  `resultat` varchar(20) DEFAULT NULL,
-  `buts_marques` int(11) DEFAULT NULL,
-  `buts_encaisses` int(11) DEFAULT NULL,
-  `date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `meteo`
 --
 
@@ -206,7 +227,7 @@ CREATE TABLE `meteo` (
 
 CREATE TABLE `partenaire` (
   `id_partenaire` int(11) NOT NULL,
-  `photo` longblob DEFAULT NULL,
+  `photo` varchar(200) DEFAULT NULL,
   `nom_societe` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -215,26 +236,27 @@ CREATE TABLE `partenaire` (
 --
 
 INSERT INTO `partenaire` (`id_partenaire`, `photo`, `nom_societe`) VALUES
-(1, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f63726273745f4c6f676f5f32304d6169726965302e6a70673f763d326772367473376972306166666274, 'Ville de Colomiers'),
-(2, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6f632d313730362d696e737469742d6c6f676f5f63617272652d7175616472692d313530783135302d3732647069302e706e673f763d32677138703437697230616831736b, 'Région Occitanie'),
-(3, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f48617574652d4761726f6e6e655f5f323833315f32395f6c6f676f5f323031355f7376672e706e673f763d326773326b38376972306171326373, 'Conseil Départemental de la Haute-Garonne'),
-(4, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c612d64657065636865302e6a70673f763d326772767a34376972306168636664, 'La Dépêche du Midi'),
-(5, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f32307470665f3230616c6c696173657276302e6a70673f763d326771387034327067786167736c, 'Groupe Alliaserv'),
-(6, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f63726273745f4c6f676f4d4d4132322e706e673f763d326772393830723270386c723833, 'MMA'),
-(7, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f5f3230696e7465726d61726368655f3230636f726e65626172726965752e706e673f763d326474366a6337716278666a6a7134, 'Intermarché Cornebarrieu'),
-(8, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f735f43617373696e2e706e673f763d3375336577673878786e706a776661, 'Cassin Travaux Publics'),
-(9, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4166666c656c6f752e6a70673f763d323039786f6f333762676f786c33, 'Alain Afflelou'),
-(10, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4c6f676f5f4672616e63655f4d63646f2e706e673f763d3375333734383878786e706b396a6e, 'McDonald\'s'),
-(11, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f3230747265766973706f7274312e6a70673f763d326772757330376972306532336b77, 'Trevi Sport'),
-(12, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f31312e6a70673f763d34336e64396337716277727a613674, 'Puma'),
-(13, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f7375705f32307065696e747572652e706e673f763d3233766d7673773679736a6f6864, 'Sup Peinture'),
-(14, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f73756272615f323068656e72692e6a70673f763d323377703763773679736a6f6864, 'Subra Henry'),
-(15, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f746f73686962612d6c6f676f2d312e6a70673f763d323377733734773679736a6f6864, 'Toshiba'),
-(16, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f6c6f676f5f6167656e63655f7069627261632e706e673f763d323377747a73773679736a6f6864, 'Selectour'),
-(17, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f43617a656e6176655f32304175746f732e6a70673f763d32306138676f32677a61666f63757531, 'CZN Machinery'),
-(18, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f7467666c75696465735f6c6f676f2e6a70673f763d3230396d776f32677a61666f68326a6c, 'TGF'),
-(19, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4163655f3230486f74656c2e706e673f763d3230396f337332677a61666f6e687676, 'ACE Hôtel'),
-(20, 0x68747470733a2f2f7777772e636f6c6f6d69657273666f6f742e66722f4561745f323053616c61642e6a70673f763d32306162676732677a61666f6e706531, 'Eat Salad');
+(1, 'https://www.colomier', 'Ville de Colomiers'),
+(2, 'https://www.colomier', 'Région Occitanie'),
+(3, 'https://www.colomier', 'Conseil Départemental de la Haute-Garonne'),
+(4, 'https://www.colomier', 'La Dépêche du Midi'),
+(5, 'https://www.colomier', 'Groupe Alliaserv'),
+(6, 'https://www.colomier', 'MMA'),
+(7, 'https://www.colomier', 'Intermarché Cornebarrieu'),
+(8, 'https://www.colomier', 'Cassin Travaux Publics'),
+(9, 'https://www.colomier', 'Alain Afflelou'),
+(10, 'https://www.colomier', 'McDonald\'s'),
+(11, 'https://www.colomier', 'Trevi Sport'),
+(12, 'https://www.colomier', 'Puma'),
+(13, 'https://www.colomier', 'Sup Peinture'),
+(14, 'https://www.colomier', 'Subra Henry'),
+(15, 'https://www.colomier', 'Toshiba'),
+(16, 'https://www.colomier', 'Selectour'),
+(17, 'https://www.colomier', 'CZN Machinery'),
+(18, 'https://www.colomier', 'TGF'),
+(19, 'https://www.colomier', 'ACE Hôtel'),
+(20, 'https://www.colomier', 'Eat Salad'),
+(21, '16-01-2026', NULL);
 
 -- --------------------------------------------------------
 
@@ -311,24 +333,69 @@ CREATE TABLE `staff_equipe` (
 
 INSERT INTO `staff_equipe` (`id_staff`, `id_equipe`) VALUES
 (1, 1),
+(1, 2),
+(1, 3),
+(1, 5),
+(1, 6),
+(1, 8),
+(1, 14),
+(1, 15),
+(1, 61),
 (2, 1),
+(2, 2),
+(2, 5),
+(2, 10),
+(2, 14),
+(2, 15),
+(2, 61),
 (3, 1),
+(3, 2),
+(3, 5),
+(3, 14),
+(3, 61),
 (4, 1),
 (5, 1),
+(5, 14),
+(6, 2),
 (6, 3),
+(6, 6),
+(6, 14),
 (7, 3),
-(8, 2),
-(9, 2),
+(8, 1),
+(8, 59),
+(9, 5),
+(9, 59),
+(10, 1),
 (10, 5),
+(10, 59),
+(11, 1),
+(11, 4),
 (11, 5),
 (11, 6),
-(15, 7),
-(16, 7),
-(17, 7),
+(11, 59),
+(12, 5),
+(16, 5),
+(16, 59),
+(18, 5),
+(18, 7),
 (18, 10),
+(19, 8),
 (19, 11),
 (20, 10),
-(21, 13);
+(21, 13),
+(22, 9),
+(22, 14),
+(23, 5),
+(26, 5),
+(26, 9),
+(27, 7),
+(29, 4),
+(33, 6),
+(35, 4),
+(36, 7),
+(37, 4),
+(37, 9),
+(37, 15);
 
 --
 -- Index pour les tables déchargées
@@ -363,12 +430,6 @@ ALTER TABLE `histoires`
 --
 ALTER TABLE `joueur`
   ADD PRIMARY KEY (`id_joueur`);
-
---
--- Index pour la table `match`
---
-ALTER TABLE `match`
-  ADD PRIMARY KEY (`id_match`);
 
 --
 -- Index pour la table `meteo`
@@ -415,7 +476,7 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT pour la table `equipe`
 --
 ALTER TABLE `equipe`
-  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT pour la table `histoires`
@@ -427,13 +488,7 @@ ALTER TABLE `histoires`
 -- AUTO_INCREMENT pour la table `joueur`
 --
 ALTER TABLE `joueur`
-  MODIFY `id_joueur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT pour la table `match`
---
-ALTER TABLE `match`
-  MODIFY `id_match` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_joueur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `meteo`
@@ -445,7 +500,7 @@ ALTER TABLE `meteo`
 -- AUTO_INCREMENT pour la table `partenaire`
 --
 ALTER TABLE `partenaire`
-  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_partenaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT pour la table `staff`

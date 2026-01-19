@@ -131,12 +131,31 @@ ul {
 
 /* HERO SECTION */
 .hero-section {
-    background-color: #A0A0A0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/bg_index.png');
+    
+    background-color: #A0A0A0; 
     background-size: cover;
     background-position: center;
+    
+    /* Display flex pour le bloc de contenu d'après */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     padding: 100px 0 140px 0;
     text-align: center;
-    color: var(--dark-blue);
+    color: var(--platinum);
+}
+
+/* Immitation liquid glass sur le bg du text */
+.hero-content {
+    /* Flou en question*/
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Pour Safari */
+    padding: 60px;
+    border-radius: 12px;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .hero-title { font-family: var(--font-body); font-size: 3rem; margin-bottom: var(--space-sm); }
@@ -773,8 +792,11 @@ ul {
 .form button {
     cursor: pointer;
 }
+<<<<<<< HEAD
 /* 
 PAGE ADMINISTRATION */
+=======
+>>>>>>> b6a2d19b0647e77b4070394416a93d2599d0c720
 
 /* PAGE ADMINISTRATION */
 
@@ -993,4 +1015,116 @@ PAGE ADMINISTRATION */
     .nav-menu ul.active {
         display: flex;
     }
+}
+
+/* STYLE STAFF */
+
+/* Conteneur des étiquettes */
+.staff-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;      
+    margin-top: 10px;
+}
+
+.staff-chip {
+    display: inline-flex; 
+    align-items: stretch;       /* étire les enfants pour qu'ils aient la même hauteur */
+    border-radius: 6px;   
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background-color: var(--white);
+}
+
+/* Partie Gauche en jaune */
+.staff-name {
+    background-color: #ffc107;
+    color: #000;             
+    padding: 8px 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+/* Partie Droite en rouge */
+.staff-delete-btn {
+    background-color: #dc3545; 
+    color: white;
+    border: none;
+    padding: 0 12px;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.staff-delete-btn:hover {
+    background-color: #a71d2a;
+}
+
+/* Style liste équipe */
+
+.staff-pick-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--grey-text);
+    margin: 15px 0 10px 0;
+    font-family: var(--font-titles);
+    text-transform: uppercase;
+}
+
+.available-staff-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;  
+}
+
+/* bouton staff non sélectionné */
+.option-staff {
+    background-color: var(--platinum);
+    color: var(--dark-blue);
+    border: 1px solid transparent;    
+    padding: 6px 14px;
+    border-radius: 20px;             
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.plus-icon {
+    font-weight: bold;
+    font-size: 1.1rem;
+    line-height: 0.8;
+    color: var(--grey-text);
+    transition: color 0.2s;
+}
+
+/* Effet hover */
+.option-staff:hover {
+    background-color: var(--white);
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 239, 0.15);
+}
+
+.option-staff:hover .plus-icon {
+    color: var(--primary-blue);
+}
+
+/* Effet Clique */
+.option-staff:active {
+    transform: translateY(0);
+    background-color: var(--primary-blue);
+    color: var(--white);
 }
