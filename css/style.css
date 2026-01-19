@@ -469,7 +469,7 @@ ul {
 /* Grille des Joueurs */
 .joueurs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: var(--space-md);
     margin-bottom: var(--space-lg);
 }
@@ -795,6 +795,11 @@ ul {
 /* 
 PAGE ADMINISTRATION */
 
+<<<<<<< Updated upstream
+=======
+}
+
+>>>>>>> Stashed changes
 /* PAGE ADMINISTRATION */
 
 .admin-container {
