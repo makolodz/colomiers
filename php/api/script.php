@@ -137,6 +137,219 @@ if (isset($action)) {
             echo json_encode(["success" => true]); // ne pas changer cette ligne et la garder
             break; // ne pas changer cette ligne et la garder
         }
+        
+        // GESTION DES ARTICLES
+
+        case "create-article": {
+            $titre = $input['titre'] ?? null;
+            $contenu = $input['contenu'] ?? null;
+            $date = $input['date'] ?? null;
+            $categorie = $input['categorie'] ?? null;
+            $image = $input['image'] ?? null;
+
+            $objet = new Article(null, $titre, $contenu, $date, $categorie, $image); 
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "delete-article": {
+            $id = $input['id_article'] ?? null; 
+            $objet = Database::getInstance()->loadArticle($id);
+            $objet->delete(); 
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "edit-article": {
+            $id = $input['id_article'] ?? null;
+            $titre = $input['titre'] ?? null;
+            $contenu = $input['contenu'] ?? null;
+            $date = $input['date'] ?? null;
+            $categorie = $input['categorie'] ?? null;
+            $image = $input['image'] ?? null;
+
+            $objet = Database::getInstance()->loadArticle($id);
+
+            // Mise à jour des attributs
+            $objet->titre = $titre;
+            $objet->contenu = $contenu;
+            $objet->date = $date;
+            $objet->categorie = $categorie;
+            $objet->image = $image;
+
+            $objet->save(); 
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        // GESTION DES HISTOIRES
+
+        case "create-histoire": {
+            $titre = $input['titre'] ?? null;
+            $description = $input['description'] ?? null;
+            $date = $input['date'] ?? null;
+            $image = $input['image'] ?? null;
+
+
+            $objet = new Histoire(null, $titre, $description, $date, $image);
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "delete-histoire": {
+            $id = $input['id_histoire'] ?? null;
+            $objet = Database::getInstance()->loadHistory($id);
+            $objet->delete();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "edit-histoire": {
+            $id = $input['id_histoire'] ?? null;
+            $titre = $input['titre'] ?? null;
+            $description = $input['description'] ?? null;
+            $date = $input['date'] ?? null;
+            $image = $input['image'] ?? null;
+
+            $objet = Database::getInstance()->loadHistory($id);
+
+            $objet->titre = $titre;
+            $objet->description = $description;
+            $objet->date = $date;
+            $objet->image = $image;
+
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        // GESTION DES JOUEURS
+
+        case "create-joueur": {
+            $nom = $input['nom'] ?? null;
+            $prenom = $input['prenom'] ?? null;
+            $poste = $input['poste'] ?? null;
+            $numero = $input['numero'] ?? null;
+            $image = $input['image'] ?? null;
+            $id_equipe = $input['id_equipe'] ?? null;
+
+            $objet = new Joueur(null, $nom, $prenom, $poste, $numero, $image, $id_equipe);
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "delete-joueur": {
+            $id = $input['id_joueur'] ?? null;
+            $objet = Database::getInstance()->loadJoueur($id);
+            $objet->delete();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "edit-joueur": {
+            $id = $input['id_joueur'] ?? null;
+            $nom = $input['nom'] ?? null;
+            $prenom = $input['prenom'] ?? null;
+            $poste = $input['poste'] ?? null;
+            $numero = $input['numero'] ?? null;
+            $image = $input['image'] ?? null;
+            $id_equipe = $input['id_equipe'] ?? null;
+
+            $objet = Database::getInstance()->loadJoueur($id);
+
+            $objet->nom = $nom;
+            $objet->prenom = $prenom;
+            $objet->poste = $poste;
+            $objet->numero = $numero;
+            $objet->image = $image;
+            $objet->id_equipe = $id_equipe;
+
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        // GESTION DES PARTENAIRES
+
+        case "create-partenaire": {
+            $nom = $input['nom'] ?? null;
+            $logo = $input['logo'] ?? null;
+            $lien = $input['lien'] ?? null;
+
+            $objet = new Partenaire(null, $nom, $logo, $lien);
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "delete-partenaire": {
+            $id = $input['id_partenaire'] ?? null;
+            $objet = Database::getInstance()->loadPartner($id);
+            $objet->delete();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "edit-partenaire": {
+            $id = $input['id_partenaire'] ?? null;
+            $nom = $input['nom'] ?? null;
+            $logo = $input['logo'] ?? null;
+            $lien = $input['lien'] ?? null;
+
+            $objet = Database::getInstance()->loadPartner($id);
+
+            $objet->nom = $nom;
+            $objet->logo = $logo;
+            $objet->lien = $lien;
+
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        // GESTION DU STAFF
+
+        case "create-staff": {
+            $nom = $input['nom'] ?? null;
+            $prenom = $input['prenom'] ?? null;
+            $role = $input['role'] ?? null;
+            $image = $input['image'] ?? null;
+
+            $objet = new Staff(null, $nom, $prenom, $role, $image);
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "delete-staff": {
+            $id = $input['id_staff'] ?? null;
+            $objet = Database::getInstance()->loadStaff($id);
+            $objet->delete();
+            echo json_encode(["success" => true]);
+            break;
+        }
+
+        case "edit-staff": {
+            $id = $input['id_staff'] ?? null;
+            $nom = $input['nom'] ?? null;
+            $prenom = $input['prenom'] ?? null;
+            $role = $input['role'] ?? null;
+            $image = $input['image'] ?? null;
+
+            $objet = Database::getInstance()->loadStaff($id);
+
+            $objet->nom = $nom;
+            $objet->prenom = $prenom;
+            $objet->role = $role;
+            $objet->image = $image;
+
+            $objet->save();
+            echo json_encode(["success" => true]);
+            break;
+        }
     }
 
         /* ici il faut copier coller et modifier les case : "create/delete/edit-team */
