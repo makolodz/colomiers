@@ -131,12 +131,31 @@ ul {
 
 /* HERO SECTION */
 .hero-section {
-    background-color: #A0A0A0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/bg_index.png');
+    
+    background-color: #A0A0A0; 
     background-size: cover;
     background-position: center;
+    
+    /* Display flex pour le bloc de contenu d'après */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     padding: 100px 0 140px 0;
     text-align: center;
-    color: var(--dark-blue);
+    color: var(--platinum);
+}
+
+/* Immitation liquid glass sur le bg du text */
+.hero-content {
+    /* Flou en question*/
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px); /* Pour Safari */
+    padding: 60px;
+    border-radius: 12px;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .hero-title { font-family: var(--font-body); font-size: 3rem; margin-bottom: var(--space-sm); }
@@ -766,10 +785,6 @@ ul {
 
 .form button {
     cursor: pointer;
-}
-/* 
-PAGE ADMINISTRATION */
-
 }
 
 /* PAGE ADMINISTRATION */
