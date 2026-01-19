@@ -1,0 +1,72 @@
+<script id="templateStaff" type="text/html">
+    <ul>
+        {{#.}}
+        <li>
+            <div class="delete-staff">
+                <button  type="button"
+                    data-staffid="{{id}}"
+                    data-teamid="{{idteam}}">
+                    delete
+                </button>
+                {{nom}} {{prenom}}
+            </div>
+        </li>
+        {{/.}}
+    </ul>
+</script>
+
+<script id="templateStaffOption" type="text/html">
+    <ul>
+        {{#.}}
+        <li>
+            <button type="button" class="option-staff"
+                data-staffid="{{id}}"
+                data-teamid="{{idteam}}">
+                {{nom}} {{prenom}}
+            </button>
+        </li>
+        {{/.}}
+    </ul>
+</script>
+
+<!-- template Mustache -->
+<script id="templateTeam" type="text/html">
+
+    {{#teams}}
+    <tr>
+        <td> {{ nom }} </td>
+        <td>
+            <form class="lazy-link" data-equipe="{{id}}">
+                
+                <!-- Ici sont générés les staffs qui ont été séléctionnés -->
+            
+            </form>
+
+            <div id="selectedstafflist{{id}}">
+
+            </div>
+
+            <div id="notselectedstafflist{{id}}">
+
+            </div> 
+        </td>
+        <td>
+            <button 
+                type="button" 
+                class="action-btn btn-edit btn-team-edit"
+                data-id="{{ id }}"
+                data-nom="{{ nom }}"
+                data-lien-classement="{{ lien_classement }}"
+                data-lien-calendrier="{{ lien_calendrier }}"
+                >Modifier
+            </button>
+            <button
+                type="button"
+                class="action-btn btn-delete btn-team-delete"
+                data-id="{{ id }}"
+                >Supprimer
+            </button>
+        </td>
+    </tr>
+    {{/teams}}
+</script>

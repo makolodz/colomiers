@@ -1,6 +1,22 @@
-// Sélectionne tous les boutons "Modifier"
+// VARIABLES GLOBALES
+
+let formlist;
+
+// PAS DU AJAX JUSTE DU DISPLAY : NONE POUR LA MODIFICATION DES MENUS
 
 function setupListeners() {
+
+    let addTeamButton = document.getElementById("create-team");
+
+    addTeamButton.addEventListener("click", addEquipe);
+
+    let validateTeamButton = document.getElementById("validate-team-button");
+
+    validateTeamButton.addEventListener("click", saveEquipe)
+
+}
+
+function setupListenersAjax() {
 
     let editArticleButtons = document.querySelectorAll('.btn-article-edit');
     let editArticleTitle = document.getElementById('titre-article-edit');
@@ -15,7 +31,7 @@ function setupListeners() {
     let editJoueurTitle = document.getElementById('titre-joueur-edit');
 
     let editPartenaireButtons = document.querySelectorAll('.btn-partenaire-edit');
-    let editPartenarieTitle = document.getElementById('titre-partenaire-edit');
+    let editPartenaireTitle = document.getElementById('titre-partenaire-edit');
 
     let formlist = document.querySelectorAll('.edit-simulation-area');
 
@@ -39,7 +55,7 @@ function setupListeners() {
             form.querySelector('input[name="nom"]').value = nom;
             form.querySelector('input[name="lien"]').value = lien;
     
-            editPartenarieTitle.innerHTML = nom;
+            editPartenaireTitle.innerHTML = nom;
         });
     });
 
@@ -153,6 +169,10 @@ function setupListeners() {
     });
 }
 
+//AJAX
+
+// AJAX LIEN ENTRE STAFF <-> EQUIPE (plus compliqué que le reste donc pas celui qu'il faut copypaste)
+
 function addStaffEquipe(event) {
 
     let idStaff = event.target.dataset.staffid;
@@ -203,8 +223,6 @@ function removeStaffEquipe(event) {
         }
 
     });
-
-    console.log(idStaff, " ", idEquipe);
 }
 
 function updateStaffEquipe(idEquipe) {
@@ -246,26 +264,185 @@ function updateStaffEquipe(idEquipe) {
             containerNotAssigned.querySelectorAll('.option-staff').forEach(btn => btn.addEventListener('click', e => {
                 addStaffEquipe(e);
             }))
-
-            console.log(response);
 		}
 	};
 
 	xhttp.send();
 }
 
-function setupAjaxListeners() {
-    document.querySelectorAll(".option-staff").forEach(option => {
-        option.addEventListener("click", (event) => {
-            addStaffEquipe(event);
-        });
+// AJAX Equipe ???
+
+function addEquipe() {
+
+    let nom = document.getElementById("create-team-nom").value;
+    
+    fetch("./php/api/script.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            action: "create-team",
+            nom: nom
+        })
+    })
+    .then(response => {
+        // Vérifie si la requête 
+        // HTTP a réussi
+        updateEquipe();
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
     });
 }
 
-function init() {
-    setupListeners();
-    setupAjaxListeners();
+function removeEquipe(event) {
 
+    let idEquipe = event.target.dataset.id;
+    console.log(idEquipe);
+    
+    fetch("./php/api/script.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            action: "delete-team",
+            id_equipe: idEquipe
+        })
+    })
+    .then(response => {
+        // Vérifie si la requête 
+        // HTTP a réussi
+        updateEquipe();
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+    });
+}
+
+function saveEquipe() {
+
+    let id = document.getElementById("id-edit-team").value;
+    let nom = document.getElementById("nom-edit-team").value;
+    let lien_classement = document.getElementById("lien-classement-edit-team").value;
+    let lien_calendrier = document.getElementById("lien-calendrier-edit-team").value;
+
+    fetch("./php/api/script.php", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            action: "edit-team",
+            nom: nom,
+            id_equipe: id,
+            lien_classement: lien_classement,
+            lien_calendrier: lien_calendrier
+        })
+    })
+    .then(response => {
+        // Vérifie si la requête 
+        // HTTP a réussi
+        updateEquipe();
+        if (!response.ok) {
+            throw new Error("Erreur HTTP : " + response.status);
+        }
+    });
+}
+
+function updateEquipe() {
+
+    var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", "./php/api/script.php?action=get-teams", true); // remplacer ?action=get-equipes par l'action codée dans l'api
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhttp.onreadystatechange = function() {
+        
+		if (this.readyState == 4 && this.status == 200) {
+			// Response
+			var response = JSON.parse(this.responseText); 
+			const template = document.getElementById('templateTeam').innerHTML; // remplacer templateTeam par le template mustache
+            const render = Mustache.render(template, {teams : response}); // ne pas toucher
+			let container = document.getElementById('container-team'); // remplacer team par article, histoire... ce qui correspond dans le front
+            container.innerHTML = render; // ne pas toucher
+            console.log(response);
+            let editTeamButtons = document.querySelectorAll('.btn-team-edit'); //remplacer team pareil + changer nom de variable ici et dans le foreach
+            let deleteTeambuttons = document.querySelectorAll('.btn-team-delete'); // remplacer team
+
+            document.querySelectorAll('.lazy-link').forEach(form => {
+                updateStaffEquipe(form.dataset.equipe);
+            });
+
+            document.querySelectorAll('.lazy-link-remove').forEach(form => {
+                updateStaffEquipe(form.dataset.equipe);
+            });
+
+            deleteTeambuttons.forEach(button => {
+                button.addEventListener("click", (e) => {
+                    removeEquipe(e);
+                })
+            })
+
+            editTeamButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    let form = document.getElementById("edit-team");
+                    let editTeamTitle = document.getElementById('titre-equipe-edit');
+                    let formlist = document.querySelectorAll('.edit-simulation-area');
+
+                    let id = button.dataset.id;
+                    let nom = button.dataset.nom;
+                    let lien_calendrier = button.dataset.lienCalendrier;
+                    let lien_classement = button.dataset.lienClassement;
+
+                    formlist.forEach(formItem => {
+                        formItem.classList.add("hidden");
+                    });
+            
+                    form.closest('.edit-simulation-area').classList.remove("hidden");
+
+                    document.getElementById("id-edit-team").value = id;
+                    document.getElementById("nom-edit-team").value = nom;
+                    document.getElementById("lien-calendrier-edit-team").value = lien_calendrier;
+                    document.getElementById("lien-classement-edit-team").value = lien_classement; 
+
+                    editTeamTitle.innerHTML = nom;
+                });
+            });
+		};
+	};
+	xhttp.send();
+}
+
+// AJAX Sponsor ???
+
+function addSponsor() {}
+function removeSponsor() {}
+function updateSponsor() {}
+
+// AJAX Joueur ???
+
+function addJoueur() {}
+function removeJoueur() {}
+function updateJoueur() {}
+
+// AJAX Staff ???
+
+function addStaff() {}
+function removeStaff() {}
+function updateStaff() {}
+
+// AJAX Histoire ???
+
+function addHistoire() {}
+function removeHistoire() {}
+function updateHistoire() {}
+
+// AJAX Article ???
+
+function addArticle() {}
+function removeArticle() {}
+function updateArticle() {}
+
+// INIT
+
+function init() {
+
+    setupListeners();
+    //setupAjaxListeners();
 
     document.querySelectorAll('.lazy-link').forEach(form => {
         updateStaffEquipe(form.dataset.equipe);
@@ -274,6 +451,9 @@ function init() {
     document.querySelectorAll('.lazy-link-remove').forEach(form => {
         updateStaffEquipe(form.dasaset.equipe)
     })
+
+    updateEquipe();
+
 };
 
 document.addEventListener("DOMContentLoaded", init);

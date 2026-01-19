@@ -23,7 +23,7 @@ class Joueur extends Personnel {
 
         $db = Database::getInstance()->getConnection();
         $stmt = $db->prepare("DELETE FROM joueur WHERE id_joueur = :id"); 
-         $stmt->execute(['id' => $this->id]);
+        $stmt->execute(['id' => $this->id]);
 
         $this->id = null;
     }
