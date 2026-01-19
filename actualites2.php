@@ -1,4 +1,4 @@
-<?php include __DIR__ . "/php/database.php" ?>
+<?php include __DIR__ . "/php/database2.php" ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -22,24 +22,23 @@
             <button class="filter-btn">Jeunes</button>
             <button class="filter-btn">Club</button>
         </section> <div class="news-grid">
-            <?php
-            $lastactus = Database::getInstance()->loadArticles();
+            <?php 
+            $lastactus2 = Database::getInstance()->loadObjects('SELECT * FROM article ORDER BY date_publication DESC','Article');
             
-            foreach($lastactus as $actu) :
-            ?>
-            <article class="news-card">
-                <img src="" alt="Image Actualité" class="news-img">
-                
-                <div class="news-content">
-                    <h3 class="news-title"><?php echo $actu->titre; ?></h3>
-                    <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>
-                    <a href="#" class="read-more">Lire l'article</a>
-                </div>
-            </article>
+            foreach($lastactus2 as $actu) :
+                ?>
+                <article class="news-card">
+                    <img src="" alt="Image Actualité" class="news-img">
+                    
+                    <div class="news-content">
+                        <h3 class="news-title"><?php echo $actu->titre; ?></h3>
+                        <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>
+                        <a href="#" class="read-more">Lire l'article</a>
+                    </div>
+                </article>
             <?php 
                 endforeach; 
             ?>
-
         </div>
     </main>
 

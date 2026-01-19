@@ -7,12 +7,12 @@ class Equipe {
     public $nom;
     public $trainers; //array de l'objet Staff
 
-    public function __construct($nom, $lien_calendrier, $lien_classement) {
+    public function __construct($id, $nom, $lien_calendrier, $lien_classement) {
+        $this->id = $id;
         $this->nom = $nom;
         $this->lien_calendrier = $lien_calendrier;
         $this->lien_classement = $lien_classement;
         $this->trainers = [];
-
     }
 
 

@@ -1,10 +1,17 @@
 <header class="main-header">
     <div class="header-container container">
+        
         <div class="header-left">
             <a href="index.php" class="logo-link">
                 <img src="assets/Logo_Colomiers_Football.svg" alt="Logo US Colomiers" class="main-logo">
             </a>
             <h1 class="site-title">US COLOMIERS</h1>
+        </div>
+
+        <div id="burger-toggle" class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
 
         <nav class="nav-menu">
@@ -19,5 +26,6 @@
         <div class="header-right">
             <a href="#" class="btn-main">BOUTIQUE</a>
         </div>
+
     </div>
 </header>
