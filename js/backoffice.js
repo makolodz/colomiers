@@ -12,7 +12,9 @@ function setupListeners() {
 
     let validateTeamButton = document.getElementById("validate-team-button");
 
-    validateTeamButton.addEventListener("click", saveEquipe)
+    validateTeamButton.addEventListener("click", saveEquipe) 
+
+    // adapter ce code à chaque entrées
 
 }
 
@@ -167,7 +169,7 @@ function setupListenersAjax() {
             editArticleTitle.innerHTML = titre;
         });
     });
-}
+} // normalement on a plus besoin de la fonction setupListenersAjax après avoir fini de coder en ajax
 
 //AJAX
 
@@ -270,50 +272,39 @@ function updateStaffEquipe(idEquipe) {
 	xhttp.send();
 }
 
-// AJAX Equipe ???
+// AJAX Equipe à recopier pour les autres
 
 function addEquipe() {
 
-    let nom = document.getElementById("create-team-nom").value;
+    let nom = document.getElementById("create-team-nom").value; // seulement la première valeure (pas besoin de plus dans les formulaires en front)
     
     fetch("./php/api/script.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             action: "create-team",
-            nom: nom
+            nom: nom // nom fait référence à let  nom = ... 
         })
-    })
+    }) // changer action: "create-team" par create-... et nom: nom par titre: ... 
     .then(response => {
-        // Vérifie si la requête 
-        // HTTP a réussi
-        updateEquipe();
-        if (!response.ok) {
-            throw new Error("Erreur HTTP : " + response.status);
-        }
+        updateEquipe(); //update le front sur les données une fois qu'on a ajouté updateArticle() ....
     });
 }
 
 function removeEquipe(event) {
 
     let idEquipe = event.target.dataset.id;
-    console.log(idEquipe);
-    
+
     fetch("./php/api/script.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
             action: "delete-team",
-            id_equipe: idEquipe
+            id_equipe: idEquipe 
         })
-    })
+    }) // changer action: "delete-team" par delete-... et l'id. (équivalent dans add)
     .then(response => {
-        // Vérifie si la requête 
-        // HTTP a réussi
-        updateEquipe();
-        if (!response.ok) {
-            throw new Error("Erreur HTTP : " + response.status);
-        }
+        updateEquipe(); //update le front sur les données une fois qu'on a ajouté updateArticle() ....
     });
 }
 
@@ -324,31 +315,29 @@ function saveEquipe() {
     let lien_classement = document.getElementById("lien-classement-edit-team").value;
     let lien_calendrier = document.getElementById("lien-calendrier-edit-team").value;
 
+    // récupérer les valeurs modifiées dans le front (formulaire de modification avec display hidden...)
+
     fetch("./php/api/script.php", {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            action: "edit-team",
+            action: "edit-team", // changer les valeurs et actions
             nom: nom,
             id_equipe: id,
             lien_classement: lien_classement,
             lien_calendrier: lien_calendrier
         })
-    })
+    }) // insérer les valeurs
     .then(response => {
-        // Vérifie si la requête 
-        // HTTP a réussi
+        // actualiser le front
         updateEquipe();
-        if (!response.ok) {
-            throw new Error("Erreur HTTP : " + response.status);
-        }
     });
 }
 
 function updateEquipe() {
 
     var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "./php/api/script.php?action=get-teams", true); // remplacer ?action=get-equipes par l'action codée dans l'api
+	xhttp.open("GET", "./php/api/script.php?action=get-teams", true); // remplacer ?action=get-teams par l'action codée dans l'api
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhttp.onreadystatechange = function() {
         
@@ -375,7 +364,7 @@ function updateEquipe() {
                 button.addEventListener("click", (e) => {
                     removeEquipe(e);
                 })
-            })
+            }) // ici on met des listeners sur les boutons de delete donc juste remplacer les noms de variables et les classes en fonction du front
 
             editTeamButtons.forEach(button => {
                 button.addEventListener("click", () => {
@@ -400,6 +389,8 @@ function updateEquipe() {
                     document.getElementById("lien-classement-edit-team").value = lien_classement; 
 
                     editTeamTitle.innerHTML = nom;
+
+                    // pareil faut mettre les bonnes valeurs
                 });
             });
 		};
@@ -407,34 +398,39 @@ function updateEquipe() {
 	xhttp.send();
 }
 
-// AJAX Sponsor ???
+// AJAX Sponsor
 
 function addSponsor() {}
-function removeSponsor() {}
+function removeSponsor(event) {}
+function saveSponsor() {}
 function updateSponsor() {}
 
-// AJAX Joueur ???
+// AJAX Joueur
 
 function addJoueur() {}
-function removeJoueur() {}
+function removeJoueur(event) {}
+function saveJoueur() {}
 function updateJoueur() {}
 
-// AJAX Staff ???
+// AJAX Staff
 
 function addStaff() {}
-function removeStaff() {}
+function removeStaff(event) {}
+function saveStaff() {}
 function updateStaff() {}
 
-// AJAX Histoire ???
+// AJAX Histoire
 
 function addHistoire() {}
-function removeHistoire() {}
+function removeHistoire(event) {}
+function saveHistoire() {}
 function updateHistoire() {}
 
-// AJAX Article ???
+// AJAX Article
 
 function addArticle() {}
-function removeArticle() {}
+function removeArticle(event) {}
+function saveArticle() {}
 function updateArticle() {}
 
 // INIT
@@ -442,7 +438,7 @@ function updateArticle() {}
 function init() {
 
     setupListeners();
-    //setupAjaxListeners();
+    //setupAjaxListeners(); <= plus besoin si on fini
 
     document.querySelectorAll('.lazy-link').forEach(form => {
         updateStaffEquipe(form.dataset.equipe);
@@ -453,6 +449,13 @@ function init() {
     })
 
     updateEquipe();
+    updateArticle();
+    updateHistoire();
+    updateJoueur();
+    updateStaff();
+    updateSponsor();
+
+    //ne pas toucher ici
 
 };
 

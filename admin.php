@@ -4,8 +4,9 @@ session_start();
 if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit();
-} ?>
+}
 // est ce que l'administrateur est connecté
+
 if (!isset($_SESSION['admin_id'])) {
     // si non on le dirige vers login
     header("Location: login.php");
@@ -534,7 +535,6 @@ if (!isset($_SESSION['admin_id'])) {
     </ul>
 </script>
 
-<!-- template Mustache -->
 <script id="templateTeam" type="text/html">
 
     {{#teams}}
@@ -575,3 +575,7 @@ if (!isset($_SESSION['admin_id'])) {
     </tr>
     {{/teams}}
 </script>
+
+<!-- il faut recopier templateTeam et la remplacer dans le front -->
+
+<!-- il faut changer le html dans le front pour que ça prenne les bons id / classes -->
