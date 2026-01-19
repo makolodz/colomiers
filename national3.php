@@ -28,13 +28,13 @@
         </section>
 
         <?php 
-        $joueurs = Database::getInstance()->LoadJoueurs();
+        $joueurs = Database::getInstance()->LoadJoueurs(); /*on charge les joueurs*/
         ?>
 
         <h2 class="page-subtitle">Effectif 2025/26</h2>
 
-        <h3 class="category-banner">Gardiens de but</h3>
-        <div class="joueurs-grid"> 
+        <h3 class="category-banner">Gardiens de but</h3> <!-- 4 catégories différentes afin de sérparer les postes-->
+        <div class="joueurs-grid">
             <?php foreach ($joueurs as $g): ?> 
                 <?php if($g->poste == 'Gardien de but'): ?>
                     <article class="joueur-card">
