@@ -1,6 +1,6 @@
 /* IMPORT DES POLICES LOCALES */
 
-/* Texte courant */
+/* Texte courant : on inclue les différentes polices que nous utilisons sur le site */
 @font-face {
     font-family: 'Montserrat';
     src: url('../assets/typo/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
@@ -52,10 +52,10 @@
     --space-md: 20px;
     --space-lg: 40px;
     --space-xl: 80px;
-    
+
     /* Effets */
     --shadow-main: 0 4px 12px rgba(10, 14, 45, 0.08);
-    --shadow-hover: 0 10px 20px rgba(0,0,0,0.15);
+    --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* RESET & BASE */
@@ -72,13 +72,26 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, .site-title, .section-title {
+h1,
+h2,
+h3,
+.site-title,
+.section-title { /*les différents titres*/
     font-family: var(--font-titles);
     text-transform: uppercase;
 }
 
-img { max-width: 100%; height: auto; display: block; }
-a { text-decoration: none; color: inherit; transition: 0.3s; }
+img { /* les images responsives*/
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
 
 ul {
     list-style: none;
@@ -121,27 +134,48 @@ ul {
     align-items: center;
 }
 
-.header-left { display: flex; align-items: center; gap: 15px; }
-.main-logo { height: 80px; transition: transform 0.3s; }
-.main-logo:hover { transform: scale(1.05); }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
-.nav-menu ul { display: flex; gap: 25px;}
-.nav-menu a { font-weight: 700; color: var(--dark-blue); }
-.nav-menu a:hover { color: var(--primary-blue); }
+.main-logo {
+    height: 80px;
+    transition: transform 0.3s;
+}
+
+.main-logo:hover {
+    transform: scale(1.05);
+}
+
+.nav-menu ul {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-menu a {
+    font-weight: 700;
+    color: var(--dark-blue);
+}
+
+.nav-menu a:hover {
+    color: var(--primary-blue);
+}
 
 /* HERO SECTION */
 .hero-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/bg_index.png');
-    
-    background-color: #A0A0A0; 
+
+    background-color: #A0A0A0;
     background-size: cover;
     background-position: center;
-    
+
     /* Display flex pour le bloc de contenu d'après */
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     padding: 100px 0 140px 0;
     text-align: center;
     color: var(--platinum);
@@ -151,19 +185,30 @@ ul {
 .hero-content {
     /* Flou en question*/
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px); /* Pour Safari */
+    -webkit-backdrop-filter: blur(5px);
+    /* Pour Safari */
     padding: 60px;
     border-radius: 12px;
     max-width: 90%;
     margin: 0 auto;
 }
 
-.hero-title { font-family: var(--font-body); font-size: 3rem; margin-bottom: var(--space-sm); }
-.hero-subtitle { font-family: var(--font-titles); font-size: 1.2rem; max-width: 600px; margin: 0 auto; }
+.hero-title {
+    font-family: var(--font-body);
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+}
+
+.hero-subtitle {
+    font-family: var(--font-titles);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 /* MATCH & MÉTÉO */
 .match-weather-container {
-    margin-top: -80px; 
+    margin-top: -80px;
     margin-bottom: 60px;
     position: relative;
     z-index: 10;
@@ -180,33 +225,62 @@ ul {
     flex-wrap: wrap;
 }
 
-.match-info, .weather-info { flex: 1; text-align: center; }
-.match-label, .weather-label { 
-    display: block; 
-    font-family: var(--font-titles); 
-    font-weight: bold; 
-    color: var(--grey-text); 
-    margin-bottom: var(--space-sm); 
+.match-info,
+.weather-info {
+    flex: 1;
+    text-align: center;
 }
 
-.versus { font-family: var(--font-body); font-weight: 700; font-size: 1.5rem; margin-bottom: 5px; }
-.versus .vs { color: var(--primary-blue); margin: 0 10px; }
-.date-time { font-family: var(--font-titles); font-size: 1.1rem; }
+.match-label,
+.weather-label {
+    display: block;
+    font-family: var(--font-titles);
+    font-weight: bold;
+    color: var(--grey-text);
+    margin-bottom: var(--space-sm);
+}
 
-.separator { width: 1px; height: 60px; background-color: #ccc; margin: 0 30px; }
-.weather-data { font-size: 2rem; font-family: var(--font-body); margin: 5px 0; }
+.versus {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.versus .vs {
+    color: var(--primary-blue);
+    margin: 0 10px;
+}
+
+.date-time {
+    font-family: var(--font-titles);
+    font-size: 1.1rem;
+}
+
+.separator {
+    width: 1px;
+    height: 60px;
+    background-color: #ccc;
+    margin: 0 30px;
+}
+
+.weather-data {
+    font-size: 2rem;
+    font-family: var(--font-body);
+    margin: 5px 0;
+}
 
 /* ACTUALITÉS */
-.section-title { 
-    text-align: center; 
-    font-family: var(--font-body); 
-    font-size: 2.2rem; 
-    margin-bottom: 40px; 
+.section-title {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 2.2rem;
+    margin-bottom: 40px;
 }
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 60px;
 }
@@ -219,7 +293,9 @@ ul {
     transition: transform 0.2s;
 }
 
-.news-card:hover { transform: translateY(-5px); }
+.news-card:hover {
+    transform: translateY(-5px);
+}
 
 .news-img {
     width: 100%;
@@ -228,17 +304,58 @@ ul {
     background-color: var(--grey-placeholder);
 }
 
-.news-content { padding: 20px; text-align: center; }
-.news-title { font-family: var(--font-body); font-size: 1.2rem; margin-bottom: 10px; }
-.news-meta { font-family: var(--font-titles); color: var(--grey-text); font-size: 0.9rem; margin-bottom: 15px; }
-.read-more { color: var(--primary-blue); font-weight: bold; font-family: var(--font-titles); }
+.news-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.news-title {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.news-meta {
+    font-family: var(--font-titles);
+    color: var(--grey-text);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: var(--primary-blue);
+    font-weight: bold;
+    font-family: var(--font-titles);
+}
 
 /* PARTENAIRES */
-.partners-section { margin-bottom: 80px; }
-.partners-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.partner-box { text-align: center; width: 150px; }
-.partner-logo { width: 100%; height: 100px; object-fit: contain; margin-bottom: 10px; }
-.partner-name { font-family: var(--font-titles); font-size: 0.9rem; }
+.partners-section {
+    margin-bottom: 80px;
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.partner-box {
+    text-align: center;
+    width: 150px;
+}
+
+.partner-logo {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.partner-name {
+    font-family: var(--font-titles);
+    font-size: 0.9rem;
+}
 
 /* FOOTER */
 .main-footer {
@@ -250,18 +367,27 @@ ul {
 
 .footer-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     align-items: center;
 }
 
-.footer-left { display: flex; align-items: center; gap: 20px; }
-.footer-logo { height: 50px; width: auto; display: block; }
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    display: block;
+}
 
 .footer-right {
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .social-links {
@@ -271,43 +397,54 @@ ul {
 
 /* RESPONSIVE DES BLOCS STANDARDS */
 @media (max-width: 768px) {
+
     /* HEADER : Horizontal */
     .header-container {
-        flex-direction: row; 
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         text-align: left;
     }
 
     .footer-container {
-        flex-direction: row;    
-        flex-wrap: wrap;   
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: space-between;
-        gap: 15px;        
+        gap: 15px;
     }
 
     /* Ordre d'affichage et tailles */
     .footer-left {
-        order: 1;                 /* Logo en premier */
+        order: 1;
     }
 
     .footer-right {
-        order: 2;   
-        flex-direction: row;    
+        order: 2;
+        flex-direction: row;
         gap: 10px;
     }
 
     .footer-center {
-        order: 3;        
-        width: 100%;             
+        order: 3;
+        width: 100%;
         text-align: center;
         margin-top: 10px;
     }
-    
-    .hero-title { font-size: 2rem; }
-    
-    .match-box { flex-direction: column; text-align: center; }
-    .separator { width: 100%; height: 1px; margin: 20px 0; }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .match-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .separator {
+        width: 100%;
+        height: 1px;
+        margin: 20px 0;
+    }
 }
 
 /* Titres spécifiques à la page club */
@@ -318,7 +455,9 @@ ul {
     color: var(--dark-blue);
 }
 
-#dirigeants h2, #administration h2, #histoire h2 {
+#dirigeants h2,
+#administration h2,
+#histoire h2 {
     text-align: center;
     margin-bottom: var(--space-md);
     margin-top: var(--space-lg);
@@ -360,14 +499,16 @@ ul {
     background-color: var(--grey-placeholder);
 }
 
-.dirigeant h3, .admin h3 {
+.dirigeant h3,
+.admin h3 {
     margin: 5px 0;
     font-size: 1.1rem;
     color: var(--dark-blue);
     font-family: var(--font-titles);
 }
 
-.dirigeant p, .admin p {
+.dirigeant p,
+.admin p {
     font-size: 0.95rem;
     color: var(--grey-text);
     font-family: var(--font-body);
@@ -375,7 +516,7 @@ ul {
 
 /* Section Histoire */
 
-#histoire > h2:first-of-type {
+#histoire>h2:first-of-type {
     grid-column: 1 / -1;
     background: none;
     padding: 0;
@@ -395,8 +536,8 @@ ul {
 
 .histoire-images {
     display: flex;
-    justify-content: center; 
-    align-items: center;       
+    justify-content: center;
+    align-items: center;
     gap: var(--space-md);
 }
 
@@ -484,9 +625,9 @@ ul {
     text-align: center;
     display: flex;
     flex-direction: column;
-    max-width: 300px; 
-    margin: 0 auto; 
-    width: 100%; 
+    max-width: 300px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .joueur-card:hover {
@@ -497,7 +638,6 @@ ul {
 /* IMAGES JOUEURS */
 .joueur-card img {
     width: 100%;
-    /* Ratio 3:4 pour uniformiser */
     aspect-ratio: 3/4;
     object-fit: cover;
     background-color: var(--grey-placeholder);
@@ -586,12 +726,18 @@ ul {
 
 /* Responsive N3 */
 @media (max-width: 768px) {
-    .image-nat3 img { width: 100%; }
+    .image-nat3 img {
+        width: 100%;
+    }
+
     .stat-row {
         flex-direction: column;
     }
-    .hero-nat3 h1 { font-size: 2rem; }
-}   
+
+    .hero-nat3 h1 {
+        font-size: 2rem;
+    }
+}
 
 /* PAGE: AUTRES ÉQUIPES  */
 
@@ -611,7 +757,7 @@ ul {
 .featured-card {
     width: 100%;
     max-width: 600px;
-    padding: 30px !important; 
+    padding: 30px !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -638,7 +784,7 @@ ul {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 4px solid var(--primary-blue); 
+    border-top: 4px solid var(--primary-blue);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -725,15 +871,16 @@ ul {
     transform: translateY(-2px);
     box-shadow: var(--shadow-main);
 }
+
 /* les carrés des réseaux sociaux*/
 .social-box {
     width: 35px;
     display: flex;
-    justify-content: center; 
+    justify-content: center;
 }
 
 .social-box img {
-    width: 35px;            
+    width: 35px;
 }
 
 .social-box:hover {
@@ -768,16 +915,17 @@ ul {
     display: none;
 }
 
-
+ /*le formulaire de la page connexion*/
 .formulaire {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 50px;
-    min-height: 65vh;
-    align-items: center;     
-    min-height: 63vh;        
+    min-height: 65vh; /*afin qu'il prennen toute la place*/
+    align-items: center;
+    min-height: 63vh;
 }
+
 .form {
     display: flex;
     flex-direction: column;
@@ -785,13 +933,15 @@ ul {
     width: 40%;
 }
 
-.form input, .form button {
+.form input,
+.form button {
     padding: 20px;
 }
 
 .form button {
     cursor: pointer;
 }
+
 /* 
 PAGE ADMINISTRATION */
 
@@ -933,8 +1083,15 @@ PAGE ADMINISTRATION */
     margin-right: 5px;
 }
 
-.btn-edit { background-color: #ffc107; color: #000; }
-.btn-delete { background-color: #dc3545; color: #fff; }
+.btn-edit {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
 
 /* ZONE DE MODIFICATION */
 .edit-simulation-area {
@@ -963,7 +1120,8 @@ PAGE ADMINISTRATION */
 /* STYLE DU MENU BURGER & RESPONSIVE */
 
 .burger-icon {
-    display: none; /* Caché par défaut sur desktop */
+    display: none;
+    /* Caché par défaut sur desktop */
 }
 
 /* GESTION MOBILE */
@@ -971,9 +1129,9 @@ PAGE ADMINISTRATION */
 
     /* LE BOUTON BURGER */
     .burger-icon {
-        display: block; 
+        display: block;
         cursor: pointer;
-        width: 30px; 
+        width: 30px;
     }
 
     /* Les 3 petites barres */
@@ -988,21 +1146,30 @@ PAGE ADMINISTRATION */
     }
 
     /* Animation quand le menu est ouvert */
-    .burger-icon.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-    .burger-icon.open span:nth-child(2) { opacity: 0; }
-    .burger-icon.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    .burger-icon.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .burger-icon.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-icon.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
 
     /* MENU NAV */
     .nav-menu ul {
         display: none;
-        flex-direction: column; /* Le menu déroulant reste en colonne (vertical) */
+        flex-direction: column;
+        /* Le menu déroulant reste en colonne (vertical) */
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
         background-color: var(--white);
         padding: 20px 0;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         text-align: center;
         gap: 20px;
         z-index: 999;
@@ -1020,16 +1187,17 @@ PAGE ADMINISTRATION */
 .staff-chips-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;      
+    gap: 10px;
     margin-top: 10px;
 }
 
 .staff-chip {
-    display: inline-flex; 
-    align-items: stretch;       /* étire les enfants pour qu'ils aient la même hauteur */
-    border-radius: 6px;   
+    display: inline-flex;
+    align-items: stretch;
+    /* étire les enfants pour qu'ils aient la même hauteur */
+    border-radius: 6px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: var(--font-body);
     font-size: 0.9rem;
     background-color: var(--white);
@@ -1038,7 +1206,7 @@ PAGE ADMINISTRATION */
 /* Partie Gauche en jaune */
 .staff-name {
     background-color: #ffc107;
-    color: #000;             
+    color: #000;
     padding: 8px 12px;
     font-weight: 700;
     display: flex;
@@ -1047,7 +1215,7 @@ PAGE ADMINISTRATION */
 
 /* Partie Droite en rouge */
 .staff-delete-btn {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     color: white;
     border: none;
     padding: 0 12px;
@@ -1078,16 +1246,16 @@ PAGE ADMINISTRATION */
 .available-staff-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;  
+    gap: 8px;
 }
 
 /* bouton staff non sélectionné */
 .option-staff {
     background-color: var(--platinum);
     color: var(--dark-blue);
-    border: 1px solid transparent;    
+    border: 1px solid transparent;
     padding: 6px 14px;
-    border-radius: 20px;             
+    border-radius: 20px;
     font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 600;
