@@ -24,7 +24,7 @@
         </nav>
 
         <div class="header-right">
-            <a href="#" class="btn-main">BOUTIQUE</a>
+            <a href="https://trevisport.fr/football/colomiers-foot/" class="btn-main">BOUTIQUE</a>
         </div>
 
     </div>

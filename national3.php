@@ -110,9 +110,22 @@
 
 <!-- template Mustache -->
 <script id="templateClassement" type="text/html">
-    <ul>
-        {{ #. }}
-            <li> {{position}} {{nom}} {{points}} </li>
-        {{ /. }}
-    </ul>
+    <table class="classement-table">
+        <thead>
+            <tr>
+                <th class="rank-head">Pos</th>
+                <th class="team-head">Équipe</th>
+                <th class="pts-head">Pts</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{ #. }}
+            <tr>
+                <td class="rank-col">{{position}}</td>
+                <td class="team-col">{{nom}}</td>
+                <td class="points-col">{{points}}</td>
+            </tr>
+            {{ /. }}
+        </tbody>
+    </table>
 </script>

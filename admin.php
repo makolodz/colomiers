@@ -113,8 +113,8 @@ if (!isset($_SESSION['admin_id'])) {
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th>Logo</th>
                             <th>Nom</th>
+                            <th>Logo</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -472,10 +472,10 @@ if (!isset($_SESSION['admin_id'])) {
 
     {{#joueurs}}
     <tr>
-        <td> {{ image }} </td>
+        <td> <img src="{{ image }}" class="admin-img-preview"> </td>
         <td> {{ nom }} {{ prenom }} </td>
         <td> {{ poste }} </td>
-        <td> <img src="{{ image }}"height="50"> </td>
+        
         <td>
             <button 
                 type="button" 
