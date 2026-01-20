@@ -13,16 +13,16 @@ $erreur = ""; //on crée la variable pour les erreurs
 
 // on traite la requete du formulaire
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $req = $db->prepare("SELECT * FROM admin WHERE email = ? AND password = ?"); //pour éviter injections
+    $req = $db->prepare("SELECT * FROM admin WHERE email = ? AND password = ?");
     $req->execute([$_POST['email'], $_POST['mdp']]); 
     $user = $req->fetch(); 
 
     if ($user) {
-        $_SESSION['admin_id'] = $user['id_admin']; //si l'id admin est trouvé
-        header("Location: admin.php"); //on l'emmène à la page admin
+        $_SESSION['admin_id'] = $user['id_admin']; // si l'id admin est trouvé
+        header("Location: admin.php"); // on l'emmène à la page admin
         exit();
     } else {
-        $erreur = "Identifiants incorrects."; //Sinon on lui dit que c'est pas bon
+        $erreur = "Identifiants incorrects."; // sinon on lui dit que c'est pas bon
     }
 }
 ?>

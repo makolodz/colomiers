@@ -1,5 +1,12 @@
 <?php include __DIR__ . "/php/database.php" ?>
 
+<?php 
+
+$joueurs = Database::getInstance()->LoadJoueurs(); /*on charge les joueurs*/ 
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,18 +25,23 @@
     <?php include "./php/components/header.php";?>
 
     <main class="container">
-        
+
         <section class="hero-nat3">
-            <h1>National 3</h1>
+                <h1>National 3</h1>
+                <div class="image-nat3" alt="Équipe National 3 Saison 2025-2026"></div>
         </section>
+        
+        <section class="section-stats">
+                <div class="stat-row">
+                    <div class="stat-container">
+                        <h2 class="section-title">Classement</h2>
+                        <div id="classement">
 
-        <section class="image-nat3">
-            <img src="https://www.colomiersfoot.fr/Photo_20officielle_20N3_20-_20saison_202025-20261.jpg?v=234tb42gzagb22rk" alt="Équipe National 3 Saison 2025-2026">
-        </section>
-
-        <?php 
-        $joueurs = Database::getInstance()->LoadJoueurs(); /*on charge les joueurs*/
-        ?>
+                        </div>
+                    </div>
+                </div>
+                <!-- on avait les buteurs mais aucune api n'a les données (trop basse division) -->
+            </section>
 
         <h2 class="page-subtitle">Effectif 2025/26</h2>
 
@@ -38,7 +50,7 @@
             <?php foreach ($joueurs as $g): ?> 
                 <?php if($g->poste == 'Gardien de but'): ?>
                     <article class="joueur-card">
-                        <img src="<?= $g->photo ?>" alt="Photo <?= $g->prenom . " " . $g->nom ?>">
+                        <img src="<?php echo "./php/api/images/joueur/" . $g->photo;?>" alt="Photo <?= $g->prenom . " " . $g->nom ?>">
                         <div class="joueur-info">
                             <p class="joueur-name"><?= $g->prenom . " " . $g->nom ?></p>
                         </div>
@@ -52,7 +64,7 @@
             <?php foreach ($joueurs as $d): ?> 
                 <?php if($d->poste == 'Défenseur'): ?>
                     <article class="joueur-card">
-                        <img src="<?= $d->photo ?>" alt="Photo <?= $d->prenom . " " . $d->nom ?>">
+                        <img src="<?php echo "./php/api/images/joueur/" . $d->photo;?>" alt="Photo <?= $d->prenom . " " . $d->nom ?>">
                         <div class="joueur-info">
                             <p class="joueur-name"><?= $d->prenom . " " . $d->nom ?></p>
                         </div>
@@ -66,7 +78,7 @@
             <?php foreach ($joueurs as $m): ?> 
                 <?php if($m->poste == 'Milieu de terrain'): ?>
                     <article class="joueur-card">
-                        <img src="<?= $m->photo ?>" alt="Photo <?= $m->prenom . " " . $m->nom ?>">
+                        <img src="<?php echo "./php/api/images/joueur/" . $m->photo;?>" alt="Photo <?= $m->prenom . " " . $m->nom ?>">
                         <div class="joueur-info">
                             <p class="joueur-name"><?= $m->prenom . " " . $m->nom ?></p>
                         </div>
@@ -80,7 +92,7 @@
             <?php foreach ($joueurs as $a): ?> 
                 <?php if($a->poste == 'Attaquant'): ?>
                     <article class="joueur-card">
-                        <img src="<?= $a->photo ?>" alt="Photo <?= $a->prenom . " " . $a->nom ?>">
+                        <img src="<?php echo "./php/api/images/joueur/" . $a->photo;?>" alt="Photo <?= $a->prenom . " " . $a->nom ?>">
                         <div class="joueur-info">
                             <p class="joueur-name"><?= $a->prenom . " " . $a->nom ?></p>
                         </div>
@@ -88,20 +100,6 @@
                 <?php endif;?>
             <?php endforeach; ?> 
         </div> 
-
-
-        <section class="section-stats">
-            <div class="stat-row">
-                <div class="stat-container">
-                    <h2 class="section-title">Classement</h2>
-                    <div id="classement">
-
-                    </div>
-                </div>
-            </div>
-            <!-- on avait les buteurs mais aucune api n'a les données (trop basse division) -->
-        </section>
-
     </main>
 
     <?php include "./php/components/footer.php"; ?>
@@ -120,7 +118,7 @@
         </thead>
         <tbody>
             {{ #. }}
-            <tr>
+            <tr class="height-row-classement">
                 <td class="rank-col">{{position}}</td>
                 <td class="team-col">{{nom}}</td>
                 <td class="points-col">{{points}}</td>

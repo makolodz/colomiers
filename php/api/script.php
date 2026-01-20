@@ -73,7 +73,6 @@ if(isset($_GET["action"])) {
     }
 }
 
-
 if (isset($action)) {
 
     switch ($input["action"]) {
@@ -230,27 +229,6 @@ if (isset($action)) {
             break;
         }
 
-        case "edit-joueur": {
-            $id = $input['id_joueur'] ?? null;
-            $nom = $input['nom'] ?? null;
-            $prenom = $input['prenom'] ?? null;
-            $poste = $input['poste'] ?? null;
-            $numero = $input['numero'] ?? null;
-            $image = $input['image'] ?? null;
-
-            $objet = Database::getInstance()->loadJoueur($id);
-
-            $objet->nom = $nom;
-            $objet->prenom = $prenom;
-            $objet->poste = $poste;
-            $objet->numero = $numero;
-            $objet->image = $image;
-
-            $objet->save();
-            echo json_encode(["success" => true]);
-            break;
-        }
-
         // GESTION DES PARTENAIRES
 
         case "create-partenaire": {
@@ -328,8 +306,6 @@ if (isset($_POST["action"])) {
             $objet = Database::getInstance()->loadPartner($id);
             $objet->nom = $nom;
         
-            error_reporting(E_ALL);
-        
             $uploadDir = __DIR__ . '/images/sponsors/';
 
             $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
@@ -348,6 +324,123 @@ if (isset($_POST["action"])) {
                 'id' => $id,
                 'photo' => $objet->logo
                 ]);                
+            
+
+            $objet->save();
+        
+            echo json_encode(["success" => true]);
+            break;
+        }
+        case "edit-histoire": {
+
+            $id = $_POST['id'] ?? null;
+            $titre = $_POST['titre'] ?? null;
+            $date = $_POST['date'] ?? null;
+            $contenu = $_POST['contenu'] ?? null;
+            $file = $_FILES['image'];
+
+            $objet = Database::getInstance()->loadHistoire($id);
+
+        
+            $objet->titre = $titre;
+            $objet->texte = $contenu;
+            $objet->tranche_date = $date;
+        
+            $uploadDir = __DIR__ . '/images/histoire/';
+
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $filePath = $uploadDir . $id . '.' . $extension;
+    
+            move_uploaded_file($file['tmp_name'], $filePath);
+            $objet->image = $id . '.' . $extension;
+
+            $db = Database::getInstance()->getConnection();
+    
+            $sql = "UPDATE histoires 
+                SET image = :image
+                WHERE id_histoire = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'id' => $id,
+                'image' => $objet->image
+                ]);                
+            
+
+            $objet->save();
+        
+            echo json_encode(["success" => true]);
+            break;
+        }
+        case "edit-article": {
+            
+            $id = $_POST['id'] ?? null;
+            $titre = $_POST['titre'] ?? null;
+            $contenu = $_POST['contenu'] ?? null;
+            $categorie = $_POST['categorie'] ?? null;
+            $file = $_FILES['image'];
+        
+            $objet = Database::getInstance()->loadArticle($id);
+            $objet->titre = $titre;
+            $objet->contenu = $contenu;
+            $objet->categorie = $categorie;
+
+        
+            $uploadDir = __DIR__ . '/images/article/';
+
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $filePath = $uploadDir . $id . '.' . $extension;
+    
+            move_uploaded_file($file['tmp_name'], $filePath);
+            $objet->image = $id . '.' . $extension;
+    
+            $db = Database::getInstance()->getConnection();
+    
+            $sql = "UPDATE article 
+                SET image = :image
+                WHERE id_article = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'id' => $id,
+                'image' => $objet->image
+                ]);
+
+            $objet->save();
+        
+            echo json_encode(["success" => true]);
+            break;
+        }
+        case "edit-joueur": {
+            
+            $id = $_POST['id'] ?? null;
+            $nom = $_POST['nom'] ?? null;
+            $prenom = $_POST['prenom'] ?? null;
+            $poste = $_POST['poste'] ?? null;
+
+            $file = $_FILES['image'];
+        
+            $objet = Database::getInstance()->loadJoueur($id);
+            $objet->nom = $nom;
+            $objet->prenom = $prenom;
+            $objet->poste = $poste;
+                
+            $uploadDir = __DIR__ . '/images/joueur/';
+
+            $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $filePath = $uploadDir . $id . '.' . $extension;
+    
+            move_uploaded_file($file['tmp_name'], $filePath);
+            $objet->photo = $id . '.' . $extension;
+    
+            $db = Database::getInstance()->getConnection();
+    
+            $sql = "UPDATE joueur 
+                SET photo = :photo
+                WHERE id_joueur = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'id' => $id,
+                'photo' => $objet->photo
+            ]);                
             
 
             $objet->save();

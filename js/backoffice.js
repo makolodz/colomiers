@@ -341,43 +341,14 @@ function saveSponsor() {
         formData.append("image", image);
     }
 
-    for(let pair of formData.entries()){
-        console.log(pair[0], pair[1]);
-    }
-
     fetch("./php/api/script.php", {
         method: "POST",
         body: formData // PAS de Content-Type ici !
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); // debug
         updateSponsor();
     })
-    .catch(err => console.error(err));
-
-
-    /* let id = document.getElementById("id-edit-sponsor").value;
-    let nom = document.getElementById("nom-edit-sponsor").value;
-    let image = document.getElementById("image-edit-sponsor").files[0];
-
-    console.log(image)
-
-
-    fetch("./php/api/script.php", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            action: "edit-partenaire", // changer les valeurs et actions
-            nom: nom,
-            id_partenaire: id,
-            image: image,
-        })
-    }) // insérer les valeurs
-    .then(response => {
-        // actualiser le front
-        updateSponsor();
-    }); */
 }
 function updateSponsor() {
     var xhttp = new XMLHttpRequest();
@@ -464,30 +435,33 @@ function removeJoueur(event) {
     });
 }
 function saveJoueur() {
+
     let id = document.getElementById("id-edit-joueur").value;
     let nom = document.getElementById("nom-edit-joueur").value;
     let prenom = document.getElementById("prenom-edit-joueur").value;
     let poste = document.getElementById("poste-edit-joueur").value;
-    let image = document.getElementById("image-edit-joueur").value;
+    let image = document.getElementById("image-edit-joueur").files[0];
 
-    // récupérer les valeurs modifiées dans le front (formulaire de modification avec display hidden...)
+
+    let formData = new FormData();
+    formData.append("action", "edit-joueur");
+    formData.append("id", id);
+    formData.append("nom", nom);
+    formData.append("prenom", prenom);
+    formData.append("poste", poste);
+
+    if (image) {
+        formData.append("image", image);
+    }
 
     fetch("./php/api/script.php", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            action: "edit-joueur", // changer les valeurs et actions
-            nom: nom,
-            id_joueur: id,
-            prenom: prenom,
-            poste: poste,
-            image: image,
-        })
-    }) // insérer les valeurs
-    .then(response => {
-        // actualiser le front
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
         updateJoueur();
-    });
+    })
 }
 function updateJoueur() {
     
@@ -521,7 +495,6 @@ function updateJoueur() {
                     let id = button.dataset.id;
                     let nom = button.dataset.nom;
                     let prenom = button.dataset.prenom;
-                    let image = button.dataset.image;
                     let poste = button.dataset.poste;
 
                     formlist.forEach(formItem => {
@@ -534,7 +507,6 @@ function updateJoueur() {
                     document.getElementById("nom-edit-joueur").value = nom;
                     document.getElementById("prenom-edit-joueur").value = prenom;
                     document.getElementById("poste-edit-joueur").value = poste;
-                    document.getElementById("image-edit-joueur").value = image;
 
                     editTitle.innerHTML = nom;
 
@@ -584,6 +556,8 @@ function saveStaff() {
     let prenom = document.getElementById("prenom-edit-staff").value;
     let role = document.getElementById("role-edit-staff").value;
     let email = document.getElementById("email-edit-staff").value;
+
+    
 
     // récupérer les valeurs modifiées dans le front (formulaire de modification avec display hidden...)
 
@@ -698,26 +672,26 @@ function removeHistoire(event) {
 function saveHistoire() {
     let id = document.getElementById("id-edit-histoire").value;
     let titre = document.getElementById("titre-edit-histoire").value;
-    let image = document.getElementById("image-edit-histoire").value;
+    let image = document.getElementById("image-edit-histoire").files[0];
     let contenu = document.getElementById("contenu-edit-histoire").value;
     let date = document.getElementById("date-edit-histoire").value;
+    
+    let formData = new FormData();
+    formData.append("action", "edit-histoire");
+    formData.append("id", id);
+    formData.append("titre", titre);
+    formData.append("contenu", contenu);
+    formData.append("date", date);
 
-    // récupérer les valeurs modifiées dans le front (formulaire de modification avec display hidden...)
+    if (image) {
+        formData.append("image", image);
+    }
 
     fetch("./php/api/script.php", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            action: "edit-histoire", // changer les valeurs et actions
-            titre: titre,
-            id: id,
-            date: date,
-            image: image,
-            contenu: contenu,
-        })
-    }) // insérer les valeurs
+        body: formData
+    })
     .then(response => {
-        // actualiser le front
         updateHistoire();
     });
 }
@@ -753,7 +727,6 @@ function updateHistoire() {
                     let titre = button.dataset.titre;
                     let contenu = button.dataset.contenu;
                     let date = button.dataset.date;
-                    let image = button.dataset.image;
 
                     formlist.forEach(formItem => {
                         formItem.classList.add("hidden");
@@ -765,7 +738,6 @@ function updateHistoire() {
                     document.getElementById("titre-edit-histoire").value = titre;
                     document.getElementById("contenu-edit-histoire").value = contenu;
                     document.getElementById("date-edit-histoire").value = date;
-                    document.getElementById("image-edit-histoire").value = image;
 
                     editTitle.innerHTML = titre;
 
@@ -812,29 +784,30 @@ function removeArticle(event) {
 function saveArticle() {
     let id = document.getElementById("id-edit-article").value;
     let titre = document.getElementById("titre-edit-article").value;
-    let image = document.getElementById("image-edit-article").value;
+    let image = document.getElementById("image-edit-article").files[0];
     let contenu = document.getElementById("contenu-edit-article").value;
     let categorie = document.getElementById("categorie-edit-article").value;
 
+    let formData = new FormData();
+    formData.append("action", "edit-article");
+    formData.append("id", id);
+    formData.append("titre", titre);
+    formData.append("categorie", categorie);
+    formData.append("contenu", contenu);
 
-    // récupérer les valeurs modifiées dans le front (formulaire de modification avec display hidden...)
+    if (image) {
+        formData.append("image", image);
+    }
 
     fetch("./php/api/script.php", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            action: "edit-article", // changer les valeurs et actions
-            titre: titre,
-            id: id,
-            image: image,
-            categorie: categorie,
-            contenu: contenu,
-        })
-    }) // insérer les valeurs
-    .then(response => {
-        // actualiser le front
+        body: formData // PAS de Content-Type ici !
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // debug
         updateArticle();
-    });
+    })
 }
 function updateArticle() {
     var xhttp = new XMLHttpRequest();
@@ -868,7 +841,6 @@ function updateArticle() {
                     let titre = button.dataset.titre;
                     let contenu = button.dataset.contenu;
                     let category = button.dataset.category;
-                    let image = button.dataset.image;
 
                     formlist.forEach(formItem => {
                         formItem.classList.add("hidden");
@@ -880,8 +852,7 @@ function updateArticle() {
                     document.getElementById("titre-edit-article").value = titre;
                     document.getElementById("contenu-edit-article").value = contenu;
                     document.getElementById("categorie-edit-article").value = category;
-                    document.getElementById("image-edit-article").value = image;
-
+ 
                     editTitle.innerHTML = titre;
 
                     // pareil faut mettre les bonnes valeurs

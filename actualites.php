@@ -9,7 +9,7 @@
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
 </head>
-    <script src="ajax/filtre.js" defer></script>
+    <script src="./ajax/filtre.js" defer></script>
 <body>
 <?php include 'php/components/header.php'; ?>
     
@@ -28,8 +28,8 @@
             foreach($lastactus as $actu) :
             ?>
             <article class="news-card">
-                <img src="" alt="Image Actualité" class="news-img">
-                
+                <img src="<?php echo "./php/api/images/article/" . $actu->image ?>" alt="Image Actualité" class="news-img">
+    
                 <div class="news-content">
                     <h3 class="news-title"><?php echo $actu->titre; ?></h3>
                     <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>

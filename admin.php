@@ -187,7 +187,7 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="form-group">
                         <label>Photo :</label>
-                        <input type="file" id="image-edit-joueur">
+                        <input type="file" name="image" id="image-edit-joueur">
                     </div>
                     <button id="validate-joueur-button" type="button" class="btn-admin">Sauvegarder le joueur</button>
                 </div>
@@ -356,7 +356,7 @@ if (!isset($_SESSION['admin_id'])) {
                             </div>
                             <div class="form-group">
                                 <label>Image :</label>
-                                <input type="file" id="image-edit-article" placeholder="Image de l'article">
+                                <input type="file" id="image-edit-article" name="image">
                             </div>
                             <button id="validate-article-button" type="button" class="btn-admin">Sauvegarder l'article</button>
                         </div>
@@ -447,7 +447,7 @@ if (!isset($_SESSION['admin_id'])) {
     {{#sponsors}}
     <tr>
         <td> {{ nom }} </td>
-        <td><img src="images/sponsors/{{ logo }}" height="50"></td>
+        <td><img src="./php/api/images/sponsors/{{logo}}" height="50"></td>
         <td>
             <button 
                 type="button" 
@@ -472,7 +472,7 @@ if (!isset($_SESSION['admin_id'])) {
 
     {{#joueurs}}
     <tr>
-        <td> <img src="{{ image }}" class="admin-img-preview"> </td>
+        <td> <img src="./php/api/images/joueur/{{photo}}" class="admin-img-preview"> </td>
         <td> {{ nom }} {{ prenom }} </td>
         <td> {{ poste }} </td>
         
@@ -484,7 +484,7 @@ if (!isset($_SESSION['admin_id'])) {
                 data-nom="{{ nom }}"
                 data-prenom="{{ prenom }}"
                 data-poste="{{ poste }}"
-                data-image="{{ image }}"
+                data-image="{{ photo }}"
                 >Modifier
             </button>
             <button
@@ -534,7 +534,7 @@ if (!isset($_SESSION['admin_id'])) {
         <td> {{ titre }} </td>
         <td>{{ tranche_date }}</td>
         <td> {{ texte }} </td>
-        <td>  <img src="{{ image }}"height="50"> </td>
+        <td>  <img src="./php/api/images/histoire/{{image}}"height="50"> </td>
         <td>
             <button 
                 type="button" 
@@ -564,7 +564,7 @@ if (!isset($_SESSION['admin_id'])) {
         <td> {{ titre }} </td>
         <td> {{ texte }} </td>
         <td> {{ categorie }} </td>
-        <td> <img src="{{ image }}"height="50"> </td>
+        <td> <img src="./php/api/images/article/{{image}}" height="50"> </td>
         <td>
             <button 
                 type="button" 

@@ -4,7 +4,8 @@ $database = Database::getInstance();
 $histoires = $database->loadHistories();
 $staffClub = $database->loadStaffClub();
 
- ?>
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -27,17 +28,13 @@ $staffClub = $database->loadStaffClub();
     <div class="dirigeants-grid">
 
         <?php foreach ($staffClub as $staff): ?>
-            <?php if (
-                $staff->getRole() === 'Président' ||
-                $staff->getRole() === 'Vice-Président'
-            ): ?>
+            <?php if ( $staff->role === 'Président' || $staff->role === 'Vice-Président' ): ?>
                 <article class="dirigeant">
-                    <img src="" alt="Photo dirigeant">
                     <h3>
-                        <?= $staff->getPrenom() ?>
-                        <?php echo $staff->getNom() ?>
+                        <?= $staff->prenom ?>
+                        <?php echo $staff->nom ?>
                     </h3>
-                    <p><?php echo $staff->getRole() ?></p>
+                    <p><?php echo $staff->role ?></p>
                 </article>
             <?php endif; ?>
         <?php endforeach; ?>
@@ -51,18 +48,13 @@ $staffClub = $database->loadStaffClub();
     <div class="administration-grid">
 
         <?php foreach ($staffClub as $staff): ?>
-        <?php if (
-            $staff->getRole() === "Trésorier" ||
-            $staff->getRole() === "Trésorier Adjoint" ||
-            $staff->getRole() === "Secrétaire"
-            ): ?>
+        <?php if ( $staff->role === "Trésorier" || $staff->role === "Trésorier Adjoint" || $staff->role === "Secrétaire" ): ?>
                 <article class="admin">
-                    <img src="" alt="Photo admin">
                     <h3>
-                        <?php echo $staff->getPrenom() ?>
-                        <?php echo $staff->getNom() ?>
+                        <?php echo $staff->prenom ?>
+                        <?php echo $staff->nom ?>
                     </h3>
-                    <p><?php echo $staff->getRole() ?></p>
+                    <p><?php echo $staff->role ?></p>
                 </article>
         <?php endif; ?>
         <?php endforeach; ?>
@@ -76,7 +68,7 @@ $staffClub = $database->loadStaffClub();
     <h2>Histoire</h2>
 
     <?php foreach ($histoires as $histoire): ?>
-        <article class="histoire-card">
+        <article class="admin">
             <h2><?= $histoire->titre ?></h2>
             <p><?= $histoire->texte ?></p>
 

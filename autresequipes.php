@@ -17,12 +17,13 @@
         <h1 class="page-title">Autres équipes</h1>
 
         <?php
-        // Chargement des données
+
         $equipes = Database::getInstance()->loadEquipes();
         
-        // On isole l'équipe féminine (index 1 selon ton code précédent)
-        // Vérifie bien dans ta BDD si l'ID 1 est bien les féminines
         $feminine = isset($equipes[1]) ? $equipes[1] : null;
+
+        $stafffem = Database::getInstance()->loadStaffsByEquipe($feminine->id);
+
         ?>
 
         <?php if($feminine): ?>
@@ -34,6 +35,16 @@
                     <div class="team-icon">⚽</div> 
                     <div class="team-info">
                         <h3><?= $feminine->nom ?></h3>
+                        <div>
+                            <?php foreach($stafffem as $staff):?>
+                                <div>
+                                    <?php echo $staff->nom ?>
+                                    <?php echo $staff->prenom ?>
+                                    - <?php echo $staff->email ?>
+                                </div>
+                            <?php endforeach;?>
+                        </div>
+                        <br>
                         <div class="team-links">
                             <a href="<?= $feminine->lien_calendrier ?>" target="_blank" class="btn-link">Calendrier</a>
                             <a href="<?= $feminine->lien_classement ?>" target="_blank" class="btn-link">Classement</a>
@@ -49,9 +60,20 @@
             
             <div class="teams-grid">
                 <?php foreach ($equipes as $id => $equipe): ?>
+                    <?php $staffs = Database::getInstance()->loadStaffsByEquipe($equipe->id) ?>
                     <?php if($id != 1): ?> 
                     <article class="team-card">
                         <h3><?= $equipe->nom ?></h3>
+                        <div>
+                        <?php foreach($staffs as $staff):?>
+                            <div>
+                                <?php echo $staff->nom ?>
+                                <?php echo $staff->prenom ?>
+                                - <?php echo $staff->email ?>
+                            </div>
+                        <?php endforeach;?>
+                        </div>
+                        <br>
                         <div class="team-links">
                             <a href="<?= $equipe->lien_calendrier ?>" target="_blank" class="btn-link">Calendrier</a>
                             <a href="<?= $equipe->lien_classement ?>" target="_blank" class="btn-link">Classement</a>
