@@ -183,14 +183,21 @@ ul {
 
 /* Immitation liquid glass sur le bg du text */
 .hero-content {
-    /* Flou en question*/
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    /* Pour Safari */
+    /* Le flou */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Pour Safari */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.55), 
+        rgba(255, 255, 255, 0.05)
+    );
+    /* La bordure */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     padding: 60px;
-    border-radius: 12px;
-    max-width: 90%;
+    border-radius: 16px; 
     margin: 0 auto;
+    color: var(--white);
 }
 
 .hero-title {
