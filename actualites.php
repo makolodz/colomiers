@@ -16,12 +16,7 @@
     <main class="container">
         <h1 class="page-title">Actualités</h1>
         
-        <section class="filters-container">
-            <button class="filter-btn active">Tout</button>
-            <button class="filter-btn">Équipe 1</button>
-            <button class="filter-btn">Jeunes</button>
-            <button class="filter-btn">Club</button>
-        </section> <div class="news-grid">
+        <div class="news-grid">
             <?php
             $lastactus = Database::getInstance()->loadArticles();
             
