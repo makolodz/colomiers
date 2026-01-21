@@ -571,7 +571,7 @@ if (!isset($_SESSION['admin_id'])) {
                 class="action-btn btn-edit btn-article-edit"
                 data-id="{{ id }}"
                 data-titre="{{ titre }}"
-                data-contenu="{{ texte }}"
+                data-texte="{{ texte }}"
                 data-category="{{ categorie }}"
                 data-image="{{ image }}"
                 >Modifier

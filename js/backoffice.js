@@ -839,7 +839,7 @@ function updateArticle() {
 
                     let id = button.dataset.id;
                     let titre = button.dataset.titre;
-                    let contenu = button.dataset.contenu;
+                    let contenu = button.dataset.texte;
                     let category = button.dataset.category;
 
                     formlist.forEach(formItem => {
@@ -852,7 +852,7 @@ function updateArticle() {
                     document.getElementById("titre-edit-article").value = titre;
                     document.getElementById("contenu-edit-article").value = contenu;
                     document.getElementById("categorie-edit-article").value = category;
- 
+
                     editTitle.innerHTML = titre;
 
                     // pareil faut mettre les bonnes valeurs

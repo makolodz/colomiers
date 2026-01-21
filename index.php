@@ -32,7 +32,6 @@
                     <span class="team">STADE BORDELAIS</span>
                 </div>
                 <div class="date-time">Samedi 24 Janvier - 18h00</div>
-                <?php include_once __DIR__ . "/php/api/meteo_widget.php"?>
             </div>
             
             <div class="separator"></div>
@@ -44,6 +43,7 @@
                     <span class="temperature">12°C</span>
                 </div>
                 <span class="weather-desc">Nuageux</span>
+                <?php include_once __DIR__ . "/php/api/meteo_widget.php"?>
             </div>
         </div>
     </section>
@@ -61,12 +61,12 @@
                     if($counter <= 3): 
                 ?>
                 <article class="news-card">
-                    <img src="" alt="Image Actualité" class="news-img">
+                    <img src="<?php echo "./php/api/images/article/" . $actu->image ?>" alt="Image Actualité" class="news-img">
                     
                     <div class="news-content">
                         <h3 class="news-title"><?php echo $actu->titre; ?></h3>
                         <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>
-                        <a href="#" class="read-more">Lire l'article</a>
+                        <a href="./article.php?article=<?php echo $actu->id?>" class="read-more">Lire l'article</a>
                     </div>
                 </article>
                 <?php 

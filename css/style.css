@@ -181,6 +181,21 @@ ul {
     color: var(--platinum);
 }
 
+/* meteo */
+
+.meteo-day{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.meteo-day img {
+    height: 60px;
+    width: 60px;
+}
+
 /* Immitation liquid glass sur le bg du text */
 .hero-content {
     /* Flou en question*/

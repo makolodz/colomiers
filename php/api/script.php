@@ -381,7 +381,7 @@ if (isset($_POST["action"])) {
         
             $objet = Database::getInstance()->loadArticle($id);
             $objet->titre = $titre;
-            $objet->contenu = $contenu;
+            $objet->texte = $contenu;
             $objet->categorie = $categorie;
 
         
