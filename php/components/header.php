@@ -20,12 +20,17 @@
                 <li><a href="./national3.php">National 3</a></li>
                 <li><a href="./autresequipes.php">Autres équipes</a></li>
                 <li><a href="./actualites.php">Actualités</a></li>
+                
+                <li class="mobile-only-btn">
+                    <a href="https://trevisport.fr/football/colomiers-foot/" class="btn-main">BOUTIQUE</a>
+                </li>
             </ul>
         </nav>
 
-        <div class="header-right">
+        <div class="header-right desktop-only-btn">
             <a href="https://trevisport.fr/football/colomiers-foot/" class="btn-main">BOUTIQUE</a>
         </div>
 
     </div>
 </header>
+<script src="./js/menuburger.js"></script>

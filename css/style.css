@@ -163,6 +163,10 @@ ul {
     color: var(--primary-blue);
 }
 
+.mobile-only-btn {
+    display: none;
+}
+
 /* HERO SECTION */
 .hero-section {
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('../assets/bg_index.png');
@@ -198,14 +202,21 @@ ul {
 
 /* Immitation liquid glass sur le bg du text */
 .hero-content {
-    /* Flou en question*/
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    /* Pour Safari */
+    /* Le flou */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Pour Safari */
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.55), 
+        rgba(255, 255, 255, 0.05)
+    );
+    /* La bordure */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
     padding: 60px;
-    border-radius: 12px;
-    max-width: 90%;
+    border-radius: 16px; 
     margin: 0 auto;
+    color: var(--white);
 }
 
 .hero-title {
@@ -1183,7 +1194,6 @@ ul {
     .nav-menu ul {
         display: none;
         flex-direction: column;
-        /* Le menu déroulant reste en colonne (vertical) */
         position: absolute;
         top: 100%;
         left: 0;
@@ -1195,10 +1205,27 @@ ul {
         gap: 20px;
         z-index: 999;
     }
-
     /* Quand on clique la classe .active s'affiche */
     .nav-menu ul.active {
         display: flex;
+    }
+
+    .desktop-only-btn {
+        display: none; 
+    }
+
+    .mobile-only-btn {
+        display: block;
+        margin-top: 10px; 
+    }
+
+    .nav-menu .btn-main, 
+    .nav-menu .btn-main:hover {
+        color: var(--white) !important;
+    }
+
+    .header-container {
+        padding-right: var(--space-md);
     }
 }
 
