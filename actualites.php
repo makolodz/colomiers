@@ -33,7 +33,7 @@
                 <div class="news-content">
                     <h3 class="news-title"><?php echo $actu->titre; ?></h3>
                     <p class="news-meta"><?php echo $actu->categorie; ?> - <?php echo $actu->date; ?></p>
-                    <a href="#" class="read-more">Lire l'article</a>
+                    <a href="./article.php?article=<?php echo $actu->id?>" class="read-more">Lire l'article</a>
                 </div>
             </article>
             <?php 

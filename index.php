@@ -37,12 +37,6 @@
             <div class="separator"></div>
 
             <div class="weather-info">
-                <span class="weather-label">MÉTÉO DU MATCH</span>
-                <div class="weather-data">
-                    <span class="weather-icon">☁️</span> 
-                    <span class="temperature">12°C</span>
-                </div>
-                <span class="weather-desc">Nuageux</span>
                 <?php include_once __DIR__ . "/php/api/meteo_widget.php"?>
             </div>
         </div>

@@ -30,6 +30,7 @@ if (isset($_GET['article'])) {
     <section class="hero-section">
         <div class="hero-content">
             <h1 class="hero-title"><?php echo $article->titre ?></h1>
+            <p class="hero-subtitle"><?php echo $article->categorie?></p>
             <p class="hero-subtitle"><?php echo $article->texte?></p>
         </div>
     </section>
